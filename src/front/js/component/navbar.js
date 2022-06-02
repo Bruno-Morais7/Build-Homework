@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/index.css";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="d-flex container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary m-2">Check the Context in action</button>
-					</Link>
-					<Link to="/landingpage">
-						<button className="btn btn-success">Landing Page</button>
-					</Link>
-				</div>
-			</div>
-		</nav>
-	);
+  return (
+    <nav className="navbar navbar-light container-fluid col-10 border-bottom">
+      <div className="container-fluid py-3">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="navbar-brand h1 align-middle">Build HomeWork</span>
+        </Link>
+        <div className="d-flex gap-2">
+          <button className="btn btn-light" id="navbutton">
+            Login
+          </button>
+          <button className="btn btn-light" id="navbutton">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
 };

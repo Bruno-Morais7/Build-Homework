@@ -1,9 +1,12 @@
 import React from "react";
 import "../../styles/home.css";
+import "../../styles/index.css";
 
 export const LandingPage = () => {
   return (
-    <div className="container-fluid col-8 bg-light">
+    <div className="bgColor">
+
+    <div className="container-fluid col-8">
       <div className="p-5 mb-4 rounded-3">
         <div className="container-fluid py-3">
           <h1 className="display-5 fw-bold">HomeWork</h1>
@@ -53,13 +56,13 @@ export const LandingPage = () => {
         </div>
       </div>
 
-      <div className="mb-4 rounded-3 py-3">
+      <div className=" rounded-3 py-3">
         <div className="container-fluid ">
         <div className="d-flex row pb-5">
         <div className="col-md-4 float-start flex-grow-1">IMAGEM 🟢</div>
 
           <div className="col-md-8 float-end">
-          <h2 className="fw-bold ">What is our goal? ❤</h2>
+          <h2 className="fw-bold">What is our goal? ❤</h2>
           <ul className="fs-5">
             <li>Generate small lessons or homework using our template</li>
             <li>Tests control the students evolution and the quality of your lesson</li>
@@ -75,7 +78,7 @@ export const LandingPage = () => {
         </div>
       </div>
 
-
+    </div>
 
     </div>
   );
