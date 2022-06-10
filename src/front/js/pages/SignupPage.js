@@ -5,20 +5,19 @@ import "../../styles/style.css";
 import { Context } from "../store/appContext";
 
 export const SignupPage = () => {
-  const { store, actions } = useContext(Context);
+  const { store, action } = useContext(Context);
 
   const URLbase = "";
 
-  const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [repeatPassword, setRepeatPassword] = useState();
+  const [confirmPassword, setconfirmpassword] = useState();
 
   const onSubmitClicked = () => {
     console.log(" click and submit ");
 
-    if (email && password && repeatPassword) {
-      if (password === repeatPassword) {
+    if (email && password && confirmPassword) {
+      if (password === confirmPassword) {
         onFetchSignUp(email, password);
       } else {
         alert("the passwords have to be iqual");
@@ -28,7 +27,7 @@ export const SignupPage = () => {
     }
   };
 
-  const onFetchSignUp = (userName, email, password) => {
+  const onFetchSignUp = (email, password) => {
     const post = {
       method: "POST",
       mode: "cors",
@@ -36,7 +35,6 @@ export const SignupPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName: userName,
         email: email,
         password: password,
       }),
@@ -50,11 +48,6 @@ export const SignupPage = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const OnTypeUserName = (e) => {
-    console.log(e.target.value);
-    setUserName(e.target.value);
-  };
-
   const onTypeEmail = (e) => {
     console.log(e.target.value);
     setEmail(e.target.value);
@@ -65,9 +58,9 @@ export const SignupPage = () => {
     setPassword(e.target.value);
   };
 
-  const onTypeRepeatPassword = (e) => {
+  const onTypeconfirmPassword = (e) => {
     console.log(e.target.value);
-    setRepeatPassword(e.target.value);
+    setconfirmpassword(e.target.value);
   };
 
   return (
@@ -85,20 +78,6 @@ export const SignupPage = () => {
             </div>
             <form action="/Signuppage" method="post" name="registration" />
             <div className="form-group">
-              <label for="InputEmail1">User Name</label>
-              <input
-                type="text"
-                name="Username"
-                className="form-control"
-                id="Username"
-                aria-describedby="emailHelp"
-                placeholder="Enter yourname"
-                value={userName}
-                onChange={OnTypeUserName}
-              />
-            </div>
-
-            <div className="form-group">
               <label for="InputEmail1">Email address</label>
               <input
                 type="email"
@@ -112,7 +91,7 @@ export const SignupPage = () => {
               />
             </div>
             <div className="form-group">
-              <label for="InputEmail1">Password</label>
+              <label for="InputPassword">Password</label>
               <input
                 type="password"
                 name="password"
@@ -125,22 +104,24 @@ export const SignupPage = () => {
               />
             </div>
             <div className="form-group">
-              <label for="InputEmail1">Conform Password</label>
+              <label for="InputConfirmPassword"> Confirm Password </label>
               <input
-                type="Conform password"
-                name="Conform password"
-                id="password"
+                type="confirm password"
+                name="confirm password"
+                id="confirm password"
                 className="form-control"
-                aria-describedby="Conform password"
-                placeholder="Enter Conform Password"
-                value={repeatPassword}
-                onChange={onTypeRepeatPassword}
+                aria-describedby="confirm password"
+                placeholder="Enter Confirm Password"
+                value={confirmPassword}
+                onChange={onTypeconfirmPassword}
               />
             </div>
             <div class="col-md-12 text-center mb-3">
               <button
                 type="submit"
                 class=" btn btn-block mybtn btn-primary tx-tfm"
+                value={onSubmitClicked}
+                onChange={onSubmitClicked}
               >
                 submit
               </button>

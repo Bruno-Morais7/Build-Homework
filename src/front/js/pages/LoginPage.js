@@ -62,7 +62,7 @@ export const LoginPage = () => {
                     <h1>Login</h1>
                   </div>
                 </div>
-                <form>
+                <form method="post">
                   <div className="form-group">
                     <label for="InputEmail1">Email address</label>
                     <input
