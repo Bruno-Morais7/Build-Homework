@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import "../../styles/style.css";
 import axios from "axios";
 import { BASE_URL } from "../store/flux";
+import { useHistory } from "react-router-dom";
 
-export const LoginPage = () => {
+export const LoginPage = ({ setToken }) => {
+  const history = useHistory();
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const urlBase = " ";
 
   const onTypeEmail = (e) => {
     console.log(e.target.value);
@@ -24,7 +24,7 @@ export const LoginPage = () => {
   };
 
   const onSubmitClicked = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (email && password) {
       // fetch
       onFetchLogIn(email, password);
@@ -36,62 +36,65 @@ export const LoginPage = () => {
 
   const onFetchLogIn = (email, password) => {
     // fetch
-  //   const post = {
-  //     method: "POST",
-  //     mode: "no-cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     redirect: "follow",
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password,
-  //     }),
-  //   };
+    const post = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    };
 
-  //   fetch(BASE_URL+"/api/users",post)
-  //   .then(resp => resp.json())
-  //   .then(dataUsers =>{
-  //   console.log(dataUsers);
-  //    setStore({ 
-  //   users: [...getStore().users, dataUsers]
-  //  })
-  //  })  
-  //   .catch(error =>{
-  //     console.log(error);
-  //   });
+    fetch(BASE_URL + "/api/login", post)
+      .then((resp) => resp.json())
+      .then((dataUsers) => {
+        console.log(dataUsers);
+        if (dataUsers?.access_token) {
+          localStorage.setItem("token", dataUsers.access_token);
+          setToken(dataUsers.access_token);
+          history.push("/landingpage");
+        }
+        //   setStore({
+        //     users: [...getStore().users, dataUsers],
+        //   });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-  const requestData = {
-    email: email,
-    password: password,
-  }
+    //const requestData = {
+    // email: email,
+    // password: password,
+    //}
 
-  const options = { 
-    method: 'post',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(requestData)
-  }    
-  
-  fetch(BASE_URL+"/api/users", options)
-    .then(response => {
-       console.log(response)        
-       if (response.ok) {
-           return response.json();
-         } else {
-            throw new Error('Something went wrong ...');
-         }
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+    //const options = {
+    // method: 'post',
+    //headers: {
+    //  'Accept': 'application/json, text/plain, */*',
+    /// 'Content-Type': 'application/json'
+    //  },
+    //  body: JSON.stringify(requestData)
+    //}
 
-    
+    //fetch(BASE_URL+"/api/users", options)
+    // .then(response => {
+    //  console.log(response)
+    // if (response.ok) {
+    //   return response.json();
+    //  } else {
+    //   throw new Error('Something went wrong ...');
+    // }
+    // })
+    //.then(data => {
+    //   console.log(data);
+    // })
+    //.catch(error => {
+    //  console.error(error);
+    // });
+
     // axios.post(BASE_URL+"/api/users",requestData)
     // .then(response =>{
     //   console.log(response);
@@ -100,18 +103,17 @@ export const LoginPage = () => {
     // })
   };
 
-  // postUsersData: () => 
-    
+  // postUsersData: () =>
+
   //   	fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/users", {method: "POST"})
-      
+
   //   		.then(resp => resp.json())
-  //   	.then(dataUsers => setStore({ 
+  //   	.then(dataUsers => setStore({
   //   		users: [...getStore().users, dataUsers]
   //   	 }))
-      
+
   //   		.catch(error => console.log("Error loading message from backend Users", error));
-     
-     
+
   return (
     <>
       <div className="container">

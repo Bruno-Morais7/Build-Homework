@@ -1,7 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const Navbar = () => {
+export const Navbar = ({ token, setToken }) => {
+  const history = useHistory();
+
+  const logoutFunction = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    setToken("");
+    history.push("/");
+  };
+
   return (
     <nav className="navbar navbar-light container-fluid col-10 border-bottom">
       <div className="container-fluid py-3">
@@ -19,12 +30,24 @@ export const Navbar = () => {
           <Link to="/landingpage">
             <button className="btn btn-success">Landing Page</button>
           </Link>
-          <Link to="/LoginPage">
-            <button className="btn btn-success">Login</button>
-          </Link>
-          <Link to="/SignupPage">
-            <button className="btn btn-success">Signup</button>
-          </Link>
+
+          {token ? (
+            <Link to="#">
+              <button onClick={logoutFunction} className="btn btn-success">
+                Logout
+              </button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/LoginPage">
+                <button className="btn btn-success">Login</button>
+              </Link>
+              <Link to="/SignupPage">
+                <button className="btn btn-success">Signup</button>
+              </Link>
+            </>
+          )}
+
           <Link to="/lounge">
             <button className="btn btn-danger">Lounge</button>
           </Link>
