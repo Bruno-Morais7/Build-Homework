@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/home.css";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
     return (
@@ -9,7 +10,7 @@ export const HomePage = () => {
                     <div className="col-6">
                         <h1 className="display-4 fst-italic">Prepare your lesson from Home</h1>
                         <p className="lead my-3">A platform that you can build you homework strategy from Home if you are a Teacher, or you can learning anything as a Student.</p>
-                        <p className="lead mb-0"><a href="#" className="text-black fw-bold">Start your journey with the links below...</a></p>
+                        <p className="lead mb-0"><Link  to="#" className="text-black fw-bold">Start your journey with the links below...</Link></p>
                         <br></br>
                     </div>
                 </div>

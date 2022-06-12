@@ -18,7 +18,7 @@ export const LandingPage = () => {
             <br></br>
             <p className="card-title">password: {item.password}</p>
             <p className="card-title">userd_Id: {item.id}</p>
-            <a href="" className="btn btn-light btn-sm">Go to the Teachers Lounge </a>
+            <Link to="#" className="btn btn-light btn-sm">Go to the Teachers Lounge </Link>
           </div>
         </div>
         )  
@@ -32,7 +32,7 @@ export const LandingPage = () => {
             <br></br>
             <p className="card-title">Content: {item.written_content}</p>
             <p className="card-title">Date: {item.date}</p>
-            <a href="" className="btn btn-light btn-sm">Go to the Teachers Lounge </a>
+            <Link to="#" className="btn btn-light btn-sm">Go to the Teachers Lounge </Link>
           </div>
         </div>
         )  

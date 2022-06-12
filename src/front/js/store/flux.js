@@ -1,3 +1,6 @@
+export const BASE_URL ="https://3001-brunomorais-teachandlea-317x510bpq5.ws-eu47.gitpod.io"
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -31,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			getUsersData: () => {
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/users")
+				fetch(BASE_URL+"/api/users")
 				
 					.then(resp => resp.json())
 					.then(dataUsers => setStore({ 
@@ -44,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// postUsersData: () => {
 			// 	// fetching data from the backend
-			// 	fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/users", {method: "POST"})
+			// 	fetch(BASE_URL+"/api/users", {method: "POST"})
 				
 			// 		.then(resp => resp.json())
 			// 		.then(dataUsers => setStore({ 
@@ -56,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getLessonsData: () => {
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/lessons")
+				fetch(BASE_URL+"/api/lessons")
 					.then(resp => resp.json())
 					.then(dataLesson_Content => setStore({ 
 						lessons: [...getStore().lessons, dataLesson_Content]
@@ -66,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getTeacherData: () => {
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/teacher")
+				fetch(BASE_URL+"/api/teacher")
 					.then(resp => resp.json())
 					.then(dataTeacher => setStore({ 
 						teachers: [...getStore().teachers, dataTeacher]
@@ -76,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getStudentData: () => {
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/student")
+				fetch(BASE_URL+"/api/student")
 					.then(resp => resp.json())
 					.then(dataStudent => setStore({ 
 						students: [...getStore().students, dataStudent]
