@@ -1,6 +1,7 @@
 import React from "react";
 import avatar from "../../img/avatar.png";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const Card = (props) => {
   return (
@@ -13,9 +14,11 @@ export const Card = (props) => {
         <p className="card-text">
           {props.fun_info}
         </p>
-        <a href="" className="card-link">
+
+        <Link to="#" className="card-link">
+
           Professor's Catlogue/Page
-        </a>
+        </Link>
       </div>
     </div>
     </div>

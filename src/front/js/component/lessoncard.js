@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const Lessoncard = (props) => {
   
@@ -13,9 +14,9 @@ export const Lessoncard = (props) => {
         <p className="card-text bg-light p-3 rounded-3">
          {props.summary}
         </p>
-        <a href="#" className="card-link">
+        <Link to="#" className="card-link">
           {props.link_lesson}
-        </a>
+        </Link>
       </div>
     </div>
     </div>

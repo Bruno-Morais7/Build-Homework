@@ -138,14 +138,32 @@ export const SignupPage = () => {
             <div className="logo mb-3">
               <div className="col-md-12 text-center">
                 <h3>
-                  {/* <i className="fa fa-user-plus fa-2x"></i> */}
-                </h3>
+
+                         </h3>
                 <h1>SignUp Form</h1>
               </div>
             </div>
             <form action="/Signuppage" method="post" name="registration" />
             <div className="form-group">
+
               {/* <label>Email address</label> */}
+
+              <label htmlFor="InputEmail1">User Name</label>
+              <input
+                type="text"
+                name="Username"
+                className="form-control"
+                id="Username"
+                aria-describedby="emailHelp"
+                placeholder="Enter yourname"
+                value={userName}
+                onChange={OnTypeUserName}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="InputEmail1">Email address</label>
+
               <input
                 type="email"
                 name="email"
@@ -159,7 +177,11 @@ export const SignupPage = () => {
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>Password</label> */}
+
+      
+
+              <label htmlFor="InputEmail1">Password</label>
+
               <input
                 type="password"
                 name="password"
@@ -173,7 +195,11 @@ export const SignupPage = () => {
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>Conform Password</label> */}
+
+      
+
+              <label htmlFor="InputEmail1">Conform Password</label>
+
               <input
                 type="Conform password"
                 name="Conform password"
@@ -185,9 +211,10 @@ export const SignupPage = () => {
                 onChange={onTypeRepeatPassword}
               />
             </div>
+
             <p></p>
             <div className="form-group">
-              {/* <label>Enter First Name</label> */}
+  
               <input
                 type="First Name"
                 name="First Name"
@@ -310,6 +337,21 @@ export const SignupPage = () => {
                 <p className="text-center">
                   <Link to="/LoginPage">
                     <span>Already have an account?</span>
+
+            <div className="col-md-12 text-center mb-3">
+              <button
+                type="submit"
+                className=" btn btn-block mybtn btn-primary tx-tfm"
+              >
+                submit
+              </button>
+            </div>
+            <div className="col-md-12 ">
+              <div className="form-group">
+                <p className="text-center">
+                  <Link to="/LoginPage">
+                    <label id="signin">Already have an account?</label>
+
                   </Link>
                 </p>
               </div>
