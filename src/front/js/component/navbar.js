@@ -5,46 +5,35 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-light container-fluid col-10 border-bottom">
       <div className="container-fluid py-3">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="navbar-brand mb-0 h1 align-middle text-warning">
-            20 Min Lesson{" "}
+        <Link to="/" /*style={{ textDecoration: "none" }}*/>
+          <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-warning">
+          Teach&Learn
           </span>
         </Link>
-        <div className="ml-auto d-flex gap-3">
-          <Link to="/demo">
+        <div className="ml-auto d-flex gap-3 d-flex flex-wrap">
+          {/* <Link to="/demo">
             <button className="btn btn-primary">
               Check the Context in action
             </button>
-          </Link>
-          <Link to="/landingpage">
-            <button className="btn btn-success">Landing Page</button>
-          </Link>
-          <Link to="/LoginPage">
-            <button className="btn btn-success">Login</button>
-          </Link>
-          <Link to="/SignupPage">
-            <button className="btn btn-success">Signup</button>
-          </Link>
-            <button className="btn btn-success">Landing</button>
-          </Link>
+          </Link> */}
           <Link to="/lounge">
-            <button className="btn btn-danger">Lounge</button>
+            <button className="btn btn-dark">Lounge</button>
           </Link>
           <Link to="/lesson">
-            <button className="btn btn-danger">Lesson</button>
+            <button className="btn btn-dark">Lesson</button>
           </Link>
           <Link to="/teacherpage">
-            <button className="btn btn-danger">Teacher</button>
+            <button className="btn btn-dark">Teacher</button>
           </Link>
           <Link to="/lessonworkspace">
-            <button className="btn btn-danger">Workspace</button>
+            <button className="btn btn-dark">Workspace</button>
           </Link>
-          <button className="btn btn-light" id="navbutton">
-            Login
-          </button>
-          <button className="btn btn-light" id="navbutton">
-            Sign Up
-          </button>
+          <Link to="/LoginPage">
+            <button className="btn btn-success" id="navbutton">Login</button>
+          </Link>
+          <Link to="/SignupPage">
+            <button className="btn btn-success" id="navbutton">Signup</button>
+          </Link>
         </div>
       </div>
     </nav>

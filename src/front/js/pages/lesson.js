@@ -99,7 +99,7 @@ export const Lesson = () => {
 
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex">
         <div className="container-fluid col-8 d-flex gap-4 justify-content-end">
-          <img className="img-fluid smaller my-auto" src={checkmark}></img>
+          <img className="img-fluid my-auto" width={"77rem"} src={checkmark}></img>
           <h2 className="text-end">
             Congratutlations, this is <b className="text-warning">the end</b> of
             the lesson <br /> and now you know it{" "}

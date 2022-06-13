@@ -10,7 +10,6 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { LandingPage } from "./pages/landingpage";
-import { Content } from "./pages/content";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { ForgetPassword } from "./pages/ForgetPassword";
@@ -40,9 +39,9 @@ const Layout = () => {
             <Route exact path="/landingpage">
               <LandingPage />
             </Route>
-            <Route exact path="/Content/:user_id">
+            {/* <Route exact path="/Content/:user_id">
               <Content />
-            </Route>
+            </Route> */}
             <Route exact path="/single/:theid">
               <Single />
             </Route>
