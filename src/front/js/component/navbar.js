@@ -10,7 +10,21 @@ export const Navbar = () => {
             Teach&Learn
           </span>
         </Link>
-        <div className="ml-auto d-flex gap-3 d-flex flex-wrap">
+        <div className="ml-auto d-flex gap-3">
+          <Link to="/demo">
+            <button className="btn btn-primary">
+              Check the Context in action
+            </button>
+          </Link>
+          <Link to="/landingpage">
+            <button className="btn btn-success">Landing Page</button>
+          </Link>
+          <Link to="/LoginPage">
+            <button className="btn btn-success">Login</button>
+          </Link>
+          <Link to="/SignupPage">
+            <button className="btn btn-success">Signup</button>
+          </Link>
           <Link to="/lounge">
             <button className="btn btn-dark">Lounge</button>
           </Link>

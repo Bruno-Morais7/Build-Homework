@@ -20,7 +20,7 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "password": self.password,
-            "teacher?": self.student_or_teacher,
+            "is_teacher": self.student_or_teacher,
 #             "first_name": self.first_name,
 #             "last_name": self.last_name,
 #             # do not serialize the password, its a security breach
@@ -31,7 +31,7 @@ class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    avatar = db.Column(db.String, unique=True, nullable=False)
+    avatar = db.Column(db.String, unique=True)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     subjects = db.Column(db.String(100), nullable=False)
@@ -72,6 +72,7 @@ class Student(db.Model):
 
     def serializeStudent(self):
         return {
+            "id": self.id,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
@@ -90,7 +91,14 @@ class Lesson_Content(db.Model):
     introduction = db.Column(db.String(2000), nullable=False)
     written_content = db.Column(db.String(5000), nullable=False)
     summary = db.Column(db.String(1250), nullable=False)
-    image = db.Column(db.String(50000), nullable=False)
+    key_word1 = db.Column(db.String (30)) # nullable whem change the frontend
+    key_word2 = db.Column(db.String (30))
+    key_word3 = db.Column(db.String (30))
+    question1 = db.Column(db.String (500))
+    question2 = db.Column(db.String (500))
+    question3 = db.Column(db.String (500))
+    question4 = db.Column(db.String (500))
+    image = db.Column(db.String(50000))
     date = db.Column(db.String (30))
 
     def __reprLessons__(self):
@@ -106,6 +114,13 @@ class Lesson_Content(db.Model):
             "summary": self.summary,
             "image": self.image,
             "date": self.date,
+            "key_word1": self.key_word1,
+            "key_word2": self.key_word2,
+            "key_word3": self.key_word3,
+            "question1": self.question1,
+            "question2": self.question2,
+            "question3": self.question3,
+            "question4": self.question4,
             
 
         }

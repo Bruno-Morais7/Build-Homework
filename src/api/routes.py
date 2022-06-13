@@ -42,6 +42,20 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    print( email)
+    print(password)
+   
+    if email != "test" or password != "test":
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
 @api.route('/users', methods=['POST'])
 def add_user():
 
@@ -49,7 +63,7 @@ def add_user():
     body_request = request.get_json()
     email_request = body_request.get("email", None)
     password_request = body_request.get("password", None)
-    student_or_teacher_request = body_request.get("teacher?", False)
+    student_or_teacher_request = body_request.get("is_teacher", False)
 
 
     new_user = User(
@@ -88,6 +102,13 @@ def add_lesson():
     summary_request = body_request.get("summary", None)
     image_request = body_request.get("image", None)
     date_request = body_request.get("date", None)
+    key_word1_request = body_request.get("key_word1", None)
+    key_word2_request = body_request.get("key_word2", None)
+    key_word3_request = body_request.get("key_word3", None)
+    question1_request = body_request.get("question1", None)
+    question2_request = body_request.get("question2", None)
+    question3_request = body_request.get("question3", None)
+    question4_request = body_request.get("question4", None)
 
 
     new_content = Lesson_Content(
@@ -97,7 +118,14 @@ def add_lesson():
         written_content = content_request,
         summary = summary_request,
         image = image_request,
-        date = date_request
+        date = date_request, 
+        key_word1 = key_word1_request,
+        key_word2 = key_word2_request,
+        key_word3 = key_word3_request,
+        question1 = question1_request,
+        question2 = question2_request,
+        question3 = question3_request,
+        question4 = question4_request
     )
 
     db.session.add(new_content)

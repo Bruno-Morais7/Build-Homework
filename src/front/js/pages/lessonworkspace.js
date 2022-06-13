@@ -1,7 +1,11 @@
 import React from "react";
 import screen from "../../img/screen.png";
+import { useContext, useEffect } from "react"
+import { Context } from "../store/appContext";
 
 export const Lessonworkspace = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <div>
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex ">
@@ -30,6 +34,7 @@ export const Lessonworkspace = () => {
               Suject
             </label>
             <input
+              id="lessonContent_subject"
               type="text"
               minLength={4}
               maxLength={30}
@@ -42,6 +47,7 @@ export const Lessonworkspace = () => {
               Title
             </label>
             <input
+              id="lessonContent_title"
               type="text"
               minLength={4}
               maxLength={40}
@@ -54,10 +60,11 @@ export const Lessonworkspace = () => {
               Professor
             </label>
             <input
+              id="lessonContent_teacher"
               type="text"
               className="form-control"
               placeholder="Your Name"
-              disabled
+
             />
           </div>
         </div>
@@ -66,6 +73,7 @@ export const Lessonworkspace = () => {
             Introduction
           </label>
           <textarea
+            id="lessonContent_introduction"
             type="textarea"
             minLength={20}
             maxLength={250}
@@ -80,6 +88,7 @@ export const Lessonworkspace = () => {
             Main Part
           </label>
           <textarea
+            id="lessonContent_mainpart"
             type="textarea"
             minLength={300}
             maxLength={6000}
@@ -94,6 +103,7 @@ export const Lessonworkspace = () => {
             Summary
           </label>
           <textarea
+            id="lessonContent_summary"
             type="text"
             minLength={40}
             maxLength={250}
@@ -157,9 +167,9 @@ export const Lessonworkspace = () => {
           />
         </div>
         <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-warning fs-5 px-5 my-5">
+          <button type="submit" className="btn btn-warning fs-5 px-5 my-5" onClick={actions.postLessonsData}>
             Submit
-            {/* Submit function */}
+        
           </button>
         </div>
       </form>

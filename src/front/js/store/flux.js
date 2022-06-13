@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			users: [
-				
+
 			],
 			lessons: [
 
@@ -25,66 +25,142 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: () => {
-                // fetching data from the backend
-                fetch(process.env.BACKEND_URL + "/api/hello")
-                    .then(resp => resp.json())
-                    .then(data => setStore({ message: data.message }))
-                    .catch(error => console.log("Error loading message from backend", error));
-			},	
-				
+				// fetching data from the backend
+				fetch(process.env.BACKEND_URL + "/api/hello")
+					.then(resp => resp.json())
+					.then(data => setStore({ message: data.message }))
+					.catch(error => console.log("Error loading message from backend", error));
+			},
+
 			getUsersData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL+"/api/users")
-				
+
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/users")
+
 					.then(resp => resp.json())
-					.then(dataUsers => setStore({ 
+					.then(dataUsers => setStore({
 						users: [...getStore().users, dataUsers]
-					 }))
-				
+					}))
+
 					.catch(error => console.log("Error loading message from backend Users", error));
 			},
-				// WORK IM PROGRESS - NOT DONE
 
-			// postUsersData: () => {
-			// 	// fetching data from the backend
-			// 	fetch(BASE_URL+"/api/users", {method: "POST"})
+			postUserData: () => {
 				
-			// 		.then(resp => resp.json())
-			// 		.then(dataUsers => setStore({ 
-			// 			users: [...getStore().users, dataUsers]
-			// 		 }))
-				
-			// 		.catch(error => console.log("Error loading message from backend Users", error));
-			// },
+				// fetching data from the backend
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/users", {
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: "POST",
+					body: JSON.stringify({
+						"email": document.getElementById("email").value,
+						"password": document.getElementById("password").value,
+						// "is_teacher": document.getElementById("confirm_teacher").value,
+					})
+				})
+
+			},
+
+			postStudentData: () => {
+
+			fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/student", {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: "POST",
+				body: JSON.stringify({
+					"email": document.getElementById("email").value,
+					"password": document.getElementById("password").value,
+					"first_name": document.getElementById("First_Name").value,
+					"last_name": document.getElementById("Surnames").value,
+				})
+			})
+
+		},
+
+		postTeacherData: () => {
+
+			fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/teacher", {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: "POST",
+				body: JSON.stringify({
+					"email": document.getElementById("email").value,
+					"password": document.getElementById("password").value,
+					"first_name": document.getElementById("First_Name").value,
+					"last_name": document.getElementById("Surnames").value,
+					"subjects": document.getElementById("subjects").value,
+					"fun_info": document.getElementById("fun_info").value,
+					"why_you_teach": document.getElementById("why_you_teach").value,
+					"years_experience": document.getElementById("years_experience").value,
+				})
+			})
+
+		},
+
+			// TEST FUNCTION 			
+			saveData: () => {
+				console.log(document.getElementById("lesson_title").value)
+			},
+
+			// WORK IM PROGRESS - NOT DONE BUT WORKING
 
 			getLessonsData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL+"/api/lessons")
+
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/lessons")
+
 					.then(resp => resp.json())
-					.then(dataLesson_Content => setStore({ 
+					.then(dataLesson_Content => setStore({
 						lessons: [...getStore().lessons, dataLesson_Content]
-					 }))
-				
+					}))
+
 					.catch(error => console.log("Error loading message from backend Lessons", error));
 			},
+
+			postLessonsData: () => {
+				
+				// fetching data from the backend
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/lessons", {
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: "POST",
+					body: JSON.stringify({
+						"title": document.getElementById("lessonContent_title").value,
+						"subject": document.getElementById("lessonContent_subject").value,
+						"introduction": document.getElementById("lessonContent_introduction").value,
+						"written_content": document.getElementById("lessonContent_mainpart").value,
+						"summary": document.getElementById("lessonContent_summary").value
+					})
+				})
+				
+			},
+
 			getTeacherData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL+"/api/teacher")
+
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/teacher")
+
 					.then(resp => resp.json())
-					.then(dataTeacher => setStore({ 
+					.then(dataTeacher => setStore({
 						teachers: [...getStore().teachers, dataTeacher]
-					 }))
-				
+					}))
+
 					.catch(error => console.log("Error loading message from backend Teacher", error));
 			},
 			getStudentData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL+"/api/student")
+
+				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/student")
+
 					.then(resp => resp.json())
-					.then(dataStudent => setStore({ 
+					.then(dataStudent => setStore({
 						students: [...getStore().students, dataStudent]
-					 }))
-				
+					}))
+
 					.catch(error => console.log("Error loading message from backend Student", error));
 			},
 			changeColor: (index, color) => {

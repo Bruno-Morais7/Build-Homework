@@ -14,7 +14,9 @@ export const Card = (props) => {
         <p className="card-text">
           {props.fun_info}
         </p>
+
         <Link to="#" className="card-link">
+
           Professor's Catlogue/Page
         </Link>
       </div>
@@ -27,5 +29,7 @@ Card.propTypes = {
   first_name: PropTypes.string,
   last_name: PropTypes.string,
   subjects: PropTypes.string,
-  fun_info: PropTypes.string
+  fun_info: PropTypes.string,
+  id: PropTypes.string,
+
 }

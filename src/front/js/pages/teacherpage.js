@@ -8,6 +8,16 @@ import PropTypes from "prop-types";
 
 export const Teacherpage = () => {
   const { store, actions } = useContext(Context);
+
+  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
+    
+  //   return (
+  //     <div key={indexT}>
+  //         {teacher.id}
+  //     </div>
+  //   )
+  // })
+
   const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, index) => {
     return (
       <div key={index}>
@@ -28,6 +38,7 @@ export const Teacherpage = () => {
             <div>
               <img src={avatar} width="200" className="rounded m-5" />
             </div>
+
             <div className="m-auto text-white text-center">
               <h4 className="mb-2">
                 <span className="border-bottom border-warning">
