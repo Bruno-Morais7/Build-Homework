@@ -87,7 +87,7 @@ export const Lessonworkspace = () => {
             rows="10"
             placeholder="Content (don't forget that it should be a short lesson [20min])."
           />
-          {/* <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea> */}
+          {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="10"></textarea> */}
         </div>
         <div className="form-group mx-auto col-10 my-4">
           <label className="fs-2 ms-4 mb-2 border-bottom border-warning border-3">
@@ -178,7 +178,7 @@ export const Lessonworkspace = () => {
               Time to share it with your students... or not.
             </p>
             <p className="lead ps-5 ms-5 fst-italic">
-              Copy this <a className="underline">"url to copy"</a> and send it.
+              Copy this <Link to="#" className="underline">"url to copy"</Link> and send it.
             </p>
           </div>
         </div>

@@ -78,14 +78,14 @@ export const SignupPage = () => {
             <div className="logo mb-3">
               <div className="col-md-12 text-center">
                 <h3>
-                  <i class="fa fa-user-plus fa-2x"></i>
+                  <i className="fa fa-user-plus fa-2x"></i>
                 </h3>
                 <h1>Signup</h1>
               </div>
             </div>
             <form action="/Signuppage" method="post" name="registration" />
             <div className="form-group">
-              <label for="InputEmail1">User Name</label>
+              <label htmlFor="InputEmail1">User Name</label>
               <input
                 type="text"
                 name="Username"
@@ -99,7 +99,7 @@ export const SignupPage = () => {
             </div>
 
             <div className="form-group">
-              <label for="InputEmail1">Email address</label>
+              <label htmlFor="InputEmail1">Email address</label>
               <input
                 type="email"
                 name="email"
@@ -112,7 +112,7 @@ export const SignupPage = () => {
               />
             </div>
             <div className="form-group">
-              <label for="InputEmail1">Password</label>
+              <label htmlFor="InputEmail1">Password</label>
               <input
                 type="password"
                 name="password"
@@ -125,7 +125,7 @@ export const SignupPage = () => {
               />
             </div>
             <div className="form-group">
-              <label for="InputEmail1">Conform Password</label>
+              <label htmlFor="InputEmail1">Conform Password</label>
               <input
                 type="Conform password"
                 name="Conform password"
@@ -137,19 +137,19 @@ export const SignupPage = () => {
                 onChange={onTypeRepeatPassword}
               />
             </div>
-            <div class="col-md-12 text-center mb-3">
+            <div className="col-md-12 text-center mb-3">
               <button
                 type="submit"
-                class=" btn btn-block mybtn btn-primary tx-tfm"
+                className=" btn btn-block mybtn btn-primary tx-tfm"
               >
                 submit
               </button>
             </div>
-            <div class="col-md-12 ">
-              <div class="form-group">
-                <p class="text-center">
+            <div className="col-md-12 ">
+              <div className="form-group">
+                <p className="text-center">
                   <Link to="/LoginPage">
-                    <a id="signin">Already have an account?</a>
+                    <label id="signin">Already have an account?</label>
                   </Link>
                 </p>
               </div>

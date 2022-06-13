@@ -13,7 +13,7 @@ export const ForgetPassword = () => {
                 <div className="logo mb-3">
                   <div className="col-md-12 text-center">
                     <h3>
-                      <i class="fa fa-lock fa-2x"></i>
+                      <i className="fa fa-lock fa-2x"></i>
                     </h3>
                     <h2 className="text-center">Forgot Password?</h2>
                     <p>You can reset your password here.</p>
