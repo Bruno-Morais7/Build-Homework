@@ -2,8 +2,8 @@ import React from "react";
 import "../../styles/index.css";
 import avatar from "../../img/avatar.png";
 import { Lessoncard } from "../component/lessoncard";
-import { useContext, useEffect } from "react"
-import { Context } from "../store/appContext"
+import { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 export const Teacherpage = () => {
@@ -11,45 +11,81 @@ export const Teacherpage = () => {
   const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, index) => {
     return (
       <div key={index}>
-        <Lessoncard title={lesson.title}
+        <Lessoncard
+          title={lesson.title}
           subject={lesson.subject}
-          summary={lesson.summary} />
+          summary={lesson.summary}
+        />
       </div>
-    )
-  })
+    );
+  });
 
   return (
-    <div className="row py-5 px-4">
-      <div className="col-md-8 mx-auto">
+    <div className="py-5 px-4">
+      <div className="col-md-6 mx-auto">
         <div className="bg-dark rounded-3">
           <div className="d-flex flex-wrap">
             <div>
-              <img
-                src={avatar}
-                width="200"
-                className="rounded m-5 img-thumbnail"
-              />
+              <img src={avatar} width="200" className="rounded m-5" />
             </div>
-            <div className="m-auto text-white">
-              <h2 className="p-3 text-warning text-center flex-wrap">
-                "Son Goku"
-              </h2>
-              <h4 className="p-2 text-center border-bottom border-warning">
-                Subjects:
+            <div className="m-auto text-white text-center">
+              <h4 className="mb-2">
+                <span className="border-bottom border-warning">
+                  {" "}
+                  &nbsp; Name &nbsp;{" "}
+                </span>
               </h4>
-              <ul className="mx-auto text-center border-start fs-5 list-unstyled">
-                <li>Mathmatics</li>
-                <li>Dragon ball</li>
-                <li>Manga 101</li>
+              <h3 className="flex-wrap text-warning mb-4">
+                "Son Goku Gohan Bulma"
+              </h3>
+              <h4 className="mb-2">
+                <span className="border-bottom border-warning">
+                  {" "}
+                  &nbsp; Years of experience &nbsp;{" "}
+                </span>
+              </h4>
+              <h4> "0" </h4>
+            </div>
+          </div>
+          <div className="mb-3">
+            <h4 className="text-center text-white mb-3">
+              <span className="border-bottom border-warning">
+                &nbsp; Subjects teached &nbsp;
+              </span>
+            </h4>
+            <div className="px-5 m-auto">
+              <ul className="list-inline d-flex text-center fs-5 bg-light rounded flex-wrap py-3">
+                <li className="list-inline-item flex-fill">Math</li>
+                <li className="list-inline-item flex-fill">Jungle</li>
+                <li className="list-inline-item flex-fill">Theory of Nothing</li>
+                <li className="list-inline-item flex-fill">Hate this game</li>
               </ul>
             </div>
           </div>
-          <div className="px-5 py-3 m-auto">
-            <h3 className="ms-5 mb-3 text-warning">Fun Info</h3>
-            <div className="p-4 rounded shadow-sm bg-light d-flex">
-              <p className="font-italic mb-0 flex-fill">
-                Anything the teacher wants to add.
-              </p>
+          <div className="px-5 m-auto gap-5">
+            <div>
+              <h4 className="ms-5 mb-3 text-white">
+                <span className="border-bottom border-warning">
+                  &nbsp;Reason to Teach&nbsp;
+                </span>
+              </h4>
+              <div className="p-4 rounded shadow-sm bg-light d-flex">
+                <p className="font-italic mb-0 flex-fill">
+                  To help my fellow Students.
+                </p>
+              </div>
+            </div>
+            <div>
+              <h4 className="ms-5 my-3 text-white">
+                <span className="border-bottom border-warning">
+                  &nbsp;Fun Info&nbsp;
+                </span>
+              </h4>
+              <div className="p-4 rounded shadow-sm bg-light d-flex">
+                <p className="font-italic mb-0 flex-fill">
+                  Anything the teacher wants to add.
+                </p>
+              </div>
             </div>
           </div>
           {/* Feature that can be added... in time  FOLLOWERS*/}
@@ -66,7 +102,7 @@ export const Teacherpage = () => {
 
           <div className="px-5 py-3 mt-3 m-auto">
             <div className="d-flex align-items-center justify-content-between">
-              <h3 className="ms-5 mb-3 text-warning">Lessons available</h3>
+              <h4 className="ms-5 mb-3 text-warning">Lessons available</h4>
               {/* another Feature if classes are too many SHOW ALL */}
               {/* <a href="#" className="btn btn-link text-white">
                   Show all

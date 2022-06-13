@@ -34,8 +34,8 @@ export const Lounge = () => {
   })
 
   return (
-    <div>
-      <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
+    <div className="container-fluid">
+      <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-wrap">
         <div className="col-md-6 px-5">
           <h1 className="display-4 fst-italic">
             Welcome to the <b className="text-warning">Lounge</b>
@@ -80,6 +80,7 @@ export const Lounge = () => {
             {listOfLessons}
           </div>
         </div>
+      </div>
         <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
           <div className="col-md-6 px-5">
             <img className="img-fluid mx-auto d-block" src={balloon} />
@@ -96,7 +97,8 @@ export const Lounge = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
+      
+    
   );
 };

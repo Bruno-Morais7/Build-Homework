@@ -10,7 +10,6 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { LandingPage } from "./pages/landingpage";
-
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { ForgetPassword } from "./pages/ForgetPassword";
