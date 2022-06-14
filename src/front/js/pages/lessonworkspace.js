@@ -1,11 +1,7 @@
 import React from "react";
 import screen from "../../img/screen.png";
-import { useContext, useEffect } from "react"
-import { Context } from "../store/appContext";
 
 export const Lessonworkspace = () => {
-  const { store, actions } = useContext(Context);
-
   return (
     <div>
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex ">
@@ -34,7 +30,6 @@ export const Lessonworkspace = () => {
               Suject
             </label>
             <input
-              id="lessonContent_subject"
               type="text"
               minLength={4}
               maxLength={30}
@@ -47,7 +42,6 @@ export const Lessonworkspace = () => {
               Title
             </label>
             <input
-              id="lessonContent_title"
               type="text"
               minLength={4}
               maxLength={40}
@@ -60,11 +54,10 @@ export const Lessonworkspace = () => {
               Professor
             </label>
             <input
-              id="lessonContent_teacher"
               type="text"
               className="form-control"
               placeholder="Your Name"
-
+              disabled
             />
           </div>
         </div>
@@ -73,7 +66,6 @@ export const Lessonworkspace = () => {
             Introduction
           </label>
           <textarea
-            id="lessonContent_introduction"
             type="textarea"
             minLength={20}
             maxLength={250}
@@ -88,7 +80,6 @@ export const Lessonworkspace = () => {
             Main Part
           </label>
           <textarea
-            id="lessonContent_mainpart"
             type="textarea"
             minLength={300}
             maxLength={6000}
@@ -96,14 +87,13 @@ export const Lessonworkspace = () => {
             rows="10"
             placeholder="Content (don't forget that it should be a short lesson [20min])."
           />
-          {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="10"></textarea> */}
+          {/* <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea> */}
         </div>
         <div className="form-group mx-auto col-10 my-4">
           <label className="fs-2 ms-4 mb-2 border-bottom border-warning border-3">
             Summary
           </label>
           <textarea
-            id="lessonContent_summary"
             type="text"
             minLength={40}
             maxLength={250}
@@ -167,9 +157,9 @@ export const Lessonworkspace = () => {
           />
         </div>
         <div className="d-flex justify-content-center">
-          <button type="submit" className="btn btn-warning fs-5 px-5 my-5" onClick={actions.postLessonsData}>
+          <button type="submit" className="btn btn-warning fs-5 px-5 my-5">
             Submit
-        
+            {/* Submit function */}
           </button>
         </div>
       </form>
@@ -188,7 +178,7 @@ export const Lessonworkspace = () => {
               Time to share it with your students... or not.
             </p>
             <p className="lead ps-5 ms-5 fst-italic">
-              Copy this <Link to="#" className="underline">"url to copy"</Link> and send it.
+              Copy this <a className="underline">"url to copy"</a> and send it.
             </p>
           </div>
         </div>
@@ -196,3 +186,4 @@ export const Lessonworkspace = () => {
     </div>
   );
 };
+

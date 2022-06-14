@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-
 import { Link } from "react-router-dom";
 import "../../styles/style.css";
-import axios from "axios";
-import { BASE_URL } from "../store/flux";
 
 export const LoginPage = () => {
   const { store, actions } = useContext(Context);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   const urlBase = " ";
 
@@ -23,8 +20,7 @@ export const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const onSubmitClicked = (e) => {
-    e.preventDefault()
+  const onSubmitClicked = () => {
     if (email && password) {
       // fetch
       onFetchLogIn(email, password);
@@ -36,82 +32,20 @@ export const LoginPage = () => {
 
   const onFetchLogIn = (email, password) => {
     // fetch
-  //   const post = {
-  //     method: "POST",
-  //     mode: "no-cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     redirect: "follow",
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password,
-  //     }),
-  //   };
-
-  //   fetch(BASE_URL+"/api/users",post)
-  //   .then(resp => resp.json())
-  //   .then(dataUsers =>{
-  //   console.log(dataUsers);
-  //    setStore({ 
-  //   users: [...getStore().users, dataUsers]
-  //  })
-  //  })  
-  //   .catch(error =>{
-  //     console.log(error);
-  //   });
-
-  const requestData = {
-    email: email,
-    password: password,
-  }
-
-  const options = { 
-    method: 'post',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(requestData)
-  }    
-  
-  fetch(BASE_URL+"/api/users", options)
-    .then(response => {
-       console.log(response)        
-       if (response.ok) {
-           return response.json();
-         } else {
-            throw new Error('Something went wrong ...');
-         }
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-
-    
-    // axios.post(BASE_URL+"/api/users",requestData)
-    // .then(response =>{
-    //   console.log(response);
-    // }).catch(error =>{
-    //   console.error(error);
-    // })
+    const post = {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    };
   };
 
-  // postUsersData: () => 
-    
-  //   	fetch("https://3001-brunomorais-buildhomewo-nt2arfayahh.ws-eu47.gitpod.io/api/users", {method: "POST"})
-      
-  //   		.then(resp => resp.json())
-  //   	.then(dataUsers => setStore({ 
-  //   		users: [...getStore().users, dataUsers]
-  //   	 }))
-      
-  //   		.catch(error => console.log("Error loading message from backend Users", error));
-     
-     
   return (
     <>
       <div className="container">
@@ -129,7 +63,7 @@ export const LoginPage = () => {
                 </div>
                 <form>
                   <div className="form-group">
-                    <label htmlFor="InputEmail1">Email address</label>
+                    <label>Email address</label>
                     <input
                       type="Email"
                       name="Email"
@@ -142,7 +76,7 @@ export const LoginPage = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="InputPassword">Password</label>
+                    <label>Password</label>
                     <input
                       type="Password"
                       name="Password"
@@ -169,26 +103,26 @@ export const LoginPage = () => {
                       <span className="span-or">or</span>
                     </div>
                   </div>
-                  <div className="col-md-12 mb-3">
+                  {/* <div className="col-md-12 mb-3">
                     <p className="text-center">
-                      <Link to="#" className="google btn mybtn">
+                       <a href="javascript:void();" className="google btn mybtn"> 
                         <i className="fa fa-google-plus"></i> Signup using
                         Google
-                      </Link>
+                      </a>
                     </p>
-                  </div>
+                  </div> */}
                   <div className="form-group">
                     <p className="text-center">
                       Don't have account?{" "}
                       <Link to="/SignupPage">
-                        <label id="signup">Sign up here</label>
+                        Sign up here
                       </Link>
                     </p>
                   </div>
                   <div className="form-group">
                     <p className="text-center">
                       <Link to="/ForgetPassword">
-                        <label id="Forget">Forget Password</label>
+                        Forget Password
                       </Link>
                     </p>
                   </div>

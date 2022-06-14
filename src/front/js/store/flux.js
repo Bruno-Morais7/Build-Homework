@@ -1,4 +1,4 @@
-export const BASE_URL ="https://3001-brunomorais-teachandlea-317x510bpq5.ws-eu47.gitpod.io"
+export const BASE_URL ="https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io"
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -34,8 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getUsersData: () => {
 				// fetching data from the backend
-
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/users")
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/users")
 
 					.then(resp => resp.json())
 					.then(dataUsers => setStore({
@@ -48,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			postUserData: () => {
 				
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/users", {
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/users", {
 					headers: {
 						'Content-Type': 'application/json'
 					},
@@ -64,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			postStudentData: () => {
 
-			fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/student", {
+			fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/student", {
 				headers: {
 					'Content-Type': 'application/json'
 				},
@@ -81,7 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		postTeacherData: () => {
 
-			fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/teacher", {
+			fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/teacher", {
 				headers: {
 					'Content-Type': 'application/json'
 				},
@@ -109,9 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getLessonsData: () => {
 				// fetching data from the backend
-
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/lessons")
-
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/lessons")
 					.then(resp => resp.json())
 					.then(dataLesson_Content => setStore({
 						lessons: [...getStore().lessons, dataLesson_Content]
@@ -123,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			postLessonsData: () => {
 				
 				// fetching data from the backend
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/lessons", {
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/lessons", {
 					headers: {
 						'Content-Type': 'application/json'
 					},
@@ -141,9 +138,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getTeacherData: () => {
 				// fetching data from the backend
-
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/teacher")
-
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/teacher")
 					.then(resp => resp.json())
 					.then(dataTeacher => setStore({
 						teachers: [...getStore().teachers, dataTeacher]
@@ -153,9 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getStudentData: () => {
 				// fetching data from the backend
-
-				fetch("https://3001-brunomorais-buildhomewo-mcmzy2s48pr.ws-eu47.gitpod.io/api/student")
-
+				fetch("https://3001-brunomorais-teachandlea-661pen47wiz.ws-eu47.gitpod.io/api/student")
 					.then(resp => resp.json())
 					.then(dataStudent => setStore({
 						students: [...getStore().students, dataStudent]

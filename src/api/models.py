@@ -121,7 +121,5 @@ class Lesson_Content(db.Model):
             "question2": self.question2,
             "question3": self.question3,
             "question4": self.question4,
-            
-
         }
 

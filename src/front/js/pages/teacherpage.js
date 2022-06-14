@@ -2,8 +2,8 @@ import React from "react";
 import "../../styles/index.css";
 import avatar from "../../img/avatar.png";
 import { Lessoncard } from "../component/lessoncard";
-import { useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import { useContext, useEffect } from "react"
+import { Context } from "../store/appContext"
 import PropTypes from "prop-types";
 
 export const Teacherpage = () => {
@@ -21,14 +21,12 @@ export const Teacherpage = () => {
   const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, index) => {
     return (
       <div key={index}>
-        <Lessoncard
-          title={lesson.title}
+        <Lessoncard title={lesson.title}
           subject={lesson.subject}
-          summary={lesson.summary}
-        />
+          summary={lesson.summary} />
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <div className="py-5 px-4">
@@ -38,7 +36,6 @@ export const Teacherpage = () => {
             <div>
               <img src={avatar} width="200" className="rounded m-5" />
             </div>
-
             <div className="m-auto text-white text-center">
               <h4 className="mb-2">
                 <span className="border-bottom border-warning">

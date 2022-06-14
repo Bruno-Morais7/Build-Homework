@@ -71,14 +71,14 @@ export const Lesson = () => {
             Summary
           </h1>
         </div>
-        <p className="container-fluid col-10 fs-4 border-start mb-5">
+        <div className="container-fluid col-10 fs-4 border-start mb-5">
           3 Bullets with one word would be perfect
           <ul>
             <li>one</li>
             <li>two</li>
             <li>tree</li>
           </ul>
-        </p>
+        </div>
       </div>
       <div className="container-fluid">
         <div className="container-fluid col-8 py-4 bg-dark text-white rounded-3">
@@ -87,19 +87,19 @@ export const Lesson = () => {
           </h1>
         </div>
 
-        <p className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
+        <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
           Ask for your students to bring some answers to class
           <ul>
             <li>Question one</li>
             <li> Question two</li>
             <li>Question tree</li> <li>Question four</li>
           </ul>
-        </p>
+        </div>
       </div>
 
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex">
         <div className="container-fluid col-8 d-flex gap-4 justify-content-end">
-          <img className="img-fluid my-auto" width={"77rem"} src={checkmark}></img>
+          <img className="img-fluid smaller my-auto" width={"77rem"} src={checkmark}></img>
           <h2 className="text-end">
             Congratutlations, this is <b className="text-warning">the end</b> of
             the lesson <br /> and now you know it{" "}

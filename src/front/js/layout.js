@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { LandingPage } from "./pages/landingpage";
@@ -39,7 +37,9 @@ const Layout = () => {
             <Route exact path="/landingpage">
               <LandingPage />
             </Route>
-
+            {/* <Route exact path="/Content/:user_id">
+              <Content />
+            </Route> */}
             <Route exact path="/single/:theid">
               <Single />
             </Route>
