@@ -72,16 +72,25 @@ export const Lesson = () => {
           </h1>
         </div>
         <div className="container-fluid col-10 fs-4 border-start mb-5">
-          3 Bullets with one word would be perfect
-          <ul>
-            <li>one</li>
-            <li>two</li>
-            <li>tree</li>
-          </ul>
+          Resume information
         </div>
       </div>
       <div className="container-fluid">
         <div className="container-fluid col-8 py-4 bg-dark text-white rounded-3">
+          <h1 className="border-bottom border-warning border-2 pb-1">
+            Keyword(s)
+          </h1>
+        </div>
+        <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
+        <ul className="d-flex justify-content-evenly gap-2 flex-wrap">
+            <li>Question one</li>
+            <li> Question two</li>
+            <li>Question tree</li>
+          </ul>
+        </div>
+      </div>
+      <div className="container-fluid">
+        <div className="container-fluid col-8 py-4">
           <h1 className="border-bottom border-warning border-2 pb-1">
             Assessment
           </h1>
