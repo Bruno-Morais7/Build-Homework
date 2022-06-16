@@ -8,16 +8,16 @@ export const Footer = () => (
         <li className="text-muted">
           <Link to="/">Home</Link>
         </li>
-        <li className="text-muted">
+        {/* <li className="text-muted">
           <Link to="/landingpage">About</Link>
         </li>
         <li className="text-muted">
           <Link to="/landingpage">FAQs</Link>
-        </li>
+        </li> */}
       </ul>
 
       <span className="text-muted float-end">
-        🎓© Build HomeWork, 2022 | All rights Reserved.
+        🎓© Teach&Learn, 2022 | All rights Reserved
       </span>
     </div>
   </div>

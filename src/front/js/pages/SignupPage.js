@@ -150,6 +150,8 @@ export const SignupPage = () => {
                 id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
+                minLength={10}
+                maxLength={100}
                 value={email}
                 onChange={onTypeEmail}
               />
@@ -164,6 +166,8 @@ export const SignupPage = () => {
                 className="form-control"
                 aria-describedby="password"
                 placeholder="Enter Password"
+                minLength={7}
+                maxLength={40}
                 value={password}
                 onChange={onTypePassword}
               />
@@ -178,6 +182,8 @@ export const SignupPage = () => {
                 className="form-control"
                 aria-describedby="Conform password"
                 placeholder="Enter Conform Password"
+                minLength={7}
+                maxLength={40}
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
@@ -192,6 +198,8 @@ export const SignupPage = () => {
                 className="form-control"
                 aria-describedby="First Name"
                 placeholder="Enter First Name"
+                minLength={4}
+                maxLength={30}
                 value={firstname}
                 onChange={onTypeFirstname}
               />
@@ -206,6 +214,8 @@ export const SignupPage = () => {
                 className="form-control"
                 aria-describedby="Surnames"
                 placeholder="Enter Surnames"
+                minLength={4}
+                maxLength={50}
                 value={surnames}
                 onChange={onTypeSurnames}
               />
@@ -232,6 +242,7 @@ export const SignupPage = () => {
                       className="form-control"
                       id="fun_info"
                       aria-describedby="fun_info"
+                      maxLength={250}
                       placeholder="Enter some Fun Information about You"
                       value={funinfo}
                       onChange={onTypeFunInfo}
@@ -247,6 +258,7 @@ export const SignupPage = () => {
                       className="form-control"
                       aria-describedby="subjects"
                       placeholder="Enter the Subjects that You Teach"
+                      maxLength={25}
                       value={subjects}
                       onChange={onTypeSubjects}
                     />
@@ -261,6 +273,7 @@ export const SignupPage = () => {
                       className="form-control"
                       aria-describedby="why_you_teach"
                       placeholder="Enter a few words about Why You Teach"
+                      maxLength={250}
                       value={whyyouteach}
                       onChange={onTypeWhyYouTeach}
                     />
@@ -275,6 +288,7 @@ export const SignupPage = () => {
                       className="form-control"
                       aria-describedby="years_experience"
                       placeholder="Enter the Years Of Experience that You have"
+                      maxLength={3}
                       value={yearsexperience}
                       onChange={onTypeYearsOfExperience}
                     />
