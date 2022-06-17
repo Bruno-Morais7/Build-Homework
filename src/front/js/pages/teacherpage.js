@@ -6,21 +6,31 @@ import { useContext, useEffect } from "react"
 import { Context } from "../store/appContext"
 import PropTypes from "prop-types";
 
+
+
 export const Teacherpage = () => {
   const { store, actions } = useContext(Context);
+  const linkTeacherId = store.teacherId[0];
+  // console.log(linkTeacherId);
+  // console.log(store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId))
+  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
+  console.log(dataTeacher)
+  
 
-  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
+ 
+  // store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
+    
     
   //   return (
   //     <div key={indexT}>
-  //         {teacher.id}
+  //       {teacher.id} {teacher.first_name}
   //     </div>
   //   )
   // })
 
-  const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, index) => {
+  const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, indexL) => {
     return (
-      <div key={index}>
+      <div key={indexL}>
         <Lessoncard title={lesson.title}
           subject={lesson.subject}
           summary={lesson.summary} />
@@ -34,7 +44,7 @@ export const Teacherpage = () => {
         <div className="bg-dark rounded-3">
           <div className="d-flex flex-wrap">
             <div>
-              <img src={avatar} width="200" className="rounded m-5" />
+              <img src={dataTeacher? dataTeacher["avatar"] : null} width="200" className="rounded m-5" />
             </div>
             <div className="m-auto text-white text-center">
               <h4 className="mb-2">
@@ -44,7 +54,7 @@ export const Teacherpage = () => {
                 </span>
               </h4>
               <h3 className="flex-wrap text-warning mb-4">
-                "Son Goku Gohan Bulma"
+              {dataTeacher? dataTeacher["first_name"] : null} {dataTeacher? dataTeacher["last_name"] : null}
               </h3>
               <h4 className="mb-2">
                 <span className="border-bottom border-warning">
@@ -52,7 +62,7 @@ export const Teacherpage = () => {
                   &nbsp; Years of experience &nbsp;{" "}
                 </span>
               </h4>
-              <h4> "0" </h4>
+              <h4> {dataTeacher? dataTeacher["years_experience"] : null} </h4>
             </div>
           </div>
           <div className="mb-3">
@@ -63,10 +73,10 @@ export const Teacherpage = () => {
             </h4>
             <div className="px-5 m-auto">
               <ul className="list-inline d-flex text-center fs-5 bg-light rounded flex-wrap py-3">
-                <li className="list-inline-item flex-fill">Math</li>
-                <li className="list-inline-item flex-fill">Jungle</li>
-                <li className="list-inline-item flex-fill">Theory of Nothing</li>
-                <li className="list-inline-item flex-fill">Hate this game</li>
+                <li className="list-inline-item flex-fill">{dataTeacher? dataTeacher["subjects1"] : null}</li>
+                <li className="list-inline-item flex-fill">{dataTeacher? dataTeacher["subjects2"] : null}</li>
+                <li className="list-inline-item flex-fill">{dataTeacher? dataTeacher["subjects3"] : null}</li>
+                <li className="list-inline-item flex-fill">{dataTeacher? dataTeacher["subjects4"] : null}</li>
               </ul>
             </div>
           </div>
@@ -79,7 +89,7 @@ export const Teacherpage = () => {
               </h4>
               <div className="p-4 rounded shadow-sm bg-light d-flex">
                 <p className="font-italic mb-0 flex-fill">
-                  To help my fellow Students.
+                {dataTeacher? dataTeacher["why_you_teach"] : null}
                 </p>
               </div>
             </div>
@@ -91,7 +101,7 @@ export const Teacherpage = () => {
               </h4>
               <div className="p-4 rounded shadow-sm bg-light d-flex">
                 <p className="font-italic mb-0 flex-fill">
-                  Anything the teacher wants to add.
+                {dataTeacher? dataTeacher["fun_info"] : null}
                 </p>
               </div>
             </div>
@@ -111,10 +121,7 @@ export const Teacherpage = () => {
           <div className="px-5 py-3 mt-3 m-auto">
             <div className="d-flex align-items-center justify-content-between">
               <h4 className="ms-5 mb-3 text-warning">Lessons available</h4>
-              {/* another Feature if classes are too many SHOW ALL */}
-              {/* <a href="#" className="btn btn-link text-white">
-                  Show all
-                </a> */}
+
             </div>
             <div className="row row-cols-md-2 row-cols-lg-3 row-cols-xxlg-4 g-2 g-md-4 g-xxlg-5">
               {listOfLessons}

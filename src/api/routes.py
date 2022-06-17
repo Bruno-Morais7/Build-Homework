@@ -89,6 +89,7 @@ def add_lesson():
     question2_request = body_request.get("question2", None)
     question3_request = body_request.get("question3", None)
     question4_request = body_request.get("question4", None)
+    teacher_id_request = body_request.get("teacher_id", None)
 
 
     new_content = Lesson_Content(
@@ -105,7 +106,8 @@ def add_lesson():
         question1 = question1_request,
         question2 = question2_request,
         question3 = question3_request,
-        question4 = question4_request
+        question4 = question4_request, 
+        teacher_id = teacher_id_request
     )
 
     db.session.add(new_content)
@@ -135,11 +137,15 @@ def add_teacher():
     avatar_request = body_request.get("avatar", None)
     first_name_request = body_request.get("first_name", None)
     last_name_request = body_request.get("last_name", None)
-    subjects_request = body_request.get("subjects", None)
+    subjects1_request = body_request.get("subjects1", None)
+    subjects2_request = body_request.get("subjects2", None)
+    subjects3_request = body_request.get("subjects3", None)
+    subjects4_request = body_request.get("subjects4", None)
     why_you_teach_request = body_request.get("why_you_teach", None)
     years_experience_request = body_request.get("years_experience", None)
     fun_info_request = body_request.get("fun_info", None)
     password_request = body_request.get("password", None)
+    lessons_request = body_request.get("lessons", None)
 
 
     new_teacher = Teacher(
@@ -147,11 +153,15 @@ def add_teacher():
         avatar = avatar_request,
         first_name = first_name_request,
         last_name = last_name_request,
-        subjects = subjects_request,
+        subjects1 = subjects1_request,
+        subjects2 = subjects2_request,
+        subjects3 = subjects3_request,
+        subjects4 = subjects4_request,
         why_you_teach = why_you_teach_request,
         years_experience = years_experience_request,
         fun_info = fun_info_request, 
-        password = password_request
+        password = password_request,
+        lessons = lessons_request
     )
 
     db.session.add(new_teacher)

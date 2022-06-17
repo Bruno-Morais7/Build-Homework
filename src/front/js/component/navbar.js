@@ -32,7 +32,7 @@ export const Navbar = () => {
             <button className="btn btn-success" id="navbutton">Login</button>
           </Link>
           <Link to="/SignupPage">
-            <button className="btn btn-success" id="navbutton">Signup</button>
+            <button className="btn btn-success">Signup</button>
           </Link>
           <Link to="/profile">
           <i className="fa-solid fa-circle-user text-dark fs-2">   </i>

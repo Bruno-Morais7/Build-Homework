@@ -3,34 +3,52 @@ import { Card } from "../component/card";
 import { Lessoncard } from "../component/lessoncard";
 import couch from "../../img/couch.png";
 import balloon from "../../img/balloon.png";
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Context } from "../store/appContext"
 import PropTypes from "prop-types";
+import { Link, Redirect } from "react-router-dom";
 
 
 export const Lounge = () => {
   const { store, actions } = useContext(Context);
   const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, index) => {
-   
+  
     return (
       <div key={index}>
+        <Link to="/lesson" className="link-dark">
+        <div onClick={() => {let saveLessonId = lesson.id; console.log(saveLessonId); actions.onClickSaveLessonId(lesson.id)}}>
         <Lessoncard title={lesson.title}
           subject={lesson.subject}
           summary={lesson.summary}/>
+          </div>
+        </Link>
       </div>
     )
   })
 
   const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
-    
+ 
+ 
     return (
+
       <div key={indexT}>
-        <Card first_name={teacher.first_name}
-        last_name={teacher.last_name}
-        subjects={teacher.subjects}
-        fun_info={teacher.fun_info} />
+        <Link to="/teacherpage" className="link-dark">
+          <div className="text-center">
+              <div onClick={() => {let saveTeacherId = teacher.id; console.log(saveTeacherId); actions.onClickSaveTeacherId(teacher.id)}}>
+                <Card
+                avatar={teacher.avatar} 
+                first_name={teacher.first_name}
+                last_name={teacher.last_name}
+                subjects={teacher.subjects}
+                fun_info={teacher.fun_info}
+                />
+                <p></p>
+              </div>
+          </div>
+        </Link>
       </div>
     )
+    
   })
 
   return (
@@ -60,7 +78,7 @@ export const Lounge = () => {
           <h5 className="container-fluid col-8 fst-italic mt-4 mb-5 d-flex justify-content-end">
             Click on the teacher to see the work
           </h5>
-          <div className="container-fluid col-10 pb-3">
+          <div className="container-fluid col-10 pb-3" >
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 g-3 pb-5">
               {listOfTeachers}
             </div>
@@ -75,7 +93,7 @@ export const Lounge = () => {
           <h5 className="container-fluid col-8 fst-italic mt-4 mb-5 d-flex justify-content-end">
             Check the latest lessons available
           </h5>
-          <div className="container-fluid col-10">
+          <div className="container-fluid col-10" >
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 g-3 pb-5">
               {listOfLessons}
             </div>
