@@ -15,6 +15,8 @@ import { Lounge } from "./pages/lounge";
 import { Lesson } from "./pages/lesson";
 import { Teacherpage } from "./pages/teacherpage";
 import { Lessonworkspace } from "./pages/lessonworkspace";
+import { Profile } from "./pages/profile";
+import { Results } from "./pages/results";
 
 //create your first component
 const Layout = () => {
@@ -58,11 +60,17 @@ const Layout = () => {
             <Route exact path="/lesson">
               <Lesson />
             </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
             <Route exact path="/teacherpage">
               <Teacherpage />
             </Route>
             <Route exact path="/lessonworkspace">
               <Lessonworkspace />
+            </Route>
+            <Route exact path="/results">
+              <Results />
             </Route>
             <Route exact path="/single/:theid">
               <Single />

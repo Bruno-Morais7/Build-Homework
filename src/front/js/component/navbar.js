@@ -6,8 +6,8 @@ export const Navbar = () => {
     <nav className="navbar navbar-light container-fluid col-10 border-bottom">
       <div className="container-fluid py-3">
         <Link to="/" /*style={{ textDecoration: "none" }}*/>
-          <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-warning">
-          Teach&Learn
+          <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-dark">
+          Teach<span className="text-warning">&</span>Learn
           </span>
         </Link>
         <div className="ml-auto d-flex gap-3 d-flex flex-wrap">
@@ -33,6 +33,9 @@ export const Navbar = () => {
           </Link>
           <Link to="/SignupPage">
             <button className="btn btn-success" id="navbutton">Signup</button>
+          </Link>
+          <Link to="/profile">
+          <i className="fa-solid fa-circle-user text-dark fs-2">   </i>
           </Link>
         </div>
       </div>
