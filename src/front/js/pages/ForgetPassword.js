@@ -21,7 +21,7 @@ export const ForgetPassword = () => {
                       <form
                         id="register-form"
                         role="form"
-                        autocomplete="off"
+                        autoComplete="off"
                         className="form"
                         method="post"
                       >

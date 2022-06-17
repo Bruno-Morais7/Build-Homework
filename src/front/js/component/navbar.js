@@ -32,7 +32,7 @@ export const Navbar = () => {
             <button className="btn btn-success" id="navbutton">Login</button>
           </Link>
           <Link to="/SignupPage">
-            <button className="btn btn-success" id="navbutton">Signup</button>
+            <button className="btn btn-success">Signup</button>
           </Link>
         </div>
       </div>

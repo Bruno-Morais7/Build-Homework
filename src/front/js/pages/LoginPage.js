@@ -103,14 +103,7 @@ export const LoginPage = () => {
                       <span className="span-or">or</span>
                     </div>
                   </div>
-                  {/* <div className="col-md-12 mb-3">
-                    <p className="text-center">
-                       <a href="javascript:void();" className="google btn mybtn"> 
-                        <i className="fa fa-google-plus"></i> Signup using
-                        Google
-                      </a>
-                    </p>
-                  </div> */}
+
                   <div className="form-group">
                     <p className="text-center">
                       Don't have account?{" "}

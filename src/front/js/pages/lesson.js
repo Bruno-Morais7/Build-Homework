@@ -1,8 +1,16 @@
 import React from "react";
 import "../../styles/index.css";
 import checkmark from "../../img/checkmark.png";
+import { useContext, useEffect } from "react"
+import { Context } from "../store/appContext"
 
 export const Lesson = () => {
+  const { store, actions } = useContext(Context);
+  const linkLessonId = store.lessonId[0];
+
+  const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
+
+  console.log(dataLesson)
   return (
     <div>
       <div className="p-4 p-md-5 text-white rounded bg-dark mb-4">
@@ -18,7 +26,7 @@ export const Lesson = () => {
               <h2 className="border-bottom border-warning pb-1 border-2">
                 Subject
               </h2>
-              <p>Dragon Ball</p>
+              <p>{dataLesson ? dataLesson["subject"] : null}</p>
             </div>
           </div>
 
@@ -27,7 +35,7 @@ export const Lesson = () => {
               <h2 className="border-bottom text-warning pb-1 border-2">
                 Title
               </h2>
-              <p className="text-warning">Dragon Ball Z Theory</p>
+              <p className="text-warning">{dataLesson ? dataLesson["title"] : null}</p>
             </div>
           </div>
 
@@ -36,7 +44,7 @@ export const Lesson = () => {
               <h2 className="border-bottom border-warning pb-1 border-2">
                 Teacher
               </h2>
-              <p>Every 80's Kid</p>
+              <p>{dataLesson ? dataLesson["teacher_id"] : null}</p>
             </div>
           </div>
         </div>
@@ -49,8 +57,7 @@ export const Lesson = () => {
           </h1>
         </div>
         <p className="container-fluid col-10 fs-4 border-start mb-5">
-          What will be adressed. <br />
-          Importance, why and how.
+        {dataLesson ? dataLesson["introduction"] : null}
         </p>
       </div>
 
@@ -61,7 +68,7 @@ export const Lesson = () => {
           </h1>
         </div>
         <p className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
-          Content (don't forget that it should take a max of 20m to read)
+        {dataLesson ? dataLesson["written_content"] : null}
         </p>
       </div>
 
@@ -72,7 +79,7 @@ export const Lesson = () => {
           </h1>
         </div>
         <div className="container-fluid col-10 fs-4 border-start mb-5">
-          Resume information
+        {dataLesson ? dataLesson["summary"] : null}
         </div>
       </div>
       <div className="container-fluid">
@@ -83,9 +90,9 @@ export const Lesson = () => {
         </div>
         <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
         <ul className="d-flex justify-content-evenly gap-2 flex-wrap">
-            <li>Question one</li>
-            <li> Question two</li>
-            <li>Question tree</li>
+            <li>{dataLesson ? dataLesson["key_word1"] : null}</li>
+            <li>{dataLesson ? dataLesson["key_word2"] : null}</li>
+            <li>{dataLesson ? dataLesson["key_word3"] : null}</li>
           </ul>
         </div>
       </div>
@@ -99,9 +106,10 @@ export const Lesson = () => {
         <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
           Ask for your students to bring some answers to class
           <ul>
-            <li>Question one</li>
-            <li> Question two</li>
-            <li>Question tree</li> <li>Question four</li>
+            <li>{dataLesson ? dataLesson["question1"] : null}</li>
+            <li>{dataLesson ? dataLesson["question2"] : null}</li>
+            <li>{dataLesson ? dataLesson["question3"] : null}</li> 
+            <li>{dataLesson ? dataLesson["question4"] : null}</li>
           </ul>
         </div>
       </div>

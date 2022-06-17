@@ -14,9 +14,9 @@ export const Lessoncard = (props) => {
         <p className="card-text bg-light p-3 rounded-3">
          {props.summary}
         </p>
-        <Link to="#" className="card-link">
+        {/* <Link to="#" className="card-link">
           {props.link_lesson}
-        </Link>
+        </Link> */}
       </div>
     </div>
     </div>
@@ -27,5 +27,5 @@ Lessoncard.propTypes = {
   title: PropTypes.string,
   subject: PropTypes.string,
   summary: PropTypes.string,
-  link_lesson: PropTypes.number
+
 }
