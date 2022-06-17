@@ -348,6 +348,9 @@ export const Lessonworkspace = () => {
             <p className="lead mt-3 pt-3 ps-5 fst-italic">
               Time to share it with your students...
             </p>
+            {/* <p className="lead ps-5 ms-5 fst-italic">
+              Copy this <a className="underline">"url to copy"</a> and send it.
+            </p> */}
 
           </div>
         </div>
