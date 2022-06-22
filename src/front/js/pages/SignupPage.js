@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const SignupPage = () => {
   const { store, actions } = useContext(Context);
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+  const URLbase = "";
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -16,14 +16,10 @@ export const SignupPage = () => {
   const [surnames, setSurnames] = useState();
   const [teacher, setTeacher] = useState();
   const [funinfo, setFuninfo] = useState();
-  const [subjects1, setSubjects1] = useState();
-  const [subjects2, setSubjects2] = useState();
-  const [subjects3, setSubjects3] = useState();
-  const [subjects4, setSubjects4] = useState();
+  const [subjects, setSubjects] = useState();
   const [whyyouteach, setWhyyouteach] = useState();
   const [yearsexperience, SetYearsexperience] = useState();
   const [signupteacher, setSignupteacher] = useState(false);
-
 
   const onSubmitClicked = () => {
     console.log(" click and submit ");
@@ -84,32 +80,17 @@ export const SignupPage = () => {
     console.log(e.target.value);
     setSurnames(e.target.value);
   };
-  
+
   const onTypeFunInfo = (e) => {
     console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
-  const onTypeSubjects1 = (e) => {
+  const onTypeSubjects = (e) => {
     console.log(e.target.value);
-    setSubjects1(e.target.value);
+    setSubjects(e.target.value);
   };
 
-  const onTypeSubjects2 = (e) => {
-    console.log(e.target.value);
-    setSubjects2(e.target.value);
-  };
-
-  const onTypeSubjects3 = (e) => {
-    console.log(e.target.value);
-    setSubjects3(e.target.value);
-  };
-
-  const onTypeSubjects4 = (e) => {
-    console.log(e.target.value);
-    setSubjects4(e.target.value);
-  };
-  
   const onTypeWhyYouTeach = (e) => {
     console.log(e.target.value);
     setWhyyouteach(e.target.value);
@@ -118,189 +99,113 @@ export const SignupPage = () => {
   const onTypeYearsOfExperience = (e) => {
     console.log(e.target.value);
     SetYearsexperience(e.target.value);
-  };  
+  };
 
   const onTypeIsTeacher = (e) => {
-
-    if (e.target.checked) { setTeacher(false) }
-    else { setTeacher(true) };
+    if (e.target.checked) {
+      setTeacher(false);
+    } else {
+      setTeacher(true);
+    }
     console.log(e.target.value);
     console.log(document.getElementById("confirm_teacher").value);
   };
 
   const signupForm = () => {
-    console.log("teste")
-    setSignupteacher(!signupteacher)
-
-  }
-
-  const postUserData1 = () => {
-				
-    // fetching data from the backend
-    fetch((BASE_URL + "api/users"), {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "email": email,
-        "password": password,
-        // "is_teacher": document.getElementById("confirm_teacher").value,
-      })
-    })
-
-  }
-
-  const postStudentData1 = () => {
-
-  fetch((BASE_URL + "api/student"), {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "first_name": firstname,
-      "last_name": surnames,
-    })
-  })
-
-}
-
-const postTeacherData1 = () => {
-
-  fetch((BASE_URL + "api/teacher"), {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "first_name": firstname,
-      "last_name": surnames,
-      "subjects1": subjects1,
-      "subjects2": subjects2,
-      "subjects3": subjects3,
-      "subjects4": subjects4,
-      "fun_info": funinfo,
-      "why_you_teach": whyyouteach,
-      "years_experience": yearsexperience,
-      "avatar": pic,
-    })
-  })
-
-}
-
+    console.log("teste");
+    setSignupteacher(!signupteacher);
+  };
 
   const submit = () => {
     if (signupteacher == false) {
-      postUserData1()
-      postStudentData1()
-      window.location.reload()
-      
+      actions.postUserData();
+      actions.postStudentData();
+      window.location.reload();
+    } else {
+      actions.postUserData();
+      actions.postTeacherData();
+      window.location.reload();
     }
-    else {
-      postUserData1()
-      postTeacherData1()
-      window.location.reload()
-    }
-  }
-
-  const [teacherfoto, setTeacherfoto] = useState();
-
-  useEffect(() => {
-		getRandonPictureAPI();
- 	}, []);
-
-  const getRandonPictureAPI = () => {
-      fetch("https://randomuser.me/api/")
-        .then(respAPI => respAPI.json())
-        .then((data) => setTeacherfoto(data))
-        .catch(error => console.log("Error loading message from backend Lessons", error));
- 
-    }
-  
-  console.log("ttt", teacherfoto);
-  const pic = teacherfoto?.results[0].picture.large;
-  console.log("vvv", pic)
+  };
 
   return (
     <>
-    <br></br>
+      <br></br>
       <div className="container">
         <div className="col-md-5 mx-auto">
-          <div className="myform bg-dark text-white">
+          <div className="myform">
             <div className="logo mb-3">
               <div className="col-md-12 text-center">
-                <h3>
-                  {/* <i className="fa fa-user-plus fa-2x"></i> */}
-                </h3>
+                <h3>{/* <i className="fa fa-user-plus fa-2x"></i> */}</h3>
                 <h1>SignUp Form</h1>
               </div>
             </div>
             <form action="/Signuppage" method="post" name="registration" />
             <div className="form-group">
+              {/* <label>Email address</label> */}
               <input
+                type="email"
                 name="email"
                 className="form-control"
                 id="email"
+                aria-describedby="emailHelp"
                 placeholder="Enter email"
-                minLength={10}
-                maxLength={100}
                 value={email}
                 onChange={onTypeEmail}
               />
             </div>
             <p></p>
             <div className="form-group">
+              {/* <label>Password</label> */}
               <input
+                type="password"
                 name="password"
-                className="form-control"
                 id="password"
+                className="form-control"
+                aria-describedby="password"
                 placeholder="Enter Password"
-                minLength={7}
-                maxLength={40}
                 value={password}
                 onChange={onTypePassword}
               />
             </div>
             <p></p>
             <div className="form-group">
+              {/* <label>Conform Password</label> */}
               <input
+                type="Conform password"
                 name="Conform password"
-                className="form-control"
                 id="confirm_password"
+                className="form-control"
+                aria-describedby="Conform password"
                 placeholder="Enter Conform Password"
-                minLength={7}
-                maxLength={40}
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
             </div>
             <p></p>
             <div className="form-group">
+              {/* <label>Enter First Name</label> */}
               <input
+                type="First Name"
                 name="First Name"
-                className="form-control"
                 id="First_Name"
+                className="form-control"
+                aria-describedby="First Name"
                 placeholder="Enter First Name"
-                minLength={4}
-                maxLength={30}
                 value={firstname}
                 onChange={onTypeFirstname}
               />
             </div>
             <p></p>
             <div className="form-group">
+              {/* <label>First Name</label> */}
               <input
+                type="Surnames"
                 name="Surnames"
-                className="form-control"
                 id="Surnames"
+                className="form-control"
+                aria-describedby="Surnames"
                 placeholder="Enter Surnames"
-                minLength={4}
-                maxLength={50}
                 value={surnames}
                 onChange={onTypeSurnames}
               />
@@ -315,104 +220,98 @@ const postTeacherData1 = () => {
                   onChange={onTypeIsTeacher} /> If you are a Teacher click here
               </label>
             </div> */}
-            
-             <div className="col-md-12 text-center mb-3">       
-                {signupteacher === true ? (
-              <div>
-               <div className="form-group">
-              <input
-                name="fun_info"
-                className="form-control"
-                id="fun_info"
-                placeholder="Enter some Fun Information about You"
-                maxLength={250}
-                value={funinfo}
-                onChange={onTypeFunInfo}
-              />
-            </div>
-            <p></p>
-            <div className="form-group d-flex gap-3">
+
+            <div className="col-md-12 text-center mb-3">
+              {signupteacher === true ? (
+                <div>
+                  <div className="form-group">
+                    {/* <label>Email address</label> */}
                     <input
-                      name="subjects1"
+                      type="fun_info"
+                      name="fun_info"
                       className="form-control"
-                      id="subjects1"
-                      placeholder="Enter the"
-                      maxLength={25}
-                      value={subjects1}
-                      onChange={onTypeSubjects1}
+                      id="fun_info"
+                      aria-describedby="fun_info"
+                      placeholder="Enter some Fun Information about You"
+                      value={funinfo}
+                      onChange={onTypeFunInfo}
                     />
+                  </div>
+                  <p></p>
+                  <div className="form-group">
+                    {/* <label>Password</label> */}
                     <input
-                      name="subjects2"
+                      type="subjects"
+                      name="subjects"
+                      id="subjects"
                       className="form-control"
-                      id="subjects2"
-                      placeholder="Subjects"
-                      maxLength={25}
-                      value={subjects2}
-                      onChange={onTypeSubjects2}
+                      aria-describedby="subjects"
+                      placeholder="Enter the Subjects that You Teach"
+                      value={subjects}
+                      onChange={onTypeSubjects}
                     />
+                  </div>
+                  <p></p>
+                  <div className="form-group">
+                    {/* <label>Conform Password</label> */}
                     <input
-                      name="subjects3"
+                      type="why_you_teach"
+                      name="why_you_teach"
+                      id="why_you_teach"
                       className="form-control"
-                      id="subjects3"
-                      placeholder="that You"
-                      maxLength={25}
-                      value={subjects3}
-                      onChange={onTypeSubjects3}
+                      aria-describedby="why_you_teach"
+                      placeholder="Enter a few words about Why You Teach"
+                      value={whyyouteach}
+                      onChange={onTypeWhyYouTeach}
                     />
+                  </div>
+                  <p></p>
+                  <div className="form-group">
+                    {/* <label>Enter First Name</label> */}
                     <input
-                      name="subjects4"
+                      type="years_experience"
+                      name="years_experience"
+                      id="years_experience"
                       className="form-control"
-                      id="subjects4"
-                      placeholder="Teach"
-                      maxLength={25}
-                      value={subjects4}
-                      onChange={onTypeSubjects4}
-                    />       
+                      aria-describedby="years_experience"
+                      placeholder="Enter the Years Of Experience that You have"
+                      value={yearsexperience}
+                      onChange={onTypeYearsOfExperience}
+                    />
+                  </div>
+                </div>
+              ) : null}
             </div>
-            <p></p>
-            <div className="form-group">
-              <input
-                name="why_you_teach"
-                className="form-control"
-                id="why_you_teach"
-                placeholder="Enter a few words about Why You Teach"
-                maxLength={250}
-                value={whyyouteach}
-                onChange={onTypeWhyYouTeach}
-              />
-            </div>
-            <p></p>
-            <div className="form-group">
-              <input
-                name="years_experience"
-                className="form-control"
-                id="years_experience"
-                placeholder="Enter the Years Of Experience that You have"
-                value={yearsexperience}
-                maxLength={3}
-                onChange={onTypeYearsOfExperience}
-              />
-            </div>
-              </div>) : null}
-             </div>
-             <div className="col-md-12 text-center mb-3">
-             <button
+            <div className="col-md-12 text-center mb-3">
+              <button
                 type="submit"
                 className=" btn btn-block mybtn btn-warning tx-tfm"
                 onClick={signupForm}
               >
-               {signupteacher ? "If You are only a Student Click Here" : "If You are a Teacher Click Here"} 
+                {signupteacher
+                  ? "If You are only a Student Click Here"
+                  : "If You are a Teacher Click Here"}
               </button>
-              </div>
-              <div className="col-md-12 text-center mb-3 ">
+            </div>
+
+            <div className="col-md-12 text-center mb-3 ">
               <button
                 type="submit"
-                className=" btn btn-block mybtn btn-dark tx-tfm border"
+                className=" btn btn-block mybtn btn-dark tx-tfm"
                 onClick={submit}
               >
                 submit
               </button>
-             </div>
+            </div>
+            {/* <div className="col-md-12 ">
+              <div className="form-group">
+                <p className="text-center">
+                  <Link to="/LoginPage">
+                    <span>Already have an account?</span>
+                  </Link>
+                </p>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>

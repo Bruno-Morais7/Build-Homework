@@ -1,13 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar = ({ token, setToken }) => {
+  const history = useHistory();
+
+  const logoutFunction = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    setToken("");
+    history.push("/");
+  };
   return (
     <nav className="navbar navbar-light container-fluid col-10 border-bottom">
       <div className="container-fluid py-3">
         <Link to="/" /*style={{ textDecoration: "none" }}*/>
-          <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-dark">
-          Teach<span className="text-warning">&</span>Learn
+          <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-warning">
+            Teach&Learn
           </span>
         </Link>
         <div className="ml-auto d-flex gap-3 d-flex flex-wrap">
@@ -28,15 +37,22 @@ export const Navbar = () => {
           <Link to="/lessonworkspace">
             <button className="btn btn-dark">Workspace</button>
           </Link>
-          <Link to="/LoginPage">
-            <button className="btn btn-success" id="navbutton">Login</button>
-          </Link>
-          <Link to="/SignupPage">
-            <button className="btn btn-success">Signup</button>
-          </Link>
-          <Link to="/profile">
-          <i className="fa-solid fa-circle-user text-dark fs-2">   </i>
-          </Link>
+          {token ? (
+            <Link to="#">
+              <button onClick={logoutFunction} className="btn btn-success">
+                Logout
+              </button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/LoginPage">
+                <button className="btn btn-success">Login</button>
+              </Link>
+              <Link to="/SignupPage">
+                <button className="btn btn-success">Signup</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
