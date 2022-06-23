@@ -1,7 +1,7 @@
 import { SignupPage } from "../pages/SignupPage";
 import { useContext, useEffect, useState } from "react"
 
-const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {

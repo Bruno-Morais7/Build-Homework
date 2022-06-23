@@ -67,3 +67,7 @@ form .error {
 #second {
   display: none;
 }
+
+pre {
+  white-space: pre-wrap;
+}

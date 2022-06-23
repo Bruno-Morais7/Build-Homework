@@ -1,30 +1,43 @@
 import screen from "../../img/screen.png";
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { Teacherpage } from "./teacherpage";
 
-export const Lessonworkspace = () => {
+
+export const Edit_Lesson = () => {
   const { store, actions } = useContext(Context);
+
+  const linkTeacherId = store.teacherId[0];
+  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
+  console.log(dataTeacher)
+  const showTeacher = dataTeacher ? dataTeacher["first_name"] + " " + dataTeacher["last_name"] : " "
+
+  const linkLessonId = store.lessonId[0];
+  const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
+  console.log("edit lesson", dataLesson)
+
+  // console.log(dataLesson["subject"])
 
   // let date = new Date()
   // console.log(date) 
 
   const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
 
-  const [subject, setSubject] = useState();
-  const [title, setTitle] = useState();
-  const [introduction, setIntroduction] = useState();
-  const [mainpart, setMainpart] = useState();
-  const [summary, setSummary] = useState();
-  const [keyword1, setKeyword1] = useState();
-  const [keyword2, setKeyword2] = useState();
-  const [keyword3, setKeyword3] = useState();
-  const [question1, setQuestion1] = useState();
-  const [question2, setQuestion2] = useState();
-  const [question3, setQuestion3] = useState();
-  const [question4, setQuestion4] = useState();
-  const [nameteacher, setNameteacher] = useState();
+  const [subject, setSubject] = useState(dataLesson ? dataLesson["subject"] : null);
+  const [title, setTitle] = useState(dataLesson ? dataLesson["title"] : null);
+  const [introduction, setIntroduction] = useState(dataLesson ? dataLesson["introduction"] : null);
+  const [mainpart, setMainpart] = useState(dataLesson ? dataLesson["written_content"] : null);
+  const [summary, setSummary] = useState(dataLesson ? dataLesson["summary"] : null);
+  const [keyword1, setKeyword1] = useState(dataLesson ? dataLesson["key_word1"] : null);
+  const [keyword2, setKeyword2] = useState(dataLesson ? dataLesson["key_word2"] : null);
+  const [keyword3, setKeyword3] = useState(dataLesson ? dataLesson["key_word3"] : null);
+  const [question1, setQuestion1] = useState(dataLesson ? dataLesson["question1"] : null);
+  const [question2, setQuestion2] = useState(dataLesson ? dataLesson["question2"] : null);
+  const [question3, setQuestion3] = useState(dataLesson ? dataLesson["question3"] : null);
+  const [question4, setQuestion4] = useState(dataLesson ? dataLesson["question4"] : null);
+  const [nameteacher, setNameteacher] = useState(dataLesson ? dataLesson["id"] : null);
+  const [disabled, setDisabled] = useState(true);
 
   const onTypeSubject = (e) => {
     console.log(e.target.value);
@@ -86,16 +99,28 @@ export const Lessonworkspace = () => {
     setQuestion4(e.target.value);
   };
 
- 
-  
+  const onClickEnable = (e) => {
+    console.log("teste")
+    // e.target.disabled = false
+    setDisabled(!disabled)
+
+  };
+
+  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, index) => {
+  //    return <option value={index} key={index}> {teacher.first_name} {teacher.last_name} </option>
+  // }) 
+
+
+
+  console.log(BASE_URL + "api/lessons/" + linkLessonId)
   const postLessonData1 = () => {
 
     // fetching data from the backend
-    fetch((BASE_URL + "api/lessons"), {
+    fetch((BASE_URL + "api/lessons/" + linkLessonId), {
       headers: {
         'Content-Type': 'application/json'
       },
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({
         "title": title,
         "subject": subject,
@@ -111,37 +136,36 @@ export const Lessonworkspace = () => {
         "question4": question4,
         "date": new Date(),
         "teacher_id": nameteacher,
-        
+
       })
     })
 
   }
 
+  const redirect = useHistory();
+
   const submitLesson = () => {
     postLessonData1();
-    window.location.reload()
+    // window.location.reload()
+    window.alert('Lesson Updated');
+    redirect.push('/profile')
 
+    
   }
 
-  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, index) => {
-  //    return <option value={index} key={index}> {teacher.first_name} {teacher.last_name} </option>
-  // }) 
-
-  const linkTeacherId = store.teacherId[0];
-  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
-  console.log(dataTeacher)
-  const showTeacher = dataTeacher? dataTeacher["first_name"] + " " + dataTeacher["last_name"] : null
-
   useEffect(() => {
+    // setSubject(dataLesson["subject"]);
     onSelectNameTeacher();
+
   })
 
   const onSelectNameTeacher = () => {
-    if (showTeacher === null) {setNameteacher("")}
-    else (setNameteacher(dataTeacher["id"]));
+    if (showTeacher === null) { setNameteacher("") }
+    else (setNameteacher(dataTeacher ? dataTeacher["id"] : null));
     console.log("olá", nameteacher);
   };
-  
+
+  console.log("nome", title, linkLessonId)
 
   return (
     <div>
@@ -156,6 +180,7 @@ export const Lessonworkspace = () => {
               Don't forget... sometimes{" "}
               <b className="text-warning">less is more</b>!
             </p>
+            <button className="btn btn-warning mb-5 me-5 btn-sm" onClick={onClickEnable}>{disabled ? "Edit Lesson" : "Cancel edition of the Lesson"} </button>
           </div>
         </div>
         <div className="col-md-6 px-5">
@@ -166,7 +191,7 @@ export const Lessonworkspace = () => {
       {/* Form */}
       <form className="container-fluid">
         <div className="form-row d-flex container-fluid col-8 gap-4 flex-wrap my-4">
-          <div className="form-group col">
+          <div className="form-group col" >
             <label className="fs-3 ms-4 mb-2 border-bottom border-warning border-3">
               Suject
             </label>
@@ -175,9 +200,11 @@ export const Lessonworkspace = () => {
               minLength={4}
               maxLength={30}
               className="form-control"
-              placeholder="Subject of the lesson"
-              value={subject}
+              // placeholder={}
+              value={disabled ? dataLesson ? dataLesson["subject"] : null : subject}
               onChange={onTypeSubject}
+              disabled={disabled}
+
             />
           </div>
           <div className="form-group col">
@@ -189,9 +216,10 @@ export const Lessonworkspace = () => {
               minLength={4}
               maxLength={40}
               className="form-control"
-              placeholder="Title of the lesson"
-              value={title}
+              // placeholder={dataLesson? dataLesson["title"] : null}
+              value={disabled ? dataLesson ? dataLesson["title"] : null : title}
               onChange={onTypeTitle}
+              disabled={disabled}
             />
           </div>
           <div className="form-group col">
@@ -203,12 +231,12 @@ export const Lessonworkspace = () => {
               id="teachers"
               className="form-control"
               placeholder={showTeacher}
-              value={showTeacher? showTeacher : " "}
+              value={showTeacher ? showTeacher : " "}
               // onChange={onSelectNameTeacher}
               onLoad={onSelectNameTeacher}
               disabled
-            /> 
-            
+            />
+
 
           </div>
         </div>
@@ -222,10 +250,10 @@ export const Lessonworkspace = () => {
             maxLength={250}
             className="form-control"
             rows="3"
-            placeholder="What will be adressed.
-              Importance, why and how."
-            value={introduction}
+            // placeholder={dataLesson? dataLesson["introduction"] : null}
+            value={disabled ? dataLesson ? dataLesson["introduction"] : null : introduction}
             onChange={onTypeIntroduction}
+            disabled={disabled}
           />
         </div>
         <div className="form-group mx-auto col-10 my-4">
@@ -238,9 +266,10 @@ export const Lessonworkspace = () => {
             maxLength={6000}
             className="form-control"
             rows="10"
-            placeholder="Content (don't forget that it should be a short lesson [20min])."
-            value={mainpart}
+            // placeholder={dataLesson? dataLesson["written_content"] : null}
+            value={disabled ? dataLesson ? dataLesson["written_content"] : null : mainpart}
             onChange={onTypeMainpart}
+            disabled={disabled}
           />
           {/* <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea> */}
         </div>
@@ -254,9 +283,10 @@ export const Lessonworkspace = () => {
             maxLength={250}
             className="form-control mb-2"
             rows="2"
-            placeholder="Resume the information in a line...or 2."
-            value={summary}
+            // placeholder={dataLesson? dataLesson["summary"] : null}
+            value={disabled ? dataLesson ? dataLesson["summary"] : null : summary}
             onChange={onTypeSummary}
+            disabled={disabled}
           />
         </div>
         <div className="form-group mx-auto col-8 my-4">
@@ -268,25 +298,28 @@ export const Lessonworkspace = () => {
               type="text"
               maxLength={20}
               className="form-control mb-2"
-              placeholder="Place a keyword"
-              value={keyword1}
+              // placeholder={dataLesson? dataLesson["key_word1"] : null}
+              value={disabled ? dataLesson ? dataLesson["key_word1"] : null : keyword1}
               onChange={onTypeKeyword1}
+              disabled={disabled}
             />
             <input
               type="text"
               maxLength={20}
               className="form-control mb-2"
-              placeholder="or 2"
-              value={keyword2}
+              // placeholder={dataLesson? dataLesson["key_word2"] : null}
+              value={disabled ? dataLesson ? dataLesson["key_word2"] : null : keyword2}
               onChange={onTypeKeyword2}
+              disabled={disabled}
             />
             <input
               type="text"
               maxLength={20}
               className="form-control mb-2"
-              placeholder="or 3"
-              value={keyword3}
+              // placeholder={dataLesson? dataLesson["key_word4"] : null}
+              value={disabled ? dataLesson ? dataLesson["key_word3"] : null : keyword3}
               onChange={onTypeKeyword3}
+              disabled={disabled}
             />
           </div>
         </div>
@@ -299,32 +332,36 @@ export const Lessonworkspace = () => {
             type="text"
             maxLength={110}
             className="form-control mb-2"
-            placeholder="Ask for your students to bring some answers to class"
-            value={question1}
+            // placeholder={dataLesson? dataLesson["question1"] : null}
+            value={disabled ? dataLesson ? dataLesson["question1"] : null : question1}
             onChange={onTypeQuestion1}
+            disabled={disabled}
           />
           <input
             type="text"
             maxLength={110}
             className="form-control mb-2"
-            placeholder="Make a few questions"
-            value={question2}
+            // placeholder={dataLesson? dataLesson["question2"] : null}
+            value={disabled ? dataLesson ? dataLesson["question2"] : null : question2}
             onChange={onTypeQuestion2}
+            disabled={disabled}
           />
           <input
             type="text"
             maxLength={110}
             className="form-control mb-2"
-            placeholder="Ask them to bring them to class"
-            value={question3}
+            // placeholder={dataLesson? dataLesson["question3"] : null}
+            value={disabled ? dataLesson ? dataLesson["question3"] : null : question3}
             onChange={onTypeQuestion3}
+            disabled={disabled}
           />
           <input
             type="text"
             className="form-control"
-            placeholder="Nice way to build a Homework"
-            value={question4}
+            // placeholder={dataLesson? dataLesson["question4"] : null}
+            value={disabled ? dataLesson ? dataLesson["question4"] : null : question4}
             onChange={onTypeQuestion4}
+            disabled={disabled}
           />
         </div>
         <div className="d-flex justify-content-center">

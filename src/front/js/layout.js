@@ -17,6 +17,8 @@ import { Teacherpage } from "./pages/teacherpage";
 import { Lessonworkspace } from "./pages/lessonworkspace";
 import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
+import { Edit_Lesson } from "./pages/edit_lesson";
+import { Edit_Profile } from "./pages/edit_profile";
 
 //create your first component
 const Layout = () => {
@@ -26,6 +28,7 @@ const Layout = () => {
 
   return (
     <div>
+      
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar />
@@ -75,12 +78,19 @@ const Layout = () => {
             <Route exact path="/single/:theid">
               <Single />
             </Route>
+            <Route exact path="/edit_lesson">
+              <Edit_Lesson />
+            </Route>
+            <Route exact path="/edit_profile">
+              <Edit_Profile />
+            </Route>
             <Route>
               <h1>Not found!</h1>
             </Route>
           </Switch>
           <Footer />
         </ScrollToTop>
+
       </BrowserRouter>
     </div>
   );

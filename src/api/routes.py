@@ -7,6 +7,30 @@ from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+@api.route('/users/<id>', methods=['DELETE'])
+def user_delete(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({ "User Deleted": True}), 200
+
+@api.route('/users/<id>', methods=['PUT'])
+def user_update(id):
+    user = User.query.get(id)
+
+    is_teacher = request.json["is_teacher"]
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user.is_teacher = is_teacher
+    user.email = email
+    user.password = password
+
+    db.session.commit()
+
+    return jsonify({ "User Updated": True}), 200
+
 
 @api.route('/users', methods=['GET'])
 def handle_hello():
@@ -22,6 +46,26 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/users', methods=['POST'])
+def add_user():
+
+    # User.append(newmember)
+    body_request = request.get_json()
+    email_request = body_request.get("email", None)
+    password_request = body_request.get("password", None)
+    is_teacher_request = body_request.get("is_teacher", False)
+
+
+    new_user = User(
+        email = email_request,
+        password = password_request, 
+        is_teacher = is_teacher_request
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+    return "User Added", 200
+
 @api.route("/login", methods=["POST"])
 def login():
     email = request.json.get("email", None)
@@ -35,26 +79,6 @@ def login():
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
-
-@api.route('/users', methods=['POST'])
-def add_user():
-
-    # User.append(newmember)
-    body_request = request.get_json()
-    email_request = body_request.get("email", None)
-    password_request = body_request.get("password", None)
-    student_or_teacher_request = body_request.get("is_teacher", False)
-
-
-    new_user = User(
-        email = email_request,
-        password = password_request, 
-        student_or_teacher = student_or_teacher_request
-    )
-
-    db.session.add(new_user)
-    db.session.commit()
-    return "User Added", 200
 
 @api.route('/lessons', methods=['GET'])
 def handle_lessons():
@@ -114,6 +138,52 @@ def add_lesson():
     db.session.commit()
     return "Lesson Content Added", 200
 
+@api.route('/lessons/<id>', methods=['PUT'])
+def lesson_update(id):
+    lesson = Lesson_Content.query.get(id)
+
+    title = request.json["title"]
+    subject = request.json["subject"]
+    introduction = request.json["introduction"]
+    written_content = request.json["written_content"]
+    summary = request.json["summary"]
+    key_word1 = request.json["key_word1"]
+    key_word2 = request.json["key_word2"]
+    key_word3 = request.json["key_word3"]
+    question1 = request.json["question1"]
+    question2 = request.json["question2"]
+    question3 = request.json["question3"]
+    question4 = request.json["question4"]
+    # image = request.json["image"]
+    date = request.json["date"] 
+
+    lesson.title = title
+    lesson.subject = subject
+    lesson.introduction = introduction
+    lesson.written_content = written_content
+    lesson.summary = summary
+    lesson.key_word1 = key_word1
+    lesson.key_word2 = key_word2
+    lesson.key_word3 = key_word3
+    lesson.question1 = question1
+    lesson.question2 = question2
+    lesson.question3 = question3
+    lesson.question4 = question4
+    # lesson.image = image
+    lesson.date = date
+
+    db.session.commit()
+
+    return jsonify({ "Lesson Updated": True}), 200
+
+@api.route('/lessons/<id>', methods=['DELETE'])
+def lesson_delete(id):
+    lesson = Lesson_Content.query.get(id)
+    db.session.delete(lesson)
+    db.session.commit()
+
+    return jsonify({ "Lesson Deleted": True}), 200
+
 @api.route('/teacher', methods=['GET'])
 def handle_teacher():
 
@@ -145,8 +215,7 @@ def add_teacher():
     years_experience_request = body_request.get("years_experience", None)
     fun_info_request = body_request.get("fun_info", None)
     password_request = body_request.get("password", None)
-    lessons_request = body_request.get("lessons", None)
-
+    # lessons_request = body_request.get("lessons", None)
 
     new_teacher = Teacher(
         email = email_request,
@@ -161,12 +230,46 @@ def add_teacher():
         years_experience = years_experience_request,
         fun_info = fun_info_request, 
         password = password_request,
-        lessons = lessons_request
+        # lessons = lessons_request
     )
 
     db.session.add(new_teacher)
     db.session.commit()
     return "Teacher Added", 200
+
+@api.route('/teacher/<id>', methods=['PUT'])
+def teacher_update(id):
+    teacher = Teacher.query.get(id)
+
+    # email = request.json["email"]
+    # password = request.json["password"]
+    # avatar = request.json["avatar"]
+    first_name = request.json["first_name"]
+    last_name = request.json["last_name"]
+    subjects1 = request.json["subjects1"]
+    subjects2 = request.json["subjects2"]
+    subjects3 = request.json["subjects3"]
+    subjects4 = request.json["subjects4"]
+    why_you_teach = request.json["why_you_teach"]
+    years_experience = request.json["years_experience"]
+    fun_info = request.json["fun_info"]
+
+    # teacher.email = email
+    # teacher.password = password
+    # teacher.avatar = avatar
+    teacher.first_name = first_name
+    teacher.last_name = last_name
+    teacher.subjects1 = subjects1
+    teacher.subjects2 = subjects2
+    teacher.subjects3 = subjects3
+    teacher.subjects4 = subjects4
+    teacher.why_you_teach = why_you_teach
+    teacher.years_experience = years_experience
+    teacher.fun_info = fun_info
+
+    db.session.commit()
+
+    return jsonify({ "Teacher Updated": True}), 200
 
 
 @api.route('/student', methods=['GET'])
@@ -203,3 +306,21 @@ def add_student():
     db.session.add(new_student)
     db.session.commit()
     return "Student Added", 200
+
+@api.route('/student/<id>', methods=['PUT'])
+def student_update(id):
+    student = Student.query.get(id)
+
+    email = request.json["email"]
+    password = request.json["password"]
+    first_name = request.json["first_name"]
+    last_name = request.json["last_name"]
+
+    student.email = email
+    student.password = password
+    student.first_name = first_name
+    student.last_name = last_name
+
+    db.session.commit()
+
+    return jsonify({ "Student Updated": True}), 200

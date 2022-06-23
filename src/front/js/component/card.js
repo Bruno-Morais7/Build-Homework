@@ -20,7 +20,7 @@ export const Card = (props) => {
   return (
     <div className="col">
     <div className="card" styles={"width: 18rem;"}>
-    <img src={props.avatar} className="card-img-top" alt="..."/>
+    <img src={props.avatar} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{props.first_name} {props.last_name}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{props.subjects}</h6>

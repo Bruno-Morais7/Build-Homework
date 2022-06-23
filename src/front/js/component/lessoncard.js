@@ -17,6 +17,7 @@ export const Lessoncard = (props) => {
         {/* <Link to="#" className="card-link">
           {props.link_lesson}
         </Link> */}
+      
       </div>
     </div>
     </div>

@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const SignupPage = () => {
   const { store, actions } = useContext(Context);
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+  const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -136,20 +136,32 @@ export const SignupPage = () => {
 
   const postUserData1 = () => {
 				
-    // fetching data from the backend
-    fetch((BASE_URL + "api/users"), {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "email": email,
-        "password": password,
-        // "is_teacher": document.getElementById("confirm_teacher").value,
-      })
-    })
-
-  }
+    if (signupteacher == false) {
+      fetch((BASE_URL + "api/users"), {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          "email": email,
+          "password": password,
+          "is_teacher": false,
+        })
+      })}
+      else {
+        fetch((BASE_URL + "api/users"), {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({
+            "email": email,
+            "password": password,
+            "is_teacher": true,
+          })
+        })
+      }
+    }
 
   const postStudentData1 = () => {
 
@@ -197,7 +209,7 @@ const postTeacherData1 = () => {
   const submit = () => {
     if (signupteacher == false) {
       postUserData1()
-      postStudentData1()
+      postStudentData1() 
       window.location.reload()
       
     }
@@ -206,6 +218,7 @@ const postTeacherData1 = () => {
       postTeacherData1()
       window.location.reload()
     }
+
   }
 
   const [teacherfoto, setTeacherfoto] = useState();
