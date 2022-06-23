@@ -53,7 +53,7 @@ export const Profile = () => {
           </div>
         </div>
         <div className="col-md-12 text-end">
-          <button className="btn btn-warning mb-5 me-5">Edit Info</button>
+          <button className="btn btn-warning mt-5 mb-5 me-5">Edit Info</button>
         </div>
       </div>
       <div className="container-fluid">

@@ -17,6 +17,7 @@ import { Teacherpage } from "./pages/teacherpage";
 import { Lessonworkspace } from "./pages/lessonworkspace";
 import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
+import the404 from "../img/the404.png";
 
 //create your first component
 const Layout = () => {
@@ -76,7 +77,10 @@ const Layout = () => {
               <Single />
             </Route>
             <Route>
-              <h1>Not found!</h1>
+              <div className="">
+                <img className="align-center" src={the404}>
+                </img>
+              </div>
             </Route>
           </Switch>
           <Footer />
