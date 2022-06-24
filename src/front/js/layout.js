@@ -19,6 +19,7 @@ import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
 import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
+import the404 from "../img/the404.png";
 
 //create your first component
 const Layout = () => {
@@ -85,7 +86,10 @@ const Layout = () => {
               <Edit_Profile />
             </Route>
             <Route>
-              <h1>Not found!</h1>
+              <div className="">
+                <img className="align-center" src={the404}>
+                </img>
+              </div>
             </Route>
           </Switch>
           <Footer />

@@ -49,14 +49,14 @@ export const LoginPage = () => {
   return (
     <>
       <div className="container">
-        <div className="row">
-          <div className="col-md-5 mx-auto">
+        <div className="row ">
+          <div className="col-md-5 mx-auto ">
             <div id="first">
-              <div className="myform">
-                <div className="logo mb-3">
+              <div className="myform bg-dark text-white my-5 p-5">
+                <div className="logo">
                   <div className="col-md-12 text-center">
                     <h3>
-                      <i className="fa fa-user fa-4x"></i>
+                      <i className="fa fa-user fa-4x text-warning"></i>
                     </h3>
                     <h1>Login</h1>
                   </div>
@@ -75,7 +75,7 @@ export const LoginPage = () => {
                       onChange={onTypeEmail}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group mt-1">
                     <label>Password</label>
                     <input
                       type="Password"
@@ -88,7 +88,7 @@ export const LoginPage = () => {
                       onChange={onTypePassword}
                     />
                   </div>
-                  <div className="col-md-12 text-center ">
+                  <div className="col-md-12 text-center mt-3">
                     <button
                       type="submit"
                       className=" btn btn-block mybtn btn-primary tx-tfm"
@@ -100,7 +100,7 @@ export const LoginPage = () => {
                   <div className="col-md-12 ">
                     <div className="login-or">
                       <hr className="hr-or" />
-                      <span className="span-or">or</span>
+                      <span className="span-or bg-dark">or</span>
                     </div>
                   </div>
 
