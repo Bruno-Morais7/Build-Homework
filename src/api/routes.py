@@ -4,8 +4,35 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Lesson_Content, Teacher, Student
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask import Flask
+from flask_cors import CORS, cross_origin
+from flask_jwt_extended import current_user
+from hmac import compare_digest,new
 
 api = Blueprint('api', __name__)
+
+
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+   
+    users = User.query.filter_by(email=email).one_or_none()
+    # print(users.serializeUser())
+
+    if email !=  users.serializeUser()['email'] or password !=  users.serializeUser()['password']:
+        return jsonify("Wrong email or password"), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+
+
+
 
 @api.route('/users/<id>', methods=['DELETE'])
 def user_delete(id):
@@ -66,19 +93,6 @@ def add_user():
     db.session.commit()
     return "User Added", 200
 
-@api.route("/login", methods=["POST"])
-def login():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-
-    print( email)
-    print(password)
-   
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
-
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
 
 @api.route('/lessons', methods=['GET'])
 def handle_lessons():

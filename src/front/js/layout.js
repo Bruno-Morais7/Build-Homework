@@ -20,19 +20,19 @@ import { Results } from "./pages/results";
 import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
 import the404 from "../img/the404.png";
-
+import { useState } from "react";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
     <div>
-      
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          <Navbar token={token} setToken={setToken} />
           <Switch>
             <Route exact path="/">
               <Home />
@@ -50,7 +50,7 @@ const Layout = () => {
               <Single />
             </Route>
             <Route exact path="/loginpage">
-              <LoginPage />
+              <LoginPage setToken={setToken} />
             </Route>
             <Route exact path="/SignupPage">
               <SignupPage />
@@ -87,14 +87,12 @@ const Layout = () => {
             </Route>
             <Route>
               <div className="">
-                <img className="align-center" src={the404}>
-                </img>
+                <img className="align-center" src={the404}></img>
               </div>
             </Route>
           </Switch>
           <Footer />
         </ScrollToTop>
-
       </BrowserRouter>
     </div>
   );
