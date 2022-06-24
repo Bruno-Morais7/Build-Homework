@@ -22,7 +22,7 @@ export const Edit_Lesson = () => {
   // let date = new Date()
   // console.log(date) 
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
+  const BASE_URL = process.env.BACKEND_URL
 
   const [subject, setSubject] = useState(dataLesson ? dataLesson["subject"] : null);
   const [title, setTitle] = useState(dataLesson ? dataLesson["title"] : null);
@@ -112,11 +112,11 @@ export const Edit_Lesson = () => {
 
 
 
-  console.log(BASE_URL + "api/lessons/" + linkLessonId)
+  console.log(BASE_URL + "/api/lessons/" + linkLessonId)
   const postLessonData1 = () => {
 
     // fetching data from the backend
-    fetch((BASE_URL + "api/lessons/" + linkLessonId), {
+    fetch((BASE_URL + "/api/lessons/" + linkLessonId), {
       headers: {
         'Content-Type': 'application/json'
       },
