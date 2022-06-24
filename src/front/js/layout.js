@@ -15,24 +15,27 @@ import { Lounge } from "./pages/lounge";
 import { Lesson } from "./pages/lesson";
 import { Teacherpage } from "./pages/teacherpage";
 import { Lessonworkspace } from "./pages/lessonworkspace";
+import { UpdatePassword } from "./pages/Updatepassword";
+import { useState } from "react";
 import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
 import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
 import the404 from "../img/the404.png";
 
+
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
     <div>
-      
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          <Navbar token={token} setToken={setToken} />
           <Switch>
             <Route exact path="/">
               <Home />
@@ -50,7 +53,7 @@ const Layout = () => {
               <Single />
             </Route>
             <Route exact path="/loginpage">
-              <LoginPage />
+              <LoginPage setToken={setToken} />
             </Route>
             <Route exact path="/SignupPage">
               <SignupPage />
@@ -64,21 +67,18 @@ const Layout = () => {
             <Route exact path="/lesson">
               <Lesson />
             </Route>
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
             <Route exact path="/teacherpage">
               <Teacherpage />
             </Route>
             <Route exact path="/lessonworkspace">
               <Lessonworkspace />
             </Route>
-            <Route exact path="/results">
-              <Results />
-            </Route>
             <Route exact path="/single/:theid">
               <Single />
             </Route>
+            <Route path="/updatepassword/:id">
+              <UpdatePassword />
+              </Route>
             <Route exact path="/edit_lesson">
               <Edit_Lesson />
             </Route>
@@ -94,7 +94,6 @@ const Layout = () => {
           </Switch>
           <Footer />
         </ScrollToTop>
-
       </BrowserRouter>
     </div>
   );

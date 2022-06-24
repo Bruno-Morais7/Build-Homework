@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/style.css";
+import { BASE_URL } from "../store/flux";
+import { useHistory } from "react-router-dom";
 
-export const LoginPage = () => {
+export const LoginPage = ({ setToken }) => {
+  const history = useHistory();
   const { store, actions } = useContext(Context);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const urlBase = " ";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onTypeEmail = (e) => {
     console.log(e.target.value);
@@ -20,7 +21,8 @@ export const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const onSubmitClicked = () => {
+  const onSubmitClicked = (e) => {
+    e.preventDefault();
     if (email && password) {
       // fetch
       onFetchLogIn(email, password);
@@ -34,16 +36,35 @@ export const LoginPage = () => {
     // fetch
     const post = {
       method: "POST",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers":
+          "Origin,Content-Type, Authorization, x-id, Content-Length, X-Requested-With",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       },
+      crossDomain: true,
       redirect: "follow",
       body: JSON.stringify({
         email: email,
         password: password,
       }),
     };
+
+    fetch(BASE_URL + "/api/login", post)
+      .then((resp) => resp.json())
+      .then((dataUsers) => {
+        console.log(dataUsers);
+        if (dataUsers?.access_token) {
+          localStorage.setItem("token", dataUsers.access_token);
+          setToken(dataUsers.access_token);
+          history.push("/landingpage");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -63,7 +84,7 @@ export const LoginPage = () => {
                 </div>
                 <form>
                   <div className="form-group">
-                    <label>Email address</label>
+                    <label htmlFor="InputEmail1">Email address</label>
                     <input
                       type="Email"
                       name="Email"
@@ -103,19 +124,18 @@ export const LoginPage = () => {
                       <span className="span-or bg-dark">or</span>
                     </div>
                   </div>
-
                   <div className="form-group">
                     <p className="text-center">
                       Don't have account?{" "}
                       <Link to="/SignupPage">
-                        Sign up here
+                        <label id="signup">Sign up here</label>
                       </Link>
                     </p>
                   </div>
                   <div className="form-group">
                     <p className="text-center">
                       <Link to="/ForgetPassword">
-                        Forget Password
+                        <label id="Forget">Forget Password</label>
                       </Link>
                     </p>
                   </div>

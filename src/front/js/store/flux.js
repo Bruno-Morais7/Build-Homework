@@ -1,6 +1,6 @@
 import { SignupPage } from "../pages/SignupPage";
 import { useContext, useEffect, useState } from "react"
-
+/*export const BASE_URL*/
 /*const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"*/
 const BASE_URL = process.env.BACKEND_URL
 
@@ -218,4 +218,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-

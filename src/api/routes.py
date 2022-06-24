@@ -4,6 +4,13 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Lesson_Content, Teacher, Student
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask import Flask
+from flask_cors import CORS, cross_origin
+from flask_jwt_extended import current_user
+from hmac import compare_digest,new
 
 api = Blueprint('api', __name__)
 
@@ -30,6 +37,50 @@ def user_update(id):
     db.session.commit()
 
     return jsonify({ "User Updated": True}), 200
+
+
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+   
+    users = User.query.filter_by(email=email).one_or_none()
+    # print(users.serializeUser())
+
+    if email !=  users.serializeUser()['email'] or password !=  users.serializeUser()['password']:
+        return jsonify("Wrong email or password"), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+@api.route("/updatepassword", methods=["POST"])
+def updatepassword():
+    id = request.json.get("id", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(id=id).first()
+    user.update(password)
+
+    return jsonify('results'),200
+   
+
+
+@api.route("/forgetpassword", methods=["POST"])
+def forgetpassword():
+    email = request.json.get("email", None)
+    web_link = request.json.get("web_link", None)
+
+    users = User.query.filter_by(email=email).one_or_none()
+
+    
+    if not users: 
+        return jsonify({"msg": "Email is not exist"}), 401
+
+    return jsonify(link=web_link+str(users.serializeUser()['id']))
+
+
+
 
 
 @api.route('/users', methods=['GET'])
@@ -62,8 +113,10 @@ def add_user():
         is_teacher = is_teacher_request
     )
 
-    db.session.add(new_user)
-    db.session.commit()
+    print(new_user)
+    new_user.create()
+    # db.session.add(new_user)
+    # db.session.commit()
     return "User Added", 200
 
 @api.route("/login", methods=["POST"])
@@ -113,7 +166,6 @@ def add_lesson():
     question2_request = body_request.get("question2", None)
     question3_request = body_request.get("question3", None)
     question4_request = body_request.get("question4", None)
-    teacher_id_request = body_request.get("teacher_id", None)
 
 
     new_content = Lesson_Content(
@@ -130,8 +182,7 @@ def add_lesson():
         question1 = question1_request,
         question2 = question2_request,
         question3 = question3_request,
-        question4 = question4_request, 
-        teacher_id = teacher_id_request
+        question4 = question4_request
     )
 
     db.session.add(new_content)
@@ -207,14 +258,12 @@ def add_teacher():
     avatar_request = body_request.get("avatar", None)
     first_name_request = body_request.get("first_name", None)
     last_name_request = body_request.get("last_name", None)
-    subjects1_request = body_request.get("subjects1", None)
-    subjects2_request = body_request.get("subjects2", None)
-    subjects3_request = body_request.get("subjects3", None)
-    subjects4_request = body_request.get("subjects4", None)
+    subjects_request = body_request.get("subjects", None)
     why_you_teach_request = body_request.get("why_you_teach", None)
     years_experience_request = body_request.get("years_experience", None)
     fun_info_request = body_request.get("fun_info", None)
     password_request = body_request.get("password", None)
+
     # lessons_request = body_request.get("lessons", None)
 
     new_teacher = Teacher(
@@ -222,13 +271,11 @@ def add_teacher():
         avatar = avatar_request,
         first_name = first_name_request,
         last_name = last_name_request,
-        subjects1 = subjects1_request,
-        subjects2 = subjects2_request,
-        subjects3 = subjects3_request,
-        subjects4 = subjects4_request,
+        subjects = subjects_request,
         why_you_teach = why_you_teach_request,
         years_experience = years_experience_request,
         fun_info = fun_info_request, 
+
         password = password_request,
         # lessons = lessons_request
     )
