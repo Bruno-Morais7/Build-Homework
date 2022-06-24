@@ -11,11 +11,6 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from flask_jwt_extended import JWTManager
-from flask_sqlalchemy import SQLAlchemy
-
-
-app = Flask(__name__) 
 
 #from models import Person
 
@@ -23,14 +18,6 @@ ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-
-# Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = "T&L"  # Change this!
-
-jwt = JWTManager(app)
-
-
-
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -44,7 +31,7 @@ MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
 # Allow CORS requests to this API
-CORS(app, resources=r'/api/*')
+CORS(app)
 
 # add the admin
 setup_admin(app)
@@ -66,14 +53,6 @@ def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
-
-@app.after_request
-def apply_caching(response):
-    response.headers["X-Frame-Options"] = "SAMEORIGIN"
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Credentials'] = True
-    response.headers['Access-Control-Allow-Headers'] = '*'
-    return response
 
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])

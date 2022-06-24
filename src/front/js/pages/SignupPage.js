@@ -8,8 +8,9 @@ export const SignupPage = () => {
   const { store, actions } = useContext(Context);
 
 /*const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"*/
+
   const BASE_URL = process.env.BACKEND_URL
-  
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
@@ -17,10 +18,14 @@ export const SignupPage = () => {
   const [surnames, setSurnames] = useState();
   const [teacher, setTeacher] = useState();
   const [funinfo, setFuninfo] = useState();
-  const [subjects, setSubjects] = useState();
+  const [subjects1, setSubjects1] = useState();
+  const [subjects2, setSubjects2] = useState();
+  const [subjects3, setSubjects3] = useState();
+  const [subjects4, setSubjects4] = useState();
   const [whyyouteach, setWhyyouteach] = useState();
   const [yearsexperience, SetYearsexperience] = useState();
   const [signupteacher, setSignupteacher] = useState(false);
+
 
   const onSubmitClicked = () => {
     console.log(" click and submit ");
@@ -81,17 +86,32 @@ export const SignupPage = () => {
     console.log(e.target.value);
     setSurnames(e.target.value);
   };
-
+  
   const onTypeFunInfo = (e) => {
     console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
-  const onTypeSubjects = (e) => {
+  const onTypeSubjects1 = (e) => {
     console.log(e.target.value);
-    setSubjects(e.target.value);
+    setSubjects1(e.target.value);
   };
 
+  const onTypeSubjects2 = (e) => {
+    console.log(e.target.value);
+    setSubjects2(e.target.value);
+  };
+
+  const onTypeSubjects3 = (e) => {
+    console.log(e.target.value);
+    setSubjects3(e.target.value);
+  };
+
+  const onTypeSubjects4 = (e) => {
+    console.log(e.target.value);
+    setSubjects4(e.target.value);
+  };
+  
   const onTypeWhyYouTeach = (e) => {
     console.log(e.target.value);
     setWhyyouteach(e.target.value);
@@ -100,14 +120,12 @@ export const SignupPage = () => {
   const onTypeYearsOfExperience = (e) => {
     console.log(e.target.value);
     SetYearsexperience(e.target.value);
-  };
+  };  
 
   const onTypeIsTeacher = (e) => {
-    if (e.target.checked) {
-      setTeacher(false);
-    } else {
-      setTeacher(true);
-    }
+
+    if (e.target.checked) { setTeacher(false) }
+    else { setTeacher(true) };
     console.log(e.target.value);
     console.log(document.getElementById("confirm_teacher").value);
   };
@@ -216,55 +234,58 @@ const postTeacherData1 = () => {
         .then(respAPI => respAPI.json())
         .then((data) => setTeacherfoto(data))
         .catch(error => console.log("Error loading message from backend Lessons", error));
+ 
     }
-  };
+  
+  console.log("ttt", teacherfoto);
+  const pic = teacherfoto?.results[0].picture.large;
+  console.log("vvv", pic)
 
   return (
     <>
-      <br></br>
+    <br></br>
       <div className="container">
         <div className="col-md-5 mx-auto">
-          <div className="myform">
+          <div className="myform bg-dark text-white">
             <div className="logo mb-3">
               <div className="col-md-12 text-center">
-                <h3>{/* <i className="fa fa-user-plus fa-2x"></i> */}</h3>
+                <h3>
+                  {/* <i className="fa fa-user-plus fa-2x"></i> */}
+                </h3>
                 <h1>SignUp Form</h1>
               </div>
             </div>
             <form action="/Signuppage" method="post" name="registration" />
             <div className="form-group">
-              {/* <label>Email address</label> */}
               <input
-                type="email"
                 name="email"
                 className="form-control"
                 id="email"
-                aria-describedby="emailHelp"
                 placeholder="Enter email"
+                minLength={10}
+                maxLength={100}
                 value={email}
                 onChange={onTypeEmail}
               />
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>Password</label> */}
               <input
-                type="password"
                 name="password"
-                id="password"
                 className="form-control"
-                aria-describedby="password"
+                id="password"
                 placeholder="Enter Password"
+                minLength={7}
+                maxLength={40}
                 value={password}
                 onChange={onTypePassword}
               />
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>Conform Password</label> */}
               <input
-                type="Conform password"
                 name="Conform password"
+                className="form-control"
                 id="confirm_password"
                 placeholder="Confirm Password"
                 minLength={7}
@@ -275,28 +296,26 @@ const postTeacherData1 = () => {
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>Enter First Name</label> */}
               <input
-                type="First Name"
                 name="First Name"
-                id="First_Name"
                 className="form-control"
-                aria-describedby="First Name"
+                id="First_Name"
                 placeholder="Enter First Name"
+                minLength={4}
+                maxLength={30}
                 value={firstname}
                 onChange={onTypeFirstname}
               />
             </div>
             <p></p>
             <div className="form-group">
-              {/* <label>First Name</label> */}
               <input
-                type="Surnames"
                 name="Surnames"
-                id="Surnames"
                 className="form-control"
-                aria-describedby="Surnames"
+                id="Surnames"
                 placeholder="Enter Surnames"
+                minLength={4}
+                maxLength={50}
                 value={surnames}
                 onChange={onTypeSurnames}
               />
@@ -337,10 +356,6 @@ const postTeacherData1 = () => {
                       value={subjects1}
                       onChange={onTypeSubjects1}
                     />
-                  </div>
-                  <p></p>
-                  <div className="form-group">
-                    {/* <label>Password</label> */}
                     <input
                       name="subjects2"
                       className="form-control col-sm"
@@ -350,10 +365,6 @@ const postTeacherData1 = () => {
                       value={subjects2}
                       onChange={onTypeSubjects2}
                     />
-                  </div>
-                  <p></p>
-                  <div className="form-group">
-                    {/* <label>Conform Password</label> */}
                     <input
                       name="subjects3"
                       className="form-control col-sm"
@@ -363,10 +374,6 @@ const postTeacherData1 = () => {
                       value={subjects3}
                       onChange={onTypeSubjects3}
                     />
-                  </div>
-                  <p></p>
-                  <div className="form-group">
-                    {/* <label>Enter First Name</label> */}
                     <input
                       name="subjects4"
                       className="form-control col-sm"
@@ -401,36 +408,26 @@ const postTeacherData1 = () => {
                 onChange={onTypeYearsOfExperience}
               />
             </div>
-            <div className="col-md-12 text-center mb-3">
-              <button
+              </div>) : null}
+             </div>
+             <div className="col-md-12 text-center mb-3">
+             <button
                 type="submit"
                 className=" btn btn-block mybtn btn-warning tx-tfm"
                 onClick={signupForm}
               >
-                {signupteacher
-                  ? "If You are only a Student Click Here"
-                  : "If You are a Teacher Click Here"}
+               {signupteacher ? "If You are only a Student Click Here" : "If You are a Teacher Click Here"} 
               </button>
-            </div>
-
-            <div className="col-md-12 text-center mb-3 ">
+              </div>
+              <div className="col-md-12 text-center mb-3 ">
               <button
                 type="submit"
-                className=" btn btn-block mybtn btn-dark tx-tfm"
+                className=" btn btn-block mybtn btn-dark tx-tfm border"
                 onClick={submit}
               >
                 submit
               </button>
-            </div>
-            {/* <div className="col-md-12 ">
-              <div className="form-group">
-                <p className="text-center">
-                  <Link to="/LoginPage">
-                    <span>Already have an account?</span>
-                  </Link>
-                </p>
-              </div>
-            </div> */}
+             </div>
           </div>
         </div>
       </div>
