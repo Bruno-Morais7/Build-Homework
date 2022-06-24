@@ -1,64 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 import "../../styles/style.css";
-import { BASE_URL } from "../store/flux";
 import { send } from 'emailjs-com';
 
 export const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
-  const submitForgetPassword = (e) => {
-    e.preventDefault();
-
-    // fetch
-    const post = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers":
-          "Origin,Content-Type, Authorization, x-id, Content-Length, X-Requested-With",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      },
-      crossDomain: true,
-      redirect: "follow",
-      body: JSON.stringify({
-        email: email,
-        web_link: `${window.location.origin}/updatepassword/`,
-      }),
-    };
-
-    fetch(BASE_URL + "/api/forgetpassword", post)
-      .then((resp) => resp.json())
-      .then((res) => {
-        console.log();
-
-        let templateParams = {
-          sender_email: email,
-          subject: "Reset password",
-          message: `Link : ${res.link}`,
-        };
-        emailjs
-          .send(
-            "service_ygis1wj",
-            "template_xkqpkbh",
-            templateParams,
-            "7rzVod9SV3vhzTprV"
-          )
-          .then((res) => {
-            console.log("okokok");
-            setEmail("");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
     <>
       <div className="container">
@@ -77,10 +22,9 @@ export const ForgetPassword = () => {
                       <form
                         id="register-form"
                         role="form"
-                        autocomplete="off"
+                        autoComplete="off"
                         className="form"
                         method="post"
-                        onSubmit={submitForgetPassword}
                       >
                         <div className="form-group">
                           <div className="input-group">
@@ -93,22 +37,16 @@ export const ForgetPassword = () => {
                               placeholder="Email address"
                               className="form-control"
                               type="Email"
-                              onChange={(e) => setEmail(e.target.value)}
-                              value={email}
                             />
                           </div>
                         </div>
-
                         <div className="form-group mt-4">
                           <input
-                            id="Updatepassword"
                             name="recover-submit"
                             className="btn btn-lg btn-primary btn-block fs-6"
                             value="Reset Password"
                             type="submit"
                           />
-                            Reset Password
-                          </button>
                         </div>
 
                         <input

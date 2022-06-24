@@ -1,18 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import logo from "../../img/logo.png";
 
-export const Navbar = ({ token, setToken }) => {
-  const history = useHistory();
-
-  const logoutFunction = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    setToken("");
-    history.push("/");
-  };
-  
+export const Navbar = () => {
   return (
     <nav className="navbar navbar-light container-fluid col-10 border-bottom">
       <div className="container-fluid py-3">
@@ -40,33 +30,25 @@ export const Navbar = ({ token, setToken }) => {
               <span className="btn_text">Workspace</span>
             </div>
           </Link>
-
-          {token ? (
-            <Link to="#">
-            <div className="btn_effect" onClick={logoutFunction}>
-              <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>
-              <span className="btn_text">LogOut </span>{" "}
+          <Link to="/LoginPage">
+            <div className="btn_effect">
+              <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
+              <span className="btn_text">Login </span>{" "}
+              <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>{" "}
             </div>
-            </Link>
-           <Link to="/profile">
+          </Link>
+          <Link to="/SignupPage">
+            <div className="btn_effect">
+              <i className="fa-solid fa-user-plus text-dark fs-2"></i>{" "}
+              <span className="btn_text">Signup</span>
+            </div>
+          </Link>
+          <Link to="/profile">
             <div className="btn_effect">
               <i className="fa-solid fa-circle-user text-dark fs-2"></i>{" "}
               <span className="btn_text">My Profile</span>
             </div>
           </Link>
-          ) : (
-            <>
-              <Link to="/LoginPage">
-            <div className="btn_effect">
-              <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
-              <span className="btn_text">Login </span>{" "}
-            </div>
-          </Link>
-              <Link to="/SignupPage">
-                <button className="btn btn-success">Signup</button>
-              </Link>
-            </>
-          )}
         </div>
       </div>
     </nav>
