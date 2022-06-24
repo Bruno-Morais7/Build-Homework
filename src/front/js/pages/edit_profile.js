@@ -26,7 +26,7 @@ export const Edit_Profile = () => {
   const [disabled, setDisabled] = useState(true);
 
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
+  const BASE_URL = process.env.BACKEND_URL
 
 
 
@@ -92,7 +92,7 @@ export const Edit_Profile = () => {
   const postUpdateProfile = () => {
 
     // fetching data from the backend
-    fetch((BASE_URL + "api/teacher/" + linkTeacherId), {
+    fetch((BASE_URL + "/api/teacher/" + linkTeacherId), {
       headers: {
         'Content-Type': 'application/json'
       },

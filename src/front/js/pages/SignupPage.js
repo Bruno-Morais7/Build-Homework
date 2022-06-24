@@ -139,7 +139,7 @@ export const SignupPage = () => {
   const postUserData1 = () => {
 				
     if (signupteacher == false) {
-      fetch((BASE_URL + "api/users"), {
+      fetch((BASE_URL + "/api/users"), {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -151,7 +151,7 @@ export const SignupPage = () => {
         })
       })}
       else {
-        fetch((BASE_URL + "api/users"), {
+        fetch((BASE_URL + "/api/users"), {
           headers: {
             'Content-Type': 'application/json'
           },
@@ -167,7 +167,7 @@ export const SignupPage = () => {
 
   const postStudentData1 = () => {
 
-  fetch((BASE_URL + "api/student"), {
+  fetch((BASE_URL + "/api/student"), {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -184,7 +184,7 @@ export const SignupPage = () => {
 
 const postTeacherData1 = () => {
 
-  fetch((BASE_URL + "api/teacher"), {
+  fetch((BASE_URL + "/api/teacher"), {
     headers: {
       'Content-Type': 'application/json'
     },

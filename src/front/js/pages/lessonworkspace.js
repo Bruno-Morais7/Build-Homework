@@ -92,7 +92,7 @@ export const Lessonworkspace = () => {
   const postLessonData1 = () => {
 
     // fetching data from the backend
-    fetch((BASE_URL + "api/lessons"), {
+    fetch((BASE_URL + "/api/lessons"), {
       headers: {
         'Content-Type': 'application/json'
       },

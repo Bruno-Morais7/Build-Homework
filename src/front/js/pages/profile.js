@@ -11,7 +11,7 @@ import { Lesson } from "./lesson.js"
 export const Profile = () => {
   const { store, actions } = useContext(Context);
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"
+  const BASE_URL = process.env.BACKEND_URL
 
   const linkTeacherId = store.teacherId[0];
   const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
@@ -46,7 +46,7 @@ export const Profile = () => {
           <Link to="/edit_lesson" className="link-dark">
             <button className="btn btn-warning mb-5 me-2 btn-sm" onClick={() => {let saveLessonId = lesson.id; console.log(saveLessonId); actions.onClickSaveLessonId(lesson.id)}}>Edit Info</button>
           </Link>
-        <button className="btn btn-warning mb-5 me-2 btn-sm" onClick={() => { fetch((BASE_URL + "api/lessons/" + lesson.id), { headers: { 'Content-Type': 'application/json' }, method: "DELETE", }); window.location.reload()}}>Delete</button>
+        <button className="btn btn-warning mb-5 me-2 btn-sm" onClick={() => { fetch((BASE_URL + "/api/lessons/" + lesson.id), { headers: { 'Content-Type': 'application/json' }, method: "DELETE", }); window.location.reload()}}>Delete</button>
       </div>
     )
   })

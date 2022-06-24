@@ -19,9 +19,6 @@ export const Teacherpage = () => {
 
   //const linkTeacherId = store.teacherId[0];
   const dataLessonsOftheTeacher = store?.lessons?.[0]?.lessons.filter(e => e.teacher_id === linkTeacherId)
-  
-
-  const dataLessonsOftheTeacher = store?.lessons?.[0]?.lessons.filter(e => e.teacher_id === linkTeacherId)
   console.log(dataLessonsOftheTeacher)
   let countLessonsOfTeacher = dataLessonsOftheTeacher?.length
 
