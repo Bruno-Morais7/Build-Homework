@@ -89,6 +89,8 @@ def add_user():
         is_teacher = is_teacher_request
     )
 
+    # print(new_user)
+    # new_user.create()
     db.session.add(new_user)
     db.session.commit()
     return "User Added", 200

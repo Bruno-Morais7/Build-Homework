@@ -7,9 +7,9 @@ import { Context } from "../store/appContext";
 export const SignupPage = () => {
   const { store, actions } = useContext(Context);
 
-/*const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"*/
+  /*const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"*/
 
-  const BASE_URL = process.env.BACKEND_URL
+  const BASE_URL = process.env.BACKEND_URL;
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -25,7 +25,6 @@ export const SignupPage = () => {
   const [whyyouteach, setWhyyouteach] = useState();
   const [yearsexperience, SetYearsexperience] = useState();
   const [signupteacher, setSignupteacher] = useState(false);
-
 
   const onSubmitClicked = () => {
     console.log(" click and submit ");
@@ -86,7 +85,7 @@ export const SignupPage = () => {
     console.log(e.target.value);
     setSurnames(e.target.value);
   };
-  
+
   const onTypeFunInfo = (e) => {
     console.log(e.target.value);
     setFuninfo(e.target.value);
@@ -111,7 +110,7 @@ export const SignupPage = () => {
     console.log(e.target.value);
     setSubjects4(e.target.value);
   };
-  
+
   const onTypeWhyYouTeach = (e) => {
     console.log(e.target.value);
     setWhyyouteach(e.target.value);
@@ -120,138 +119,129 @@ export const SignupPage = () => {
   const onTypeYearsOfExperience = (e) => {
     console.log(e.target.value);
     SetYearsexperience(e.target.value);
-  };  
+  };
 
   const onTypeIsTeacher = (e) => {
-
-    if (e.target.checked) { setTeacher(false) }
-    else { setTeacher(true) };
+    if (e.target.checked) {
+      setTeacher(false);
+    } else {
+      setTeacher(true);
+    }
     console.log(e.target.value);
     console.log(document.getElementById("confirm_teacher").value);
   };
 
   const signupForm = () => {
-    console.log("teste")
-    setSignupteacher(!signupteacher)
-
-  }
+    console.log("teste");
+    setSignupteacher(!signupteacher);
+  };
 
   const postUserData1 = () => {
-				
     if (signupteacher == false) {
-      fetch((BASE_URL + "/api/users"), {
+      fetch(BASE_URL + "/api/users", {
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify({
-          "email": email,
-          "password": password,
-          "is_teacher": false,
-        })
-      })}
-      else {
-        fetch((BASE_URL + "/api/users"), {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: "POST",
-          body: JSON.stringify({
-            "email": email,
-            "password": password,
-            "is_teacher": true,
-          })
-        })
-      }
+          email: email,
+          password: password,
+          is_teacher: false,
+        }),
+      });
+    } else {
+      fetch(BASE_URL + "/api/users", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          is_teacher: true,
+        }),
+      });
     }
+  };
 
   const postStudentData1 = () => {
+    fetch(BASE_URL + "/api/student", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        first_name: firstname,
+        last_name: surnames,
+      }),
+    });
+  };
 
-  fetch((BASE_URL + "/api/student"), {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "first_name": firstname,
-      "last_name": surnames,
-    })
-  })
-
-}
-
-const postTeacherData1 = () => {
-
-  fetch((BASE_URL + "/api/teacher"), {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "first_name": firstname,
-      "last_name": surnames,
-      "subjects1": subjects1,
-      "subjects2": subjects2,
-      "subjects3": subjects3,
-      "subjects4": subjects4,
-      "fun_info": funinfo,
-      "why_you_teach": whyyouteach,
-      "years_experience": yearsexperience,
-      "avatar": pic,
-    })
-  })
-
-}
-
+  const postTeacherData1 = () => {
+    fetch(BASE_URL + "/api/teacher", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        first_name: firstname,
+        last_name: surnames,
+        subjects1: subjects1,
+        subjects2: subjects2,
+        subjects3: subjects3,
+        subjects4: subjects4,
+        fun_info: funinfo,
+        why_you_teach: whyyouteach,
+        years_experience: yearsexperience,
+        avatar: pic,
+      }),
+    });
+  };
 
   const submit = () => {
     if (signupteacher == false) {
-      postUserData1()
-      postStudentData1() 
-      window.location.reload()
-      
+      postUserData1();
+      postStudentData1();
+      window.location.reload();
+    } else {
+      postUserData1();
+      postTeacherData1();
+      window.location.reload();
     }
-    else {
-      postUserData1()
-      postTeacherData1()
-      window.location.reload()
-    }
-
-  }
+  };
 
   const [teacherfoto, setTeacherfoto] = useState();
 
   useEffect(() => {
-		getRandonPictureAPI();
- 	}, []);
+    getRandonPictureAPI();
+  }, []);
 
   const getRandonPictureAPI = () => {
-      fetch("https://randomuser.me/api/")
-        .then(respAPI => respAPI.json())
-        .then((data) => setTeacherfoto(data))
-        .catch(error => console.log("Error loading message from backend Lessons", error));
- 
-    }
-  
+    fetch("https://randomuser.me/api/")
+      .then((respAPI) => respAPI.json())
+      .then((data) => setTeacherfoto(data))
+      .catch((error) =>
+        console.log("Error loading message from backend Lessons", error)
+      );
+  };
+
   console.log("ttt", teacherfoto);
   const pic = teacherfoto?.results[0].picture.large;
-  console.log("vvv", pic)
+  console.log("vvv", pic);
 
   return (
     <>
-    <br></br>
+      <br></br>
       <div className="container">
         <div className="col-md-5 mx-auto">
           <div className="myform bg-dark text-white">
             <div className="logo mb-3">
               <div className="col-md-12 text-center">
-                <h3>
-                  {/* <i className="fa fa-user-plus fa-2x"></i> */}
-                </h3>
+                <h3>{/* <i className="fa fa-user-plus fa-2x"></i> */}</h3>
                 <h1>SignUp Form</h1>
               </div>
             </div>
@@ -330,23 +320,23 @@ const postTeacherData1 = () => {
                   onChange={onTypeIsTeacher} /> If you are a Teacher click here
               </label>
             </div> */}
-            
-             <div className="col-md-12 text-center mb-3">       
-                {signupteacher === true ? (
-              <div>
-               <div className="form-group">
-              <input
-                name="fun_info"
-                className="form-control"
-                id="fun_info"
-                placeholder="Enter some Fun Information about You"
-                maxLength={250}
-                value={funinfo}
-                onChange={onTypeFunInfo}
-              />
-            </div>
-            <p></p>
-            <div className="form-group d-flex gap-3 flex-wrap">
+
+            <div className="col-md-12 text-center mb-3">
+              {signupteacher === true ? (
+                <div>
+                  <div className="form-group">
+                    <input
+                      name="fun_info"
+                      className="form-control"
+                      id="fun_info"
+                      placeholder="Enter some Fun Information about You"
+                      maxLength={250}
+                      value={funinfo}
+                      onChange={onTypeFunInfo}
+                    />
+                  </div>
+                  <p></p>
+                  <div className="form-group d-flex gap-3 flex-wrap">
                     <input
                       name="subjects1"
                       className="form-control col-sm"
@@ -382,44 +372,47 @@ const postTeacherData1 = () => {
                       maxLength={25}
                       value={subjects4}
                       onChange={onTypeSubjects4}
-                    />       
+                    />
+                  </div>
+                  <p></p>
+                  <div className="form-group">
+                    <input
+                      name="why_you_teach"
+                      className="form-control"
+                      id="why_you_teach"
+                      placeholder="Enter a few words about Why You Teach"
+                      maxLength={250}
+                      value={whyyouteach}
+                      onChange={onTypeWhyYouTeach}
+                    />
+                  </div>
+                  <p></p>
+                  <div className="form-group">
+                    <input
+                      name="years_experience"
+                      className="form-control"
+                      id="years_experience"
+                      placeholder="Enter the Years Of Experience that You have"
+                      value={yearsexperience}
+                      maxLength={3}
+                      onChange={onTypeYearsOfExperience}
+                    />
+                  </div>
+                </div>
+              ) : null}
             </div>
-            <p></p>
-            <div className="form-group">
-              <input
-                name="why_you_teach"
-                className="form-control"
-                id="why_you_teach"
-                placeholder="Enter a few words about Why You Teach"
-                maxLength={250}
-                value={whyyouteach}
-                onChange={onTypeWhyYouTeach}
-              />
-            </div>
-            <p></p>
-            <div className="form-group">
-              <input
-                name="years_experience"
-                className="form-control"
-                id="years_experience"
-                placeholder="Enter the Years Of Experience that You have"
-                value={yearsexperience}
-                maxLength={3}
-                onChange={onTypeYearsOfExperience}
-              />
-            </div>
-              </div>) : null}
-             </div>
-             <div className="col-md-12 text-center mb-3">
-             <button
+            <div className="col-md-12 text-center mb-3">
+              <button
                 type="submit"
                 className=" btn btn-block mybtn btn-warning tx-tfm"
                 onClick={signupForm}
               >
-               {signupteacher ? "If You are only a Student Click Here" : "If You are a Teacher Click Here"} 
+                {signupteacher
+                  ? "If You are only a Student Click Here"
+                  : "If You are a Teacher Click Here"}
               </button>
-              </div>
-              <div className="col-md-12 text-center mb-3 ">
+            </div>
+            <div className="col-md-12 text-center mb-3 ">
               <button
                 type="submit"
                 className=" btn btn-block mybtn btn-dark tx-tfm border"
@@ -427,7 +420,7 @@ const postTeacherData1 = () => {
               >
                 submit
               </button>
-             </div>
+            </div>
           </div>
         </div>
       </div>

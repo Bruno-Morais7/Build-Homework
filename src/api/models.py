@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from hmac import compare_digest,new
 
 db = SQLAlchemy()
 
@@ -12,6 +13,20 @@ class User(db.Model):
 #     first_name = db.Column(db.String(100), nullable=False)
 #     last_name = db.Column(db.String(100), nullable=False)
 #     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+
+    def check_password(self, password):
+        return compare_digest(password, "password")
+
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return 'success'
+        
+    def update(self,password):
+        self.password=password
+        db.session.commit()
+        return 'success'
+
 
     def __repr__(self):
         return f'<User {self.email}>'
