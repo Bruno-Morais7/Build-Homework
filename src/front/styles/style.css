@@ -68,6 +68,11 @@ form .error {
   display: none;
 }
 
+
+pre {
+  white-space: pre-wrap;
+}
+
 /*css for Search Bar*/
 
 .search {

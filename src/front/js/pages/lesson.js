@@ -7,15 +7,18 @@ import { Context } from "../store/appContext"
 export const Lesson = () => {
   const { store, actions } = useContext(Context);
   const linkLessonId = store.lessonId[0];
+  // const linkTeacherId = store.teacherId[0];
 
   const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
+  const dataTeacher = store?.teachers?.[0]?.teachers.find(t => t.id === dataLesson?.teacher_id)
 
   console.log(dataLesson)
   return (
     <div>
       <div className="p-4 p-md-5 text-white rounded bg-dark mb-4">
         <h1 className="container-fluid col-8">
-          Time to <b className="text-warning">study</b>.
+          Time to <b className="text-warning">study</b>.  
+          
         </h1>
       </div>
 
@@ -37,6 +40,7 @@ export const Lesson = () => {
               </h2>
               <p className="text-warning">{dataLesson ? dataLesson["title"] : null}</p>
             </div>
+           
           </div>
 
           <div className="col-md-4">
@@ -44,7 +48,7 @@ export const Lesson = () => {
               <h2 className="border-bottom border-warning pb-1 border-2">
                 Teacher
               </h2>
-              <p>{dataLesson ? dataLesson["teacher_id"] : null}</p>
+              <p>{dataTeacher ? dataTeacher["first_name"] : null} {dataTeacher ? dataTeacher["last_name"] : null}</p>
             </div>
           </div>
         </div>
@@ -56,9 +60,9 @@ export const Lesson = () => {
             Introduction
           </h1>
         </div>
-        <p className="container-fluid col-10 fs-4 border-start mb-5">
+        <pre className="container-fluid col-10 fs-4 border-start mb-5 text-justify">
         {dataLesson ? dataLesson["introduction"] : null}
-        </p>
+        </pre>
       </div>
 
       <div className="container-fluid">
@@ -67,9 +71,9 @@ export const Lesson = () => {
             Main content
           </h1>
         </div>
-        <p className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
+        <pre className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
         {dataLesson ? dataLesson["written_content"] : null}
-        </p>
+        </pre>
       </div>
 
       <div className="container-fluid">
