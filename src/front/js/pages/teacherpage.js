@@ -15,6 +15,9 @@ export const Teacherpage = () => {
   // console.log(store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId))
   const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
   console.log(dataTeacher)
+
+  //const linkTeacherId = store.teacherId[0];
+  const dataLessonsOftheTeacher = store?.lessons?.[0]?.lessons.filter(e => e.teacher_id === linkTeacherId)
   
 
  

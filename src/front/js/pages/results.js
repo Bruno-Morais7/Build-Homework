@@ -1,10 +1,18 @@
 import React from "react";
 import { Card } from "../component/card";
 import { Lessoncard } from "../component/lessoncard";
-import search from "../../img/search.png"
-import change from "../../img/change.png"
+import search from "../../img/search.png";
+import change from "../../img/change.png";
+import { useContext } from "react";
+import { Context } from "../store/appContext";
+import SearchBar from "../component/searchbar";
+import "../../styles/style.css";
 
 export const Results = () => {
+  const { store, actions } = useContext(Context);
+  const lessonData = store?.lessons?.[0]?.lessons;
+  const teacherData = store?.teachers?.[0]?.teachers;
+  const data = teacherData;
   return (
     <div>
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex ">
@@ -13,6 +21,12 @@ export const Results = () => {
             <b className="text-warning">Search</b> and you'll{" "}
             <b className="text-warning">find</b>.
           </h1>
+          <div className="searchbar">
+                <SearchBar
+                  placeholder="Search by Name or Title..."
+                  data={data}
+                />
+              </div>
           <div>
             <p className="lead mt-3 pt-3 ps-5">
               These are your results
@@ -22,7 +36,11 @@ export const Results = () => {
           </div>
         </div>
         <div className="col-md-6 px-5">
-          <img className="img-fluid m-auto d-block" src={search} width="200rem" />
+          <img
+            className="img-fluid m-auto d-block"
+            src={search}
+            width="200rem"
+          />
         </div>
       </div>
 
@@ -48,9 +66,10 @@ export const Results = () => {
             />
           </div>
           <div className="col-md-8 px-5 lead">
-          <h3 className="fs-2 fst-italic text-end">
-                Didn't find what you were looking for? <br /> Change something on the <b className="text-warning">Search</b>!
-              </h3>
+            <h3 className="fs-2 fst-italic text-end">
+              Didn't find what you were looking for? <br /> Change something on
+              the <b className="text-warning">Search</b>!
+            </h3>
           </div>
         </div>
       </div>

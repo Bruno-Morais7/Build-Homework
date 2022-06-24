@@ -9,11 +9,11 @@ export const ForgetPassword = () => {
         <div className="row">
           <div className="col-md-5 mx-auto">
             <div id="first">
-              <div className="myform">
+              <div className="myform bg-dark text-white my-5">
                 <div className="logo mb-3">
-                  <div className="col-md-12 text-center">
+                  <div className="col-md-12 text-center p-3">
                     <h3>
-                      <i className="fa fa-lock fa-2x"></i>
+                      <i className="fa fa-lock fa-2x text-warning"></i>
                     </h3>
                     <h2 className="text-center">Forgot Password?</h2>
                     <p>You can reset your password here.</p>
@@ -39,10 +39,10 @@ export const ForgetPassword = () => {
                             />
                           </div>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group mt-4">
                           <input
                             name="recover-submit"
-                            className="btn btn-lg btn-primary btn-block"
+                            className="btn btn-lg btn-primary btn-block fs-6"
                             value="Reset Password"
                             type="submit"
                           />

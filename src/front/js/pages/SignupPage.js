@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const SignupPage = () => {
   const { store, actions } = useContext(Context);
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+  const BASE_URL = process.env.BACKEND_URL
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -272,7 +272,7 @@ const postTeacherData1 = () => {
                 name="Conform password"
                 className="form-control"
                 id="confirm_password"
-                placeholder="Enter Conform Password"
+                placeholder="Confirm Password"
                 minLength={7}
                 maxLength={40}
                 value={repeatPassword}
@@ -331,10 +331,10 @@ const postTeacherData1 = () => {
               />
             </div>
             <p></p>
-            <div className="form-group d-flex gap-3">
+            <div className="form-group d-flex gap-3 flex-wrap">
                     <input
                       name="subjects1"
-                      className="form-control"
+                      className="form-control col-sm"
                       id="subjects1"
                       placeholder="Enter the"
                       maxLength={25}
@@ -343,7 +343,7 @@ const postTeacherData1 = () => {
                     />
                     <input
                       name="subjects2"
-                      className="form-control"
+                      className="form-control col-sm"
                       id="subjects2"
                       placeholder="Subjects"
                       maxLength={25}
@@ -352,7 +352,7 @@ const postTeacherData1 = () => {
                     />
                     <input
                       name="subjects3"
-                      className="form-control"
+                      className="form-control col-sm"
                       id="subjects3"
                       placeholder="that You"
                       maxLength={25}
@@ -361,7 +361,7 @@ const postTeacherData1 = () => {
                     />
                     <input
                       name="subjects4"
-                      className="form-control"
+                      className="form-control col-sm"
                       id="subjects4"
                       placeholder="Teach"
                       maxLength={25}

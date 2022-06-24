@@ -10,7 +10,7 @@ export const Lessonworkspace = () => {
   // let date = new Date()
   // console.log(date) 
 
-  const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+  const BASE_URL = process.env.BACKEND_URL
 
   const [subject, setSubject] = useState();
   const [title, setTitle] = useState();
@@ -263,19 +263,19 @@ export const Lessonworkspace = () => {
           <label className="fs-2 ms-4 mb-2 border-bottom border-warning border-3">
             Keyword
           </label>
-          <div className="d-flex gap-5">
+          <div className="d-flex gap-2 flex-wrap">
             <input
               type="text"
               maxLength={20}
-              className="form-control mb-2"
-              placeholder="Place a keyword"
+              className="form-control mb-2 col-sm"
+              placeholder="Add a Keyword"
               value={keyword1}
               onChange={onTypeKeyword1}
             />
             <input
               type="text"
               maxLength={20}
-              className="form-control mb-2"
+              className="form-control mb-2 col-sm"
               placeholder="or 2"
               value={keyword2}
               onChange={onTypeKeyword2}
@@ -283,7 +283,7 @@ export const Lessonworkspace = () => {
             <input
               type="text"
               maxLength={20}
-              className="form-control mb-2"
+              className="form-control mb-2 col-sm"
               placeholder="or 3"
               value={keyword3}
               onChange={onTypeKeyword3}

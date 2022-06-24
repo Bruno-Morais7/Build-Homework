@@ -1,7 +1,7 @@
 import { SignupPage } from "../pages/SignupPage";
 import { useContext, useEffect, useState } from "react"
 
-const BASE_URL = "https://3001-brunomorais-teachandlea-vfmnat1317z.ws-eu47.gitpod.io/"
+const BASE_URL = process.env.BACKEND_URL
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getUsersData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL + "api/users")
+				fetch(BASE_URL + "/api/users")
 
 					.then(resp => resp.json())
 					.then(dataUsers => setStore({
@@ -123,7 +123,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getLessonsData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL + "api/lessons")
+				fetch(BASE_URL + "/api/lessons")
 					.then(resp => resp.json())
 					.then(dataLesson_Content => setStore({
 						lessons: [...getStore().lessons, dataLesson_Content]
@@ -153,7 +153,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getTeacherData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL + "api/teacher")
+				fetch(BASE_URL + "/api/teacher")
 					.then(resp => resp.json())
 					.then(dataTeacher => setStore({
 						teachers: [...getStore().teachers, dataTeacher]
@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 			getStudentData: () => {
 				// fetching data from the backend
-				fetch(BASE_URL + "api/student")
+				fetch(BASE_URL + "/api/student")
 					.then(resp => resp.json())
 					.then(dataStudent => setStore({
 						students: [...getStore().students, dataStudent]
