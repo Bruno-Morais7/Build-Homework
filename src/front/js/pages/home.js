@@ -34,8 +34,8 @@ export const Home = () => {
           &nbsp; Start your Journey &nbsp;
         </b>
       </h1>
-      <div className="container-fluid col-8 d-flex my-5 justify-content-center gap-5 fs-3 lead">
-        <div className="col-md-6">
+      <div className="container-fluid col-8 d-flex my-5 justify-content-center gap-5 fs-3 lead flex-wrap">
+        <div className="col">
           <div className="h-100 p-5 text-white bg-dark rounded-3">
             <div>
               <h2 className="mb-4 text-center">
@@ -57,7 +57,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col">
           <div className="h-100 p-5 bg-light border rounded-3">
             <h2 className="mb-4 text-center">
               Are you a{" "}
@@ -74,15 +74,15 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-dark p-5 border rounded-3">
+      <div className="bg-dark p-5 border rounded-3 d-flex row flex-lg-wrap">
         <h1 className="p-2 display-5 text-center">
           <b className="border-bottom border-warning border-3 text-light">
             {" "}
             &nbsp; Why you should use this platform? &nbsp;
           </b>
         </h1>
-        <div className="container-fluid col-10 d-flex my-5 justify-content-center gap-5 fs-5">
-          <div className="col-md-6">
+        <div className="container-fluid col-10 d-flex my-5 justify-content-center gap-5 fs-5 flex-wrap">
+          <div className="col">
             <div className="h-100 p-5 bg-white rounded-3">
               <div>
                 <h2 className="mb-4 text-center">
@@ -117,7 +117,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col">
             <div className="h-100 p-5 bg-light border rounded-3">
               <h2 className="mb-4 text-center">
                 As a{" "}
@@ -157,8 +157,8 @@ export const Home = () => {
           &nbsp; What we provide to help you improve! &nbsp;
         </b>
       </h1>
-      <div className="container-fluid d-flex mb-5 justify-content-center gap-5">
-        <div className="col-3 card border-0">
+      <div className="container-fluid d-flex mb-5 justify-content-center gap-5 row flex-wrap flex-lg-row">
+        <div className="col-md-3 card border-0">
           <img
             className="img-fluid mx-auto d-block img-thumbnail"
             height={"170rem"}
@@ -184,7 +184,7 @@ export const Home = () => {
             </ul>
           </div>
         </div>
-        <div className="card col-3 border-0">
+        <div className="card col-md-3 border-0">
           <img
             className="img-fluid mx-auto d-block img-thumbnail"
             width={"125rem"}
@@ -208,7 +208,7 @@ export const Home = () => {
             </ul>
           </div>
         </div>
-        <div className="card col-3 border-0">
+        <div className="card col-md-3 border-0">
           <img
             className="img-fluid mx-auto d-block img-thumbnail"
             width={"125rem"}
@@ -245,30 +245,28 @@ export const Home = () => {
 
       {/* If you learned something you can Teach. Try it!  */}
 
-      <div className="container-fluid ">
-        <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
-          <div className="col-md-4 px-5">
-            <img
-              className="img-fluid m-auto d-block"
-              width={"230rem"}
-              src={idea}
-            />
-          </div>
-          <div className="col-md-8 px-5 fst-italic">
-            <h5 className="display-6">
-              Use the platform to Teach... and Learn...{" "}
-              <p className="ms-5 mt-2">
-                {" "}
-                and if learned something you can try and teach it. Your own way!
-              </p>
-              <p className="ps-5 ms-5 mt-2">
-                Teaching and resuming information is a great way to Learn...
-                <b className="text-warning">
-                  so Teach and Learn ...and Learn and Teach!
-                </b>
-              </p>
-            </h5>
-          </div>
+      <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
+        <div className="col-md-4 px-5">
+          <img
+            className="img-fluid m-auto d-block"
+            width={"150rem"}
+            src={idea}
+          />
+        </div>
+        <div className="col-md-8 px-5 fst-italic">
+          <span className="fs-4">
+            Use the platform to Teach... and Learn...{" "}
+            <p className="ms-5 mt-2">
+              {" "}
+              and if learned something you can try and teach it. Your own way!
+            </p>
+            <p className="ps-5 ms-5 mt-2">
+              Teaching and resuming information is a great way to Learn...&nbsp;
+              <b className="text-warning">
+                so Teach and Learn ...and Learn and Teach!
+              </b>
+            </p>
+          </span>
         </div>
       </div>
     </div>

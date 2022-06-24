@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from hmac import compare_digest,new
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
@@ -8,7 +9,7 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    student_or_teacher = db.Column(db.Boolean)
+    is_teacher = db.Column(db.Boolean)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
 #     first_name = db.Column(db.String(100), nullable=False)
@@ -42,12 +43,15 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            # generate_password_hash("password"): self.password,
             "password": self.password,
-            "is_teacher": self.student_or_teacher,
+            "is_teacher": self.is_teacher,
 #             "first_name": self.first_name,
 #             "last_name": self.last_name,
 #             # do not serialize the password, its a security breach
         }
+
+
 
 class Teacher(db.Model):
     __tablename__ = 'teacher'

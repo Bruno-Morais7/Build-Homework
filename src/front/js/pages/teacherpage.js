@@ -5,6 +5,7 @@ import { Lessoncard } from "../component/lessoncard";
 import { useContext, useEffect } from "react"
 import { Context } from "../store/appContext"
 import PropTypes from "prop-types";
+import { Link, Redirect } from "react-router-dom";
 
 
 
@@ -15,25 +16,23 @@ export const Teacherpage = () => {
   // console.log(store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId))
   const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
   console.log(dataTeacher)
-  
 
- 
-  // store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
-    
-    
-  //   return (
-  //     <div key={indexT}>
-  //       {teacher.id} {teacher.first_name}
-  //     </div>
-  //   )
-  // })
+  //const linkTeacherId = store.teacherId[0];
+  const dataLessonsOftheTeacher = store?.lessons?.[0]?.lessons.filter(e => e.teacher_id === linkTeacherId)
+  console.log(dataLessonsOftheTeacher)
+  let countLessonsOfTeacher = dataLessonsOftheTeacher?.length
 
-  const listOfLessons = store?.lessons?.[0]?.lessons.map((lesson, indexL) => {
+
+  const listOfLessons = dataLessonsOftheTeacher?.map((lesson, indexL) => {
     return (
       <div key={indexL}>
+        <Link to="/lesson" className="link-dark">
+        <div onClick={() => {let saveLessonId = lesson.id; console.log(saveLessonId); actions.onClickSaveLessonId(lesson.id)}}>
         <Lessoncard title={lesson.title}
           subject={lesson.subject}
-          summary={lesson.summary} />
+          summary={lesson.summary}/>
+          </div>
+        </Link>
       </div>
     )
   })
@@ -124,13 +123,13 @@ export const Teacherpage = () => {
 
             </div>
             <div className="row row-cols-md-2 row-cols-lg-3 row-cols-xxlg-4 g-2 g-md-4 g-xxlg-5">
-              {listOfLessons}
+              {listOfLessons? listOfLessons : null}
             </div>
           </div>
           <div className="bg-dark pt-1 pe-5 pb-5 d-flex justify-content-end text-center rounded-3">
             <ul className="list-inline mb-0">
               <li className="list-inline-item">
-                <h5 className="mb-0 d-block text-warning"> "hardcoded" 7</h5>
+                <h5 className="mb-0 d-block text-warning"> {countLessonsOfTeacher}</h5>
                 <small className="text-warning fw-bold">
                   <i className="fas fa-book mr-1"></i> Lessons
                 </small>
