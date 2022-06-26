@@ -5,7 +5,7 @@ import "../../styles/style.css";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "../store/flux";
 
-export const LoginPage = ({ setToken }) => {
+export const LoginPage = ({ setToken, setIs_teacher }) => {
   const history = useHistory();
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState();
@@ -60,8 +60,11 @@ export const LoginPage = ({ setToken }) => {
         console.log(dataUsers);
         if (dataUsers?.access_token) {
           localStorage.setItem("token", dataUsers.access_token);
+          localStorage.setItem("is_teacher", dataUsers.is_teacher);
           setToken(dataUsers.access_token);
-          history.push("/landingpage");
+          setIs_teacher(dataUsers.is_teacher);
+          // history.push("/landingpage");
+          history.push("/profile");
         }
         //   setStore({
         //     users: [...getStore().users, dataUsers],

@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import { useHistory } from "react-router-dom";
 
-export const Navbar = ({ token, setToken }) => {
+export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
   const history = useHistory();
 
   const logoutFunction = (e) => {
     e.preventDefault();
     localStorage.clear();
     setToken("");
+    setIs_teacher(false);
     history.push("/");
   };
   return (
@@ -31,28 +32,40 @@ export const Navbar = ({ token, setToken }) => {
               Check the Context in action
             </button>
           </Link> */}
-          <Link to="/lounge">
-            <div className="btn_effect">
-              <i className="fa-solid fa-couch text-dark fs-2"></i>
-              <span className="btn_text">Lounge</span>
-            </div>
-          </Link>
-          <Link to="/lessonworkspace">
-            <div className="btn_effect">
-              <i className="fa-solid fa-chalkboard-user text-dark fs-2"></i>{" "}
-              <span className="btn_text">Workspace</span>
-            </div>
-          </Link>
+
           {token ? (
-            <Link to="#">
-              <div className="btn_effect">
-                <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
-                <span className="btn_text" onClick={logoutFunction}>
-                  Logout
-                </span>
-                <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>{" "}
-              </div>
-            </Link>
+            <>
+              <Link to="/profile">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-circle-user text-dark fs-2"></i>{" "}
+                  <span className="btn_text">My Profile</span>
+                </div>
+              </Link>
+              <Link to="/lounge">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-couch text-dark fs-2"></i>
+                  <span className="btn_text">Lounge</span>
+                </div>
+              </Link>
+
+              {is_teacher && (
+                <Link to="/lessonworkspace">
+                  <div className="btn_effect">
+                    <i className="fa-solid fa-chalkboard-user text-dark fs-2"></i>{" "}
+                    <span className="btn_text">Workspace</span>
+                  </div>
+                </Link>
+              )}
+              <Link to="#">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
+                  <span className="btn_text" onClick={logoutFunction}>
+                    Logout
+                  </span>
+                  <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>{" "}
+                </div>
+              </Link>
+            </>
           ) : (
             <>
               <Link to="/LoginPage">
@@ -66,12 +79,6 @@ export const Navbar = ({ token, setToken }) => {
                 <div className="btn_effect">
                   <i className="fa-solid fa-user-plus text-dark fs-2"></i>{" "}
                   <span className="btn_text">Signup</span>
-                </div>
-              </Link>
-              <Link to="/profile">
-                <div className="btn_effect">
-                  <i className="fa-solid fa-circle-user text-dark fs-2"></i>{" "}
-                  <span className="btn_text">My Profile</span>
                 </div>
               </Link>
             </>

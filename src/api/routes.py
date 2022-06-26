@@ -28,8 +28,7 @@ def login():
         return jsonify("Wrong email or password"), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
-
+    return jsonify(access_token=access_token,is_teacher=users.serializeUser()['is_teacher'])
 
 @api.route("/updatepassword", methods=["POST"])
 def updatepassword():
