@@ -11,6 +11,7 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask_jwt_extended import current_user
 from hmac import compare_digest,new
+import jwt
 
 api = Blueprint('api', __name__)
 
@@ -27,7 +28,9 @@ def login():
     if email !=  users.serializeUser()['email'] or password !=  users.serializeUser()['password']:
         return jsonify("Wrong email or password"), 401
 
-    access_token = create_access_token(identity=email)
+    # access_token = create_access_token(identity=email)
+    access_token = jwt.encode({"email" : email},"TeachandLearn",'HS256')
+    print(access_token)
     return jsonify(access_token=access_token,is_teacher=users.serializeUser()['is_teacher'])
 
 @api.route("/updatepassword", methods=["POST"])
@@ -54,7 +57,16 @@ def forgetpassword():
 
     return jsonify(link=web_link+str(users.serializeUser()['id']))
    
+@api.route('/profile', methods=['GET'])
+def profile():
+    access_token = request.headers['token']
+    decode_token = jwt.decode(access_token,"TeachandLearn",'HS256')
+    email = decode_token['email']
 
+    user = User.query.filter_by(email=email).one_or_none()
+    print(user.serializeUser())
+ 
+    return jsonify({ "User Fetched": True, "profile_data" : user.serializeUser()}), 200
 
 
 @api.route('/users/<id>', methods=['DELETE'])
