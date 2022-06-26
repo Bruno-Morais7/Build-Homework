@@ -21,6 +21,7 @@ import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
 import the404 from "../img/the404.png";
 import { useState } from "react";
+import { UpdatePassword } from "./pages/Updatepassword";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -84,6 +85,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/edit_profile">
               <Edit_Profile />
+            </Route>
+            <Route exact path="/updatepassword/:id">
+              <UpdatePassword />
             </Route>
             <Route>
               <div className="">

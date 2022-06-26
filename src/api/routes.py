@@ -31,6 +31,30 @@ def login():
     return jsonify(access_token=access_token)
 
 
+@api.route("/updatepassword", methods=["POST"])
+def updatepassword():
+    id = request.json.get("id", None)
+    password = request.json.get("password", None)
+    user = User.query.filter_by(id=id).first()
+    user.update(password)
+
+    return jsonify('results'),200
+       
+
+
+@api.route("/forgetpassword", methods=["POST"])
+def forgetpassword():
+    email = request.json.get("email", None)
+    web_link = request.json.get("web_link", None)
+
+    users = User.query.filter_by(email=email).one_or_none()
+
+    
+    if not users: 
+        return jsonify({"msg": "Email is not exist"}), 401
+
+    return jsonify(link=web_link+str(users.serializeUser()['id']))
+   
 
 
 
