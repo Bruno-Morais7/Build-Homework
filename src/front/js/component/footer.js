@@ -12,10 +12,10 @@ export const Footer = () => (
         © Teach&Learn, 2022 | All rights Reserved
         </li>
         {/* <li className="text-muted">
-          <Link to="/landingpage">About</Link>
+          <Link to="e">About</Link>
         </li>
         <li className="text-muted">
-          <Link to="/landingpage">FAQs</Link>
+          <Link to="">FAQs</Link>
         </li> */}
       </ul>
     </div>

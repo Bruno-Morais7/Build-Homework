@@ -27,11 +27,6 @@ export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
           </span> */}
         </Link>
         <div className="ml-auto d-flex gap-2 d-flex flex-wrap align-items-center">
-          {/* <Link to="/demo">
-            <button className="btn btn-primary">
-              Check the Context in action
-            </button>
-          </Link> */}
 
           {token ? (
             <>

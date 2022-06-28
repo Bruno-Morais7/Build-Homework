@@ -28,7 +28,7 @@ export const Lounge = () => {
 
   const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, indexT) => {
  
- 
+
     return (
 
       <div key={indexT}>
