@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -19,6 +19,7 @@ import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
 import { useState } from "react";
 import { UpdatePassword } from "./pages/Updatepassword";
+import { Forbidden } from "./pages/forbidden";
 
 import the404 from "../img/the404.png";
 
@@ -31,6 +32,8 @@ const Layout = () => {
   const [is_teacher, setIs_teacher] = useState(
     localStorage.getItem("is_teacher")
   );
+  const loggedOut = localStorage.getItem("token") === null;
+  const loggedInStudent = localStorage.getItem("is_teacher") === "false";
 
   return (
     <div>
@@ -55,33 +58,74 @@ const Layout = () => {
             <Route exact path="/ForgetPassword">
               <ForgetPassword />
             </Route>
-            <Route exact path="/lounge">
-              <Lounge />
+            <Route exact path="/forbidden">
+              <Forbidden />
             </Route>
-            <Route exact path="/lesson">
-              <Lesson />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-            <Route exact path="/teacherpage">
-              <Teacherpage />
-            </Route>
-            <Route exact path="/lessonworkspace">
-              <Lessonworkspace />
-            </Route>
-            <Route exact path="/results">
-              <Results />
-            </Route>
-            <Route exact path="/edit_lesson">
-              <Edit_Lesson />
-            </Route>
-            <Route exact path="/edit_profile">
-              <Edit_Profile />
-            </Route>
-            <Route exact path="/updatepassword/:id">
-              <UpdatePassword />
-            </Route>
+            <Route
+              exact
+              path="/lounge"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lounge />)}
+            />
+            <Route
+              exact
+              path="/lesson"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lesson />)}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Profile />)}
+            />
+            <Route
+              exact
+              path="/teacherpage"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Teacherpage />)}
+            />
+            <Route
+              exact
+              path="/results"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Results />)}
+            />
+            <Route
+              exact
+              path="/lessonworkspace"
+              render={() =>
+                loggedOut ? (
+                  <Redirect to="/forbidden" />
+                ) : loggedInStudent ? (
+                  <Redirect to="/forbidden" />
+                ) : (
+                  <Lessonworkspace />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/edit_lesson"
+              render={() =>
+                loggedOut ? (
+                  <Redirect to="/forbidden" />
+                ) : loggedInStudent ? (
+                  <Redirect to="/forbidden" />
+                ) : (
+                  <Edit_Lesson />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/edit_profile"
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Edit_Profile />
+              }
+            />
+            <Route
+              exact
+              path="/updatepassword/:id"
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <UpdatePassword />
+              }
+            />
             <Route>
               <div className="container-fluid col-10">
                 <img className="mx-auto d-block my-5" src={the404}></img>
