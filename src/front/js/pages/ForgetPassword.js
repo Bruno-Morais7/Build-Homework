@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "../../styles/style.css";
 import { BASE_URL } from "../store/flux";
 
 export const ForgetPassword = () => {
+  const history = useHistory()
   const [email, setEmail] = useState("");
   const submitForgetPassword = (e) => {
     e.preventDefault();
@@ -49,6 +50,7 @@ export const ForgetPassword = () => {
           .then((res) => {
             console.log("okokok");
             setEmail("");
+            history.push("/loginpage");
           })
           .catch((err) => {
             console.log(err);

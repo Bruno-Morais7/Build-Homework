@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { BASE_URL } from "../store/flux";
 
 export const UpdatePassword = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -45,6 +46,7 @@ export const UpdatePassword = () => {
         alert("password updated successfully.");
         setNewPassword("");
         setConfirmPassword("");
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
