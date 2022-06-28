@@ -1,13 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+import ScrollToTop from "./component/scrollToTop";
+
+import { Home } from "./pages/home";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { LandingPage } from "./pages/landingpage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { ForgetPassword } from "./pages/ForgetPassword";
@@ -19,9 +17,11 @@ import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
 import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
-import the404 from "../img/the404.png";
 import { useState } from "react";
 import { UpdatePassword } from "./pages/Updatepassword";
+
+import the404 from "../img/the404.png";
+
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -45,18 +45,6 @@ const Layout = () => {
           <Switch>
             <Route exact path="/">
               <Home />
-            </Route>
-            <Route exact path="/demo">
-              <Demo />
-            </Route>
-            <Route exact path="/landingpage">
-              <LandingPage />
-            </Route>
-            {/* <Route exact path="/Content/:user_id">
-              <Content />
-            </Route> */}
-            <Route exact path="/single/:theid">
-              <Single />
             </Route>
             <Route exact path="/loginpage">
               <LoginPage setToken={setToken} setIs_teacher={setIs_teacher} />
@@ -85,9 +73,6 @@ const Layout = () => {
             <Route exact path="/results">
               <Results />
             </Route>
-            <Route exact path="/single/:theid">
-              <Single />
-            </Route>
             <Route exact path="/edit_lesson">
               <Edit_Lesson />
             </Route>
@@ -98,8 +83,8 @@ const Layout = () => {
               <UpdatePassword />
             </Route>
             <Route>
-              <div className="">
-                <img className="align-center" src={the404}></img>
+              <div className="container-fluid col-10">
+                <img className="mx-auto d-block my-5" src={the404}></img>
               </div>
             </Route>
           </Switch>

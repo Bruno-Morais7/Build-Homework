@@ -28,5 +28,4 @@ Lessoncard.propTypes = {
   title: PropTypes.string,
   subject: PropTypes.string,
   summary: PropTypes.string,
-
 }
