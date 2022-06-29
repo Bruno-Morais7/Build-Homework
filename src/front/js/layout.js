@@ -19,8 +19,8 @@ import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
 import { useState } from "react";
 import { UpdatePassword } from "./pages/Updatepassword";
+import { Contactpage } from "./pages/Contactpage";
 import { Forbidden } from "./pages/forbidden";
-
 import the404 from "../img/the404.png";
 
 //create your first component
@@ -56,6 +56,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/ForgetPassword">
               <ForgetPassword />
+            </Route>
+            <Route exact path="/contactpage">
+              <Contactpage />
             </Route>
             <Route exact path="/forbidden">
               <Forbidden />
@@ -125,6 +128,7 @@ const Layout = () => {
                 loggedOut ? <Redirect to="/forbidden" /> : <UpdatePassword />
               }
             />
+
             <Route>
               <div className="container-fluid col-10">
                 <img className="mx-auto d-block my-5" src={the404}></img>

@@ -3,16 +3,21 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/style.css";
 import { useHistory } from "react-router-dom";
+import validator from "validator";
 import { BASE_URL } from "../store/flux";
 
 export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
   const history = useHistory();
   const { store, actions } = useContext(Context);
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
+  const [checked, setChecked] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const [id, setId] = useState();
 
-  const urlBase = " ";
+  const validateEmail = (e) => {
+    var email = e.target.value;
+  };
 
   const onTypeEmail = (e) => {
     console.log(e.target.value);
@@ -26,6 +31,29 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
 
   const onSubmitClicked = (e) => {
     e.preventDefault();
+
+    if (!email.trim() || !validator.isEmail(email)) {
+      alert("Enter valid Email");
+      return;
+      // setEmailError("Enter valid Email!");
+    }
+
+    if (
+      !password.trim() ||
+      !validator.isStrongPassword(password, {
+        minLength: 8,
+        maxLength: 16,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      alert("Enter valid password");
+      return;
+      // setEmailError("Enter valid Email!");
+    }
+
     if (email && password) {
       // fetch
       onFetchLogIn(email, password);
@@ -112,12 +140,13 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
                       placeholder="Enter Email"
                       value={email}
                       onChange={onTypeEmail}
+                      required
                     />
                   </div>
                   <div className="form-group mt-1">
                     <label>Password</label>
                     <input
-                      type="Password"
+                      type={checked ? "Text" : "Password"}
                       name="Password"
                       id="Password"
                       className="form-control"
@@ -126,6 +155,13 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
                       value={password}
                       onChange={onTypePassword}
                     />
+                  </div>
+                  <div className="form-group mt-1">
+                    <input
+                      type="checkbox"
+                      onClick={() => setChecked(!checked)}
+                    />
+                    Show Password
                   </div>
                   <div className="col-md-12 text-center mt-3">
                     <button

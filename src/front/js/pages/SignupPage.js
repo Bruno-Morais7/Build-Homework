@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../styles/style.css";
+import validator from "validator";
 
 import { Context } from "../store/appContext";
 
@@ -11,9 +12,11 @@ export const SignupPage = () => {
 
   const BASE_URL = process.env.BACKEND_URL;
 
+  const history = useHistory()
+
   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [repeatPassword, setRepeatPassword] = useState();
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const [firstname, setFirstname] = useState();
   const [surnames, setSurnames] = useState();
   const [teacher, setTeacher] = useState();
@@ -178,6 +181,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
+    history.push("/loginpage")
   };
 
   const postTeacherData1 = () => {
@@ -204,14 +208,37 @@ export const SignupPage = () => {
   };
 
   const submit = () => {
+    if (
+      !password.trim() ||
+      !validator.isStrongPassword(password, {
+        minLength: 8,
+        maxLength: 16,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      alert("Enter valid Information");
+      return;
+      // setEmailError("Enter valid Email!");
+    }
+
+    console.log(validator.equals(password, repeatPassword));
+
+    if (!validator.equals(password, repeatPassword)) {
+      alert("password is not match with confirm password.");
+      return;
+    }
+
     if (signupteacher == false) {
       postUserData1();
       postStudentData1();
-      window.location.reload();
+      // window.location.reload();
     } else {
       postUserData1();
       postTeacherData1();
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
@@ -276,6 +303,7 @@ export const SignupPage = () => {
             <p></p>
             <div className="form-group">
               <input
+                type="password"
                 name="Conform password"
                 type="Password"
                 className="form-control"
