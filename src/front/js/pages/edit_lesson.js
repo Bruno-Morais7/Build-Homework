@@ -8,10 +8,23 @@ import { Teacherpage } from "./teacherpage";
 export const Edit_Lesson = () => {
   const { store, actions } = useContext(Context);
 
-  const linkTeacherId = store.teacherId[0];
-  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
-  console.log(dataTeacher)
+  const userLoggedEmail = localStorage.getItem("email");
+  console.log(userLoggedEmail);
+  const userLoggedId = localStorage.getItem("id");
+  console.log(userLoggedId);
+
+  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.email === userLoggedEmail);
+  console.log("datateacherlesson", dataTeacher? dataTeacher : null);
+
+  const test = dataTeacher? dataTeacher["first_name"] : null
+  console.log("PQP", test)
+
+  console.log("CARACA", store?.teachers?.[0]?.teachers.find(e => e.mail === userLoggedEmail))
+
+  console.log("datateacher", dataTeacher? dataTeacher["first_name"] : null);
+
   const showTeacher = dataTeacher ? dataTeacher["first_name"] + " " + dataTeacher["last_name"] : " "
+
 
   const linkLessonId = store.lessonId[0];
   const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
@@ -142,7 +155,7 @@ export const Edit_Lesson = () => {
 
   }
 
-  const redirect = useHistory();
+  const redirect = useHistory(forceRefresh=true);
 
   const submitLesson = () => {
     postLessonData1();
@@ -165,7 +178,7 @@ export const Edit_Lesson = () => {
     console.log("olá", nameteacher);
   };
 
-  console.log("nome", title, linkLessonId)
+  console.log("nome", title, dataTeacher["id"])
 
   return (
     <div>
@@ -232,7 +245,7 @@ export const Edit_Lesson = () => {
               className="form-control"
               placeholder={showTeacher}
               value={showTeacher ? showTeacher : " "}
-              // onChange={onSelectNameTeacher}
+              onChange={onSelectNameTeacher}
               onLoad={onSelectNameTeacher}
               disabled
             />

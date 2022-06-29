@@ -9,38 +9,94 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 export const Edit_Profile = () => {
   const { store, actions } = useContext(Context);
 
-  const userLoggedEmail = localStorage.getItem("email");
-  const userLoggedEmailStudent = localStorage.getItem("email");
+  const [userDetails, setUserDetails] = useState({});
+  const [alluserdetails, setAllUserDetails] = useState({});
 
-  const userLoggedId = localStorage.getItem("id");
-  const userLoggedisteacher = localStorage.getItem("is_teacher")
-  console.log("test", userLoggedEmail);
-  console.log("isteacher?", userLoggedisteacher)
+  // const userLoggedEmail = localStorage.getItem("email")
+  // const userLoggedisteacher = localStorage.getItem("is_teacher")
+  
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
-  let dataTeacher = ""
+  const fetchUserData = () => {
+    const post = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers":
+          "Origin,Content-Type, Authorization, x-id, Content-Length, X-Requested-With",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        token: localStorage.getItem("token"),
+      },
+      crossDomain: true,
+      redirect: "follow",
+      // body: JSON.stringify({
+      //   email: email,
+      //   password: password,
+      // }),
+    };
+    const BASE_URL = process.env.BACKEND_URL;
 
-  {userLoggedisteacher ? dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.email === userLoggedEmail) : dataTeacher = store?.students?.[0]?.students.find(e => e.email === userLoggedEmail);}
+    fetch(BASE_URL + "/api/profile", post)
+      .then((resp) => resp.json())
+      .then((dataUsers) => {
+        console.log(dataUsers);
+        setUserDetails(dataUsers.profile_data);
+        //   setStore({
+        //     users: [...getStore().users, dataUsers],
+        //   });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
+  const userLoggedEmail = localStorage.getItem("email")
+  const userLoggedisteacher = userDetails.is_teacher
+
+  useEffect(() => {
+    if (userLoggedisteacher === true) {
+      const dataLoggedTeacher = store?.teachers?.[0]?.teachers.find((e) => e.email === userLoggedEmail);
+      setAllUserDetails(dataLoggedTeacher)
+      console.log("dataloggedteacher", dataLoggedTeacher)
+      
+    }
+    else if (userLoggedisteacher === false) {
+      const dataLoggedStudent = store?.student?.[0]?.students.find((e) => e.email === userLoggedEmail);
+      setAllUserDetails(dataLoggedStudent)
+      console.log("dataloggedteacher", dataLoggedStudent)
+    };
+  }, [userDetails]);
+
+  console.log("primeiro", alluserdetails)
+ 
    
-  console.log("datateacherttttttt", dataTeacher? dataTeacher["first_name"] : null);
-
-  const test = dataTeacher? dataTeacher["first_name"] : null
-  console.log("PQP", test)
-
-  const [email, setEmail] = useState(dataTeacher? dataTeacher["email"] : null);
-  const [firstname, setFirstname] = useState(dataTeacher? dataTeacher["first_name"] : null);
-  const [lastname, setLastname] = useState(dataTeacher? dataTeacher["last_name"] : null);
-  const [subjects1, setSubjects1] = useState(dataTeacher? dataTeacher["subjects1"] : null);
-  const [subjects2, setSubjects2] = useState(dataTeacher? dataTeacher["subjects2"] : null);
-  const [subjects3, setSubjects3] = useState(dataTeacher? dataTeacher["subjects3"] : null);
-  const [subjects4, setSubjects4] = useState(dataTeacher? dataTeacher["subjects4"] : null);
-  const [whyyouteach, setWhyyouteach] = useState(dataTeacher? dataTeacher["why_you_teach"] : null);
-  const [yearsexperience, setYearsexperience] = useState(dataTeacher? dataTeacher["years_experience"] : null);
-  const [funinfo, setFuninfo] = useState(dataTeacher? dataTeacher["fun_info"] : null);
+  const [firstname, setFirstname] = useState(alluserdetails ? alluserdetails.first_name : null);
+  const [lastname, setLastname] = useState(alluserdetails ? alluserdetails.last_name : null);
+  const [subjects1, setSubjects1] = useState(alluserdetails ? alluserdetails.subjects1 : null);
+  const [subjects2, setSubjects2] = useState(alluserdetails ? alluserdetails.subjects2 : null);
+  const [subjects3, setSubjects3] = useState(alluserdetails ? alluserdetails.subjects3 : null);
+  const [subjects4, setSubjects4] = useState(alluserdetails ? alluserdetails.subjects4 : null);
+  const [whyyouteach, setWhyyouteach] = useState(alluserdetails ? alluserdetails.why_you_teach : null);
+  const [yearsexperience, setYearsexperience] = useState(alluserdetails ? alluserdetails.years_experience : null);
+  const [funinfo, setFuninfo] = useState(alluserdetails ? alluserdetails.fun_info : null);
   const [disabled, setDisabled] = useState(true);
 
+ 
+  console.log("email", userLoggedEmail)
+  console.log("emais_teacheril", userLoggedisteacher)
 
-  const BASE_URL = process.env.BACKEND_URL;
+  console.log("alluserdetails", alluserdetails)
+  console.log("userdetails", userDetails)
+
+  console.log("namenamaname", alluserdetails.first_name)
+
+  const BASE_URL = process.env.BACKEND_URL
+  console.log(BASE_URL)
+
 
 
   const onClickEnable = (e) => {
@@ -59,7 +115,7 @@ export const Edit_Profile = () => {
 
   const onTypeFirstName = (e) => {
     console.log(e.target.value);
-    setFirstname(e.target.value? e.target.value : dataTeacher["first_name"]);
+    setFirstname(e.target.value);
   };
 
   const onTypeLastName = (e) => {
@@ -103,9 +159,9 @@ export const Edit_Profile = () => {
   };
 
   const postUpdateProfile = () => {
-    userLoggedisteacher? (
+
     // fetching data from the backend
-    fetch((BASE_URL + "/api/teacher/" + dataTeacher["id"]), {
+    fetch((BASE_URL + "/api/teacher/" + alluserdetails.id), {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -123,21 +179,7 @@ export const Edit_Profile = () => {
         "fun_info": funinfo,
       })
     })
-    )
-    : 
-    fetch((BASE_URL + "/api/student/" + dataTeacher["id"]), {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "PUT",
-      body: JSON.stringify({
-        // "email": email,
-        "first_name": firstname,
-        "last_name": lastname,
-        
-      })
-    })
-  };
+  }
 
   const redirect = useHistory();
 
@@ -147,18 +189,16 @@ export const Edit_Profile = () => {
     window.alert('Profile Updated');
     redirect.push('/profile')
    
-  };
+  }
 
-  console.log("nome", firstname, lastname, email, userLoggedEmail);
-  console.log("datateacher22222", dataTeacher);
+  console.log("nome", firstname)
 
   return (
-    
     <div className="my-5 mx-2">
       <div className="col-xl-6 col-md-8 mx-auto border rounded-3 bg-dark text-white">
         <div className="flex-wrap">
           <div className="p-5">
-            <img src={dataTeacher ? dataTeacher["avatar"] : null} width="200px" className="mx-auto d-block" />
+            <img src={alluserdetails ? alluserdetails.avatar : null} width="200px" className="mx-auto d-block" />
             <button className="btn btn-warning mb-5 me-5 btn-sm" onClick={onClickEnable}>{disabled ? "Edit your Profile" : "Cancel edition"} </button>
           </div>
 
@@ -172,7 +212,8 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["first_name"] : null : firstname}
+                  value={disabled ? alluserdetails ? alluserdetails.first_name : null : firstname}
+                       
                   onChange={onTypeFirstName}
                   disabled={disabled}
               />
@@ -181,14 +222,13 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["last_name"] : null : lastname}
+                  value={disabled ? alluserdetails ? alluserdetails.last_name : null : lastname}
                   onChange={onTypeLastName}
                   disabled={disabled}
               />
             </div>
           </div>
         </div>
-        {userLoggedisteacher? (
         <div className="col-10 text-center mx-auto">
           <h2 className="text-warning ">Teaching Info</h2>
           <div>
@@ -199,7 +239,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["subjects1"] : null : subjects1}
+                  value={disabled ? alluserdetails ? alluserdetails.subjects1 : null : subjects1}
                   onChange={onTypeSubjects1}
                   disabled={disabled}
               />
@@ -207,7 +247,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["subjects2"] : null : subjects2}
+                  value={disabled ? alluserdetails ? alluserdetails.subjects2 : null : subjects2}
                   onChange={onTypeSubjects2}
                   disabled={disabled}
               />
@@ -215,7 +255,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["subjects3"] : null : subjects3}
+                  value={disabled ? alluserdetails ? alluserdetails.subjects3 : null : subjects3}
                   onChange={onTypeSubjects3}
                   disabled={disabled}
               />
@@ -223,7 +263,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["subjects4"] : null : subjects4}
+                  value={disabled ? alluserdetails ? alluserdetails.subjects4 : null : subjects4}
                   onChange={onTypeSubjects4}
                   disabled={disabled}
               />
@@ -235,7 +275,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["why_you_teach"] : null : whyyouteach}
+                  value={disabled ? alluserdetails ? alluserdetails.why_you_teach : null : whyyouteach}
                   onChange={onTypeWhyYouTeach}
                   disabled={disabled}
               />
@@ -246,7 +286,7 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["fun_info"] : null : funinfo}
+                  value={disabled ? alluserdetails ? alluserdetails.fun_info : null : funinfo}
                   onChange={onTypeFunInfo}
                   disabled={disabled}
               />
@@ -257,24 +297,20 @@ export const Edit_Profile = () => {
                   type="text"
                   className="form-control"
                   // placeholder={}
-                  value={disabled ? dataTeacher ? dataTeacher["years_experience"] : null : yearsexperience}
+                  value={disabled ? alluserdetails ? alluserdetails.years_experience : null : yearsexperience}
                   onChange={onTypeYearsOfExperience}
                   disabled={disabled}
               />
             </div>
           </div>
-          
         </div>
-        ) : null }
         <div className="col-md-12 text-end">
           <br></br>
 
           <button className="btn btn-warning mb-5 me-5" onClick={submitTeacher}>Update</button>
 
         </div>
-        
       </div>
-      
       <h5 className="container-fluid col-8 fst-italic mt-4 mb-5 d-flex">
       For security reasons with Teach & Learn users, if you are interested in changing your photo or email, write to us.
           </h5>
