@@ -12,21 +12,21 @@ export const SignupPage = () => {
 
   const BASE_URL = process.env.BACKEND_URL;
 
-  const history = useHistory()
+  const history = useHistory();
 
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [firstname, setFirstname] = useState();
-  const [surnames, setSurnames] = useState();
+  const [firstname, setFirstname] = useState("");
+  const [surnames, setSurnames] = useState("");
   const [teacher, setTeacher] = useState();
-  const [funinfo, setFuninfo] = useState();
-  const [subjects1, setSubjects1] = useState();
-  const [subjects2, setSubjects2] = useState();
-  const [subjects3, setSubjects3] = useState();
-  const [subjects4, setSubjects4] = useState();
-  const [whyyouteach, setWhyyouteach] = useState();
-  const [yearsexperience, SetYearsexperience] = useState();
+  const [funinfo, setFuninfo] = useState("");
+  const [subjects1, setSubjects1] = useState("");
+  const [subjects2, setSubjects2] = useState("");
+  const [subjects3, setSubjects3] = useState("");
+  const [subjects4, setSubjects4] = useState("");
+  const [whyyouteach, setWhyyouteach] = useState("");
+  const [yearsexperience, SetYearsexperience] = useState("");
   const [signupteacher, setSignupteacher] = useState(false);
 
   const onSubmitClicked = () => {
@@ -181,7 +181,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
-    history.push("/loginpage")
+    history.push("/loginpage");
   };
 
   const postTeacherData1 = () => {
@@ -219,7 +219,9 @@ export const SignupPage = () => {
         minSymbols: 1,
       })
     ) {
-      alert("Enter valid Information");
+      alert(
+        "Password must have min of 8 Char, 1 Uppercase, 1 Symbol and a number!"
+      );
       return;
       // setEmailError("Enter valid Email!");
     }
@@ -287,7 +289,7 @@ export const SignupPage = () => {
               />
             </div>
             <p></p>
-            <div className="form-group">
+            <form className="form-group">
               <input
                 name="password"
                 type="Password"
@@ -299,12 +301,11 @@ export const SignupPage = () => {
                 value={password}
                 onChange={onTypePassword}
               />
-            </div>
+            </form>
             <p></p>
-            <div className="form-group">
+            <form className="form-group">
               <input
-                type="password"
-                name="Conform password"
+                name="Confirm password"
                 type="Password"
                 className="form-control"
                 id="confirm_password"
@@ -314,7 +315,7 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
-            </div>
+            </form>
             <p></p>
             <div className="form-group">
               <input
