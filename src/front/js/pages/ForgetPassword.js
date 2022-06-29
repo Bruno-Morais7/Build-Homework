@@ -41,10 +41,10 @@ export const ForgetPassword = () => {
         };
         emailjs
           .send(
-            "service_ygis1wj",
-            "template_xkqpkbh",
+            "service_dtilvg7",
+            "template_83yj749",
             templateParams,
-            "7rzVod9SV3vhzTprV"
+            "qQRVwiJXNiaCwRoMX"
           )
           .then((res) => {
             console.log("okokok");

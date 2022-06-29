@@ -1,13 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import injectContext from "./store/appContext";
+import ScrollToTop from "./component/scrollToTop";
+
+import { Home } from "./pages/home";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { LandingPage } from "./pages/landingpage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { ForgetPassword } from "./pages/ForgetPassword";
@@ -19,9 +17,12 @@ import { Profile } from "./pages/profile";
 import { Results } from "./pages/results";
 import { Edit_Lesson } from "./pages/edit_lesson";
 import { Edit_Profile } from "./pages/edit_profile";
-import the404 from "../img/the404.png";
 import { useState } from "react";
 import { UpdatePassword } from "./pages/Updatepassword";
+import { Forbidden } from "./pages/forbidden";
+
+import the404 from "../img/the404.png";
+
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -30,6 +31,8 @@ const Layout = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [is_teacher, setIs_teacher] = useState(localStorage.getItem("is_teacher"));
   const [emaillogged, setEmaillogged] = useState(localStorage.getItem("email"));
+  const loggedOut = localStorage.getItem("token") === null;
+  const loggedInStudent = localStorage.getItem("is_teacher") === "false";
 
   return (
     <div>
@@ -45,18 +48,6 @@ const Layout = () => {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/demo">
-              <Demo />
-            </Route>
-            <Route exact path="/landingpage">
-              <LandingPage />
-            </Route>
-            {/* <Route exact path="/Content/:user_id">
-              <Content />
-            </Route> */}
-            <Route exact path="/single/:theid">
-              <Single />
-            </Route>
             <Route exact path="/loginpage">
               <LoginPage setToken={setToken} setIs_teacher={setIs_teacher} setEmaillogged={setEmaillogged} />
             </Route>
@@ -66,39 +57,77 @@ const Layout = () => {
             <Route exact path="/ForgetPassword">
               <ForgetPassword />
             </Route>
-            <Route exact path="/lounge">
-              <Lounge />
+            <Route exact path="/forbidden">
+              <Forbidden />
             </Route>
-            <Route exact path="/lesson">
-              <Lesson />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-            <Route exact path="/teacherpage">
-              <Teacherpage />
-            </Route>
-            <Route exact path="/lessonworkspace">
-              <Lessonworkspace />
-            </Route>
-            <Route exact path="/results">
-              <Results />
-            </Route>
-            <Route exact path="/single/:theid">
-              <Single />
-            </Route>
-            <Route exact path="/edit_lesson">
-              <Edit_Lesson />
-            </Route>
-            <Route exact path="/edit_profile">
-              <Edit_Profile />
-            </Route>
-            <Route exact path="/updatepassword/:id">
-              <UpdatePassword />
-            </Route>
+            <Route
+              exact
+              path="/lounge"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lounge />)}
+            />
+            <Route
+              exact
+              path="/lesson"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lesson />)}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Profile />)}
+            />
+            <Route
+              exact
+              path="/teacherpage"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Teacherpage />)}
+            />
+            <Route
+              exact
+              path="/results"
+              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Results />)}
+            />
+            <Route
+              exact
+              path="/lessonworkspace"
+              render={() =>
+                loggedOut ? (
+                  <Redirect to="/forbidden" />
+                ) : loggedInStudent ? (
+                  <Redirect to="/forbidden" />
+                ) : (
+                  <Lessonworkspace />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/edit_lesson"
+              render={() =>
+                loggedOut ? (
+                  <Redirect to="/forbidden" />
+                ) : loggedInStudent ? (
+                  <Redirect to="/forbidden" />
+                ) : (
+                  <Edit_Lesson />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/edit_profile"
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Edit_Profile />
+              }
+            />
+            <Route
+              exact
+              path="/updatepassword/:id"
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <UpdatePassword />
+              }
+            />
             <Route>
-              <div className="">
-                <img className="align-center" src={the404}></img>
+              <div className="container-fluid col-10">
+                <img className="mx-auto d-block my-5" src={the404}></img>
               </div>
             </Route>
           </Switch>

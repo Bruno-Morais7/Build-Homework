@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Card } from "./card";
+import { Lessoncard } from "./lessoncard";
 import PropTypes from "prop-types";
 import avatar from "../../img/avatar.png";
 import "../../styles/style.css";
 
-function SearchBar({ placeholder, data }) {
+function SearchBarLesson({ placeholder, lessonData }) {
   const { store, actions } = useContext(Context);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -14,13 +14,8 @@ function SearchBar({ placeholder, data }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      const fullName = value.first_name + " " + value.last_name;
-      return (
-        value.first_name.toLowerCase().startsWith(searchWord.toLowerCase()) ||
-        value.last_name.toLowerCase().includes(searchWord.toLowerCase()) ||
-        fullName.toLowerCase().startsWith(searchWord.toLowerCase())
-      );
+    const newFilter = lessonData.filter((value) => {
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === "") {
       setFilteredData([]);
@@ -29,7 +24,7 @@ function SearchBar({ placeholder, data }) {
     }
     console.log(filteredData);
   };
-  console.log(data);
+  console.log(lessonData);
 
   const clearInput = () => {
     setFilteredData([]);
@@ -61,20 +56,18 @@ function SearchBar({ placeholder, data }) {
           {filteredData.slice(0, 10).map((value, key) => {
             return (
               <div className="" href={value.id} target="" key={value.id}>
-                <Link to="/teacherpage">
+                <Link to="/lesson" className="link-dark">
                   <div
                     onClick={() => {
-                      // let saveTeacherId = value.id;
-                      // console.log(value.id);
-                      actions.onClickSaveTeacherId(value.id);
+                      //   let saveLessonId = lesson.id;
+                      //   console.log(saveLessonId);
+                      actions.onClickSaveLessonId(value.id);
                     }}
                   >
-                    <Card
-                      avatar={value.avatar}
-                      first_name={value.first_name}
-                      last_name={value.last_name}
-                      subjects={value.subjects}
-                      fun_info={value.fun_info}
+                    <Lessoncard
+                      title={value.title}
+                      subject={value.subject}
+                      summary={value.summary}
                     />
                   </div>
                 </Link>
@@ -87,12 +80,10 @@ function SearchBar({ placeholder, data }) {
   );
 }
 
-export default SearchBar;
+export default SearchBarLesson;
 
-Card.propTypes = {
-  first_name: PropTypes.string,
-  last_name: PropTypes.string,
-  subjects: PropTypes.string,
-  fun_info: PropTypes.string,
-  avatar: PropTypes.string,
+Lessoncard.propTypes = {
+  title: PropTypes.string,
+  subject: PropTypes.string,
+  summary: PropTypes.string,
 };
