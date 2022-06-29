@@ -27,24 +27,18 @@ export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
           </span> */}
         </Link>
         <div className="ml-auto d-flex gap-2 d-flex flex-wrap align-items-center">
-          {/* <Link to="/demo">
-            <button className="btn btn-primary">
-              Check the Context in action
-            </button>
-          </Link> */}
-
           {token ? (
             <>
-              <Link to="/profile">
-                <div className="btn_effect">
-                  <i className="fa-solid fa-circle-user text-dark fs-2"></i>{" "}
-                  <span className="btn_text">My Profile</span>
-                </div>
-              </Link>
               <Link to="/lounge">
                 <div className="btn_effect">
                   <i className="fa-solid fa-couch text-dark fs-2"></i>
                   <span className="btn_text">Lounge</span>
+                </div>
+              </Link>
+              <Link to="/results">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-magnifying-glass text-dark fs-2"></i>
+                  <span className="btn_text">Search</span>
                 </div>
               </Link>
 
@@ -56,29 +50,33 @@ export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
                   </div>
                 </Link>
               )}
+              <Link to="/profile">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-circle-user text-dark fs-2"></i>{" "}
+                  <span className="btn_text">My Profile</span>
+                </div>
+              </Link>
               <Link to="#">
                 <div className="btn_effect">
-                  <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
+                  <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>
                   <span className="btn_text" onClick={logoutFunction}>
                     Logout
                   </span>
-                  <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>{" "}
                 </div>
               </Link>
             </>
           ) : (
             <>
-              <Link to="/LoginPage">
-                <div className="btn_effect">
-                  <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
-                  <span className="btn_text">Login </span>{" "}
-                  <i className="fa-solid fa-arrow-right-from-bracket text-dark fs-2"></i>{" "}
-                </div>
-              </Link>
               <Link to="/SignupPage">
                 <div className="btn_effect">
                   <i className="fa-solid fa-user-plus text-dark fs-2"></i>{" "}
                   <span className="btn_text">Signup</span>
+                </div>
+              </Link>
+              <Link to="/LoginPage">
+                <div className="btn_effect">
+                  <i className="fa-solid fa-arrow-right-to-bracket fs-2 text-dark"></i>{" "}
+                  <span className="btn_text">Login </span>{" "}
                 </div>
               </Link>
             </>

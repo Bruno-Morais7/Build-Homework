@@ -17,8 +17,8 @@ export const Lesson = () => {
     <div>
       <div className="p-4 p-md-5 text-white rounded bg-dark mb-4">
         <h1 className="container-fluid col-8">
-          Time to <b className="text-warning">study</b>.  
-          
+          Time to <b className="text-warning">study</b>.
+
         </h1>
       </div>
 
@@ -29,7 +29,7 @@ export const Lesson = () => {
               <h2 className="border-bottom border-warning pb-1 border-2">
                 Subject
               </h2>
-              <p>{dataLesson ? dataLesson["subject"] : null}</p>
+              <p className="fs-4 ">{dataLesson ? dataLesson["subject"] : null}</p>
             </div>
           </div>
 
@@ -38,9 +38,9 @@ export const Lesson = () => {
               <h2 className="border-bottom text-warning pb-1 border-2">
                 Title
               </h2>
-              <p className="text-warning">{dataLesson ? dataLesson["title"] : null}</p>
+              <p className="text-warning fs-4">{dataLesson ? dataLesson["title"] : null}</p>
             </div>
-           
+
           </div>
 
           <div className="col-md-4">
@@ -48,7 +48,7 @@ export const Lesson = () => {
               <h2 className="border-bottom border-warning pb-1 border-2">
                 Teacher
               </h2>
-              <p>{dataTeacher ? dataTeacher["first_name"] : null} {dataTeacher ? dataTeacher["last_name"] : null}</p>
+              <p className="fs-4">{dataTeacher ? dataTeacher["first_name"] : null} {dataTeacher ? dataTeacher["last_name"] : null}</p>
             </div>
           </div>
         </div>
@@ -60,8 +60,8 @@ export const Lesson = () => {
             Introduction
           </h1>
         </div>
-        <pre className="container-fluid col-10 fs-4 border-start mb-5 text-justify">
-        {dataLesson ? dataLesson["introduction"] : null}
+        <pre className="container-fluid col-10 fs-5 border-start mb-5 text-justify">
+          {dataLesson ? dataLesson["introduction"] : null}
         </pre>
       </div>
 
@@ -71,8 +71,8 @@ export const Lesson = () => {
             Main content
           </h1>
         </div>
-        <pre className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
-        {dataLesson ? dataLesson["written_content"] : null}
+        <pre className="container-fluid col-10 fs-5 border-start mt-4 mb-5">
+          {dataLesson ? dataLesson["written_content"] : null}
         </pre>
       </div>
 
@@ -82,8 +82,8 @@ export const Lesson = () => {
             Summary
           </h1>
         </div>
-        <div className="container-fluid col-10 fs-4 border-start mb-5">
-        {dataLesson ? dataLesson["summary"] : null}
+        <div className="container-fluid col-10 fs-5 border-start mb-5">
+          {dataLesson ? dataLesson["summary"] : null}
         </div>
       </div>
       <div className="container-fluid">
@@ -93,10 +93,11 @@ export const Lesson = () => {
           </h1>
         </div>
         <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
-        <ul className="d-flex justify-content-evenly gap-2 flex-wrap">
-            <li>{dataLesson ? dataLesson["key_word1"] : null}</li>
-            <li>{dataLesson ? dataLesson["key_word2"] : null}</li>
-            <li>{dataLesson ? dataLesson["key_word3"] : null}</li>
+          <ul className="d-flex justify-content-evenly gap-2 flex-wrap">
+            {dataLesson ? <span> {dataLesson["key_word1"]} </span> : null}
+            {dataLesson ? <span> {dataLesson["key_word2"]} </span> : null}
+            {dataLesson ? <span> {dataLesson["key_word3"]} </span> : null}
+          
           </ul>
         </div>
       </div>
@@ -107,13 +108,13 @@ export const Lesson = () => {
           </h1>
         </div>
 
-        <div className="container-fluid col-10 fs-4 border-start mt-4 mb-5">
-          Ask for your students to bring some answers to class
+        <div className="container-fluid col-10 fs-5 mt-4 mb-5">
+ 
           <ul>
-            <li>{dataLesson ? dataLesson["question1"] : null}</li>
-            <li>{dataLesson ? dataLesson["question2"] : null}</li>
-            <li>{dataLesson ? dataLesson["question3"] : null}</li> 
-            <li>{dataLesson ? dataLesson["question4"] : null}</li>
+          {dataLesson ? <span> {dataLesson["question1"]} </span> : null}
+          {dataLesson ? <span> {dataLesson["question2"]} </span> : null}
+          {dataLesson ? <span> {dataLesson["question3"]} </span> : null}
+          {dataLesson ? <span> {dataLesson["question4"]} </span> : null}
           </ul>
         </div>
       </div>

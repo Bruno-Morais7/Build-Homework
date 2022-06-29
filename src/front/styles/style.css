@@ -110,40 +110,14 @@ pre {
 input:focus {
   outline: none;
 }
-.searchIcon svg {
-  font-size: 35px;
-}
 
-.dataResult {
-  margin-top: 5px;
-  width: 300px;
-  height: 200px;
-  background-color: white;
-  overflow: hidden;
-  overflow-y: auto;
-}
 
 .dataResult::-webkit-scrollbar {
   display: none;
 }
 
-.dataResult .dataItem {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  color: black;
-}
-
-.dataItem p {
-  margin-left: 10px;
-}
-a {
-  text-decoration: none;
-}
-
 a:hover {
-  padding-left: 3px;
+  padding-left: 2px;
 }
 
 #clearBtn {
@@ -177,6 +151,7 @@ a:hover {
   margin-left: 0.5rem;
   max-width: 15rem;
 }
+
 .contact {
   padding: 2%;
   height: 600px;
@@ -220,4 +195,9 @@ a:hover {
 }
 .contact-form button:focus {
   box-shadow: none;
+}
+
+
+.magicBorder {
+  border-radius: 1.1rem;
 }

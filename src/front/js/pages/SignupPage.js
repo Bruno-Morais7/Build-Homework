@@ -178,6 +178,7 @@ export const SignupPage = () => {
         password: password,
         first_name: firstname,
         last_name: surnames,
+        avatar: pic,
       }),
     });
     history.push("/loginpage")
@@ -289,6 +290,7 @@ export const SignupPage = () => {
             <div className="form-group">
               <input
                 name="password"
+                type="Password"
                 className="form-control"
                 id="password"
                 placeholder="Enter Password"
@@ -303,6 +305,7 @@ export const SignupPage = () => {
               <input
                 type="password"
                 name="Conform password"
+                type="Password"
                 className="form-control"
                 id="confirm_password"
                 placeholder="Confirm Password"

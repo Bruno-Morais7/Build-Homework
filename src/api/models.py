@@ -93,6 +93,7 @@ class Student(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
+    avatar = db.Column(db.String, unique=True)
 
     def __reprStudents__(self):
         return f'<Students {self.title}>'
@@ -104,6 +105,7 @@ class Student(db.Model):
             "last_name": self.last_name,
             "email": self.email,
             "password": self.password,
+            "avatar": self.avatar,
 
         }
 
