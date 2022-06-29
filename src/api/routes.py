@@ -31,7 +31,7 @@ def login():
     # access_token = create_access_token(identity=email)
     access_token = jwt.encode({"email" : email},"TeachandLearn",'HS256')
     print(access_token)
-    return jsonify(access_token=access_token,is_teacher=users.serializeUser()['is_teacher'])
+    return jsonify(access_token=access_token,is_teacher=users.serializeUser()['is_teacher'], email=users.serializeUser()['email'], id=users.serializeUser()['id'])
 
 @api.route("/updatepassword", methods=["POST"])
 def updatepassword():
@@ -345,6 +345,7 @@ def add_student():
     password_request = body_request.get("password", None)
     first_name_request = body_request.get("first_name", None)
     last_name_request = body_request.get("last_name", None)
+    avatar_request = body_request.get("avatar", None)
 
 
     new_student = Student(
@@ -352,6 +353,7 @@ def add_student():
         password = password_request,
         first_name = first_name_request,
         last_name = last_name_request,
+        avatar = avatar_request,
     )
 
     db.session.add(new_student)

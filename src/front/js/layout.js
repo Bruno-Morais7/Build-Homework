@@ -29,9 +29,8 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [is_teacher, setIs_teacher] = useState(
-    localStorage.getItem("is_teacher")
-  );
+  const [is_teacher, setIs_teacher] = useState(localStorage.getItem("is_teacher"));
+  const [emaillogged, setEmaillogged] = useState(localStorage.getItem("email"));
   const loggedOut = localStorage.getItem("token") === null;
   const loggedInStudent = localStorage.getItem("is_teacher") === "false";
 
@@ -50,7 +49,7 @@ const Layout = () => {
               <Home />
             </Route>
             <Route exact path="/loginpage">
-              <LoginPage setToken={setToken} setIs_teacher={setIs_teacher} />
+              <LoginPage setToken={setToken} setIs_teacher={setIs_teacher} setEmaillogged={setEmaillogged} />
             </Route>
             <Route exact path="/SignupPage">
               <SignupPage />

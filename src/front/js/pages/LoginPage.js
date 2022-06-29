@@ -5,11 +5,12 @@ import "../../styles/style.css";
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "../store/flux";
 
-export const LoginPage = ({ setToken, setIs_teacher }) => {
+export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
   const history = useHistory();
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [id, setId] = useState();
 
   const urlBase = " ";
 
@@ -61,17 +62,26 @@ export const LoginPage = ({ setToken, setIs_teacher }) => {
         if (dataUsers?.access_token) {
           localStorage.setItem("token", dataUsers.access_token);
           localStorage.setItem("is_teacher", dataUsers.is_teacher);
+          localStorage.setItem("email", dataUsers.email)
+          localStorage.setItem("id", dataUsers.id)
           setToken(dataUsers.access_token);
           setIs_teacher(dataUsers.is_teacher);
+          setEmaillogged(dataUsers.email);
+          setId(dataUsers.id);
           // history.push("/landingpage");
           history.push("/profile");
         }
+        else {
+          window.alert("Wrong email or password");
+          window.location.reload();
+        };
         //   setStore({
         //     users: [...getStore().users, dataUsers],
         //   });
       })
       .catch((error) => {
         console.log(error);
+        
       });
   };
 
