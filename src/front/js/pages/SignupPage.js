@@ -12,7 +12,7 @@ export const SignupPage = () => {
 
   const BASE_URL = process.env.BACKEND_URL;
 
-  const history = useHistory()
+  const history = useHistory();
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
@@ -181,7 +181,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
-    history.push("/loginpage")
+    history.push("/loginpage");
   };
 
   const postTeacherData1 = () => {
@@ -205,6 +205,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
+    history.push("/loginpage");
   };
 
   const submit = () => {
@@ -305,7 +306,6 @@ export const SignupPage = () => {
               <input
                 type="password"
                 name="Conform password"
-                type="Password"
                 className="form-control"
                 id="confirm_password"
                 placeholder="Confirm Password"
