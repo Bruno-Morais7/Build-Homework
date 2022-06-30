@@ -81,12 +81,6 @@ export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
               </Link>
             </>
           )}
-          <Link to="/contactpage">
-            <div className="btn_effect">
-              <i className="fa-solid fa-user-plus text-dark fs-2"></i>{" "}
-              <span className="btn_text">Contact Us</span>
-            </div>
-          </Link>
         </div>
       </div>
     </nav>
