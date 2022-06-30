@@ -6,16 +6,7 @@ import { Context } from "../store/appContext";
 
 export const Card = (props) => {
   const { store, actions } = useContext(Context);
-  // const [teacherfoto, setTeacherfoto] = useState();
 
-  // const getRandonPictureAPI = () => {
-  //   // fetching data from the backend
-  //   fetch("https://randomuser.me/api/")
-  //     .then(respAPI => respAPI.json())
-  //     .then((data) => setTeacherfoto(data))
-  //     .catch(error => console.log("Error loading message from backend Lessons", error));
-  //     console.log(teacherfoto)
-  // }
 
   return (
     <div className="col">

@@ -12,14 +12,10 @@ import { Link, Redirect } from "react-router-dom";
 export const Teacherpage = () => {
   const { store, actions } = useContext(Context);
   const linkTeacherId = store.teacherId[0];
-  // console.log(linkTeacherId);
-  // console.log(store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId))
-  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
-  console.log(dataTeacher)
 
-  //const linkTeacherId = store.teacherId[0];
+  const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
+
   const dataLessonsOftheTeacher = store?.lessons?.[0]?.lessons.filter(e => e.teacher_id === linkTeacherId)
-  console.log(dataLessonsOftheTeacher)
   let countLessonsOfTeacher = dataLessonsOftheTeacher?.length
 
 

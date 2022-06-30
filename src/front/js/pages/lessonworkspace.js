@@ -27,67 +27,52 @@ export const Lessonworkspace = () => {
 
 
   const onTypeSubject = (e) => {
-    console.log(e.target.value);
     setSubject(e.target.value);
   };
 
   const onTypeTitle = (e) => {
-    console.log(e.target.value);
     setTitle(e.target.value);
   };
 
   const onTypeIntroduction = (e) => {
-    console.log(e.target.value);
     setIntroduction(e.target.value);
   };
 
   const onTypeMainpart = (e) => {
-    console.log(e.target.value);
     setMainpart(e.target.value);
   };
 
   const onTypeSummary = (e) => {
-    console.log(e.target.value);
     setSummary(e.target.value);
   };
 
   const onTypeKeyword1 = (e) => {
-    console.log(e.target.value);
     setKeyword1(e.target.value);
   };
 
   const onTypeKeyword2 = (e) => {
-    console.log(e.target.value);
     setKeyword2(e.target.value);
   };
 
   const onTypeKeyword3 = (e) => {
-    console.log(e.target.value);
     setKeyword3(e.target.value);
   };
 
   const onTypeQuestion1 = (e) => {
-    console.log(e.target.value);
     setQuestion1(e.target.value);
   };
 
   const onTypeQuestion2 = (e) => {
-    console.log(e.target.value);
     setQuestion2(e.target.value);
   };
 
   const onTypeQuestion3 = (e) => {
-    console.log(e.target.value);
     setQuestion3(e.target.value);
   };
 
   const onTypeQuestion4 = (e) => {
-    console.log(e.target.value);
     setQuestion4(e.target.value);
   };
-
-  console.log("localstorage_lesson", localStorage.getItem("email"))
-
 
 
   const postLessonData1 = () => {
@@ -123,19 +108,42 @@ export const Lessonworkspace = () => {
 
   const submitLesson = () => {
     postLessonData1();
+    fetchUserData();
     redirect.push('/profile')
    
   }
 
-  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, index) => {
-  //    return <option value={index} key={index}> {teacher.first_name} {teacher.last_name} </option>
-  // }) 
+  const fetchUserData = () => {
+    const post = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers":
+          "Origin,Content-Type, Authorization, x-id, Content-Length, X-Requested-With",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        token: localStorage.getItem("token"),
+      },
+      crossDomain: true,
+      redirect: "follow",
+
+    };
+    const BASE_URL = process.env.BACKEND_URL;
+
+    fetch(BASE_URL + "/api/profile", post)
+      .then((resp) => resp.json())
+      .then((dataUsers) => {
+
+        setUserDetails(dataUsers.profile_data);
+      })
+      .catch((error) => {
+      });
+  };
 
   const linkTeacherId = store.teacherId[0];
   const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.id === linkTeacherId)
-  console.log(dataTeacher)
   const showTeacher = teacherdetails ? teacherdetails.first_name + " " + teacherdetails.last_name : null
-  console.log("teacherdeta", teacherdetails)
 
   useEffect(() => {
     onSelectNameTeacher();
@@ -147,16 +155,9 @@ export const Lessonworkspace = () => {
 
     if (showTeacher === null) { setNameteacher("") }
     else (setNameteacher(teacherdetails.id));
-    console.log("olá", nameteacher);
   };
 
 
-  // useEffect(() => {
-  //  const dataLoggedTeacher = store?.teachers?.[0]?.teachers.find((e) => e.email === userLoggedEmail);
-  //     setTeacherDetails(dataLoggedTeacher);
-  //     console.log("dataloggedteacher", dataLoggedTeacher);
-  //   }
-  // ,[userLoggedEmail]);
   const userLogged = localStorage.getItem("is_teacher")
 
   return (

@@ -9,31 +9,12 @@ export const Edit_Lesson = () => {
   const { store, actions } = useContext(Context);
 
   const userLoggedEmail = localStorage.getItem("email");
-  console.log(userLoggedEmail);
   const userLoggedId = localStorage.getItem("id");
-  console.log(userLoggedId);
-
   const dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.email === userLoggedEmail);
-  console.log("datateacherlesson", dataTeacher? dataTeacher : null);
-
   const test = dataTeacher? dataTeacher["first_name"] : null
-  console.log("PQP", test)
-
-  console.log("CARACA", store?.teachers?.[0]?.teachers.find(e => e.mail === userLoggedEmail))
-
-  console.log("datateacher", dataTeacher? dataTeacher["first_name"] : null);
-
   const showTeacher = dataTeacher ? dataTeacher["first_name"] + " " + dataTeacher["last_name"] : " "
-
-
   const linkLessonId = store.lessonId[0];
   const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
-  console.log("edit lesson", dataLesson)
-
-  // console.log(dataLesson["subject"])
-
-  // let date = new Date()
-  // console.log(date) 
 
   const BASE_URL = process.env.BACKEND_URL
 
@@ -53,79 +34,58 @@ export const Edit_Lesson = () => {
   const [disabled, setDisabled] = useState(true);
 
   const onTypeSubject = (e) => {
-    console.log(e.target.value);
     setSubject(e.target.value);
   };
 
   const onTypeTitle = (e) => {
-    console.log(e.target.value);
     setTitle(e.target.value);
   };
 
   const onTypeIntroduction = (e) => {
-    console.log(e.target.value);
     setIntroduction(e.target.value);
   };
 
   const onTypeMainpart = (e) => {
-    console.log(e.target.value);
     setMainpart(e.target.value);
   };
 
   const onTypeSummary = (e) => {
-    console.log(e.target.value);
     setSummary(e.target.value);
   };
 
   const onTypeKeyword1 = (e) => {
-    console.log(e.target.value);
     setKeyword1(e.target.value);
   };
 
   const onTypeKeyword2 = (e) => {
-    console.log(e.target.value);
     setKeyword2(e.target.value);
   };
 
   const onTypeKeyword3 = (e) => {
-    console.log(e.target.value);
     setKeyword3(e.target.value);
   };
 
   const onTypeQuestion1 = (e) => {
-    console.log(e.target.value);
     setQuestion1(e.target.value);
   };
 
   const onTypeQuestion2 = (e) => {
-    console.log(e.target.value);
     setQuestion2(e.target.value);
   };
 
   const onTypeQuestion3 = (e) => {
-    console.log(e.target.value);
     setQuestion3(e.target.value);
   };
 
   const onTypeQuestion4 = (e) => {
-    console.log(e.target.value);
     setQuestion4(e.target.value);
   };
 
   const onClickEnable = (e) => {
-    console.log("teste")
-    // e.target.disabled = false
     setDisabled(!disabled)
 
   };
 
-  // const listOfTeachers = store?.teachers?.[0]?.teachers.map((teacher, index) => {
-  //    return <option value={index} key={index}> {teacher.first_name} {teacher.last_name} </option>
-  // }) 
-
-
-
-  console.log(BASE_URL + "/api/lessons/" + linkLessonId)
   const postLessonData1 = () => {
 
     // fetching data from the backend
@@ -155,7 +115,7 @@ export const Edit_Lesson = () => {
 
   }
 
-  const redirect = useHistory(forceRefresh=true);
+  const redirect = useHistory();
 
   const submitLesson = () => {
     postLessonData1();
@@ -175,10 +135,10 @@ export const Edit_Lesson = () => {
   const onSelectNameTeacher = () => {
     if (showTeacher === null) { setNameteacher("") }
     else (setNameteacher(dataTeacher ? dataTeacher["id"] : null));
-    console.log("olá", nameteacher);
+
   };
 
-  console.log("nome", title, dataTeacher["id"])
+ 
 
   return (
     <div>

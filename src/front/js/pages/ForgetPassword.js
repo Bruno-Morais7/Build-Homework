@@ -29,11 +29,11 @@ export const ForgetPassword = () => {
       }),
     };
     const BASE_URL = process.env.BACKEND_URL;
-    console.log(BASE_URL);
+
     fetch(BASE_URL + "/api/forgetpassword", post)
       .then((resp) => resp.json())
       .then((res) => {
-        console.log();
+
 
         let templateParams = {
           sender_email: email,
@@ -48,16 +48,14 @@ export const ForgetPassword = () => {
             "qQRVwiJXNiaCwRoMX"
           )
           .then((res) => {
-            console.log("okokok");
+
             setEmail("");
             history.push("/loginpage");
           })
           .catch((err) => {
-            console.log(err);
           });
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -103,7 +101,7 @@ export const ForgetPassword = () => {
                         <div className="form-group mt-4">
                           <button
                             name="recover-submit"
-                            className="btn btn-lg btn-primary btn-block fs-6"
+                            className="btn btn-lg btn-warning btn-block fs-6"
                             value="Reset Password"
                             type="submit"
                           >

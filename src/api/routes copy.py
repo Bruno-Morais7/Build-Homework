@@ -12,31 +12,26 @@ from flask_cors import CORS, cross_origin
 from flask_jwt_extended import current_user
 from hmac import compare_digest,new
 import jwt
-from werkzeug.security import generate_password_hash
-from werkzeug.security import check_password_hash
 
 api = Blueprint('api', __name__)
+
 
 
 @api.route("/login", methods=["POST"])
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    # password_hash = generate_password_hash(password, "sha256")
-     
+   
     users = User.query.filter_by(email=email).one_or_none()
     # print(users.serializeUser())
 
-    if not users or not check_password_hash(users.password, password):
+    if email !=  users.serializeUser()['email'] or password !=  users.serializeUser()['password']:
         return jsonify("Wrong email or password"), 401
 
     # access_token = create_access_token(identity=email)
     access_token = jwt.encode({"email" : email},"TeachandLearn",'HS256')
     print(access_token)
-
     return jsonify(access_token=access_token,is_teacher=users.serializeUser()['is_teacher'], email=users.serializeUser()['email'], id=users.serializeUser()['id'])
-
-    
 
 @api.route("/updatepassword", methods=["POST"])
 def updatepassword():
@@ -47,6 +42,7 @@ def updatepassword():
 
     return jsonify('results'),200
        
+
 
 @api.route("/forgetpassword", methods=["POST"])
 def forgetpassword():
@@ -72,6 +68,7 @@ def profile():
  
     return jsonify({ "User Fetched": True, "profile_data" : user.serializeUser()}), 200
 
+
 @api.route('/users/<id>', methods=['DELETE'])
 def user_delete(id):
     user = User.query.get(id)
@@ -96,6 +93,7 @@ def user_update(id):
 
     return jsonify({ "User Updated": True}), 200
 
+
 @api.route('/users', methods=['GET'])
 def handle_hello():
 
@@ -117,13 +115,12 @@ def add_user():
     body_request = request.get_json()
     email_request = body_request.get("email", None)
     password_request = body_request.get("password", None)
-    password_hash = generate_password_hash(password_request, "sha256")
-     # generate_password_hash("password"): self.password,
     is_teacher_request = body_request.get("is_teacher", False)
+
 
     new_user = User(
         email = email_request,
-        password = password_hash, 
+        password = password_request, 
         is_teacher = is_teacher_request
     )
 
@@ -132,6 +129,7 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
     return "User Added", 200
+
 
 @api.route('/lessons', methods=['GET'])
 def handle_lessons():
@@ -167,6 +165,7 @@ def add_lesson():
     question3_request = body_request.get("question3", None)
     question4_request = body_request.get("question4", None)
     teacher_id_request = body_request.get("teacher_id", None)
+
 
     new_content = Lesson_Content(
         title = title_request,
@@ -323,6 +322,7 @@ def teacher_update(id):
 
     return jsonify({ "Teacher Updated": True}), 200
 
+
 @api.route('/student', methods=['GET'])
 def handle_student():
 
@@ -347,6 +347,7 @@ def add_student():
     last_name_request = body_request.get("last_name", None)
     avatar_request = body_request.get("avatar", None)
 
+
     new_student = Student(
         email = email_request,
         password = password_request,
@@ -363,13 +364,13 @@ def add_student():
 def student_update(id):
     student = Student.query.get(id)
 
-    # email = request.json["email"]
-    # password = request.json["password"]
+    email = request.json["email"]
+    password = request.json["password"]
     first_name = request.json["first_name"]
     last_name = request.json["last_name"]
 
-    # student.email = email
-    # student.password = password
+    student.email = email
+    student.password = password
     student.first_name = first_name
     student.last_name = last_name
 
