@@ -28,6 +28,7 @@ export const SignupPage = () => {
   const [whyyouteach, setWhyyouteach] = useState();
   const [yearsexperience, SetYearsexperience] = useState();
   const [signupteacher, setSignupteacher] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const onSubmitClicked = () => {
     console.log(" click and submit ");
@@ -314,7 +315,7 @@ export const SignupPage = () => {
             <p></p>
             <div className="form-group">
               <input
-                type="password"
+                type={checked ? "Text" : "Password"}
                 name="Conform password"
                 className="form-control"
                 id="confirm_password"
@@ -324,6 +325,10 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
+            </div>
+            <div className="form-group mt-1">
+              <input type="checkbox" onClick={() => setChecked(!checked)} />
+              Show Password
             </div>
             <p></p>
             <div className="form-group">
