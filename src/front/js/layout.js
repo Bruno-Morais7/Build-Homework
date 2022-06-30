@@ -29,7 +29,9 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [is_teacher, setIs_teacher] = useState(localStorage.getItem("is_teacher"));
+  const [is_teacher, setIs_teacher] = useState(
+    localStorage.getItem("is_teacher")
+  );
   const [emaillogged, setEmaillogged] = useState(localStorage.getItem("email"));
   const loggedOut = localStorage.getItem("token") === null;
   const loggedInStudent = localStorage.getItem("is_teacher") === "false";
@@ -49,7 +51,11 @@ const Layout = () => {
               <Home />
             </Route>
             <Route exact path="/loginpage">
-              <LoginPage setToken={setToken} setIs_teacher={setIs_teacher} setEmaillogged={setEmaillogged} />
+              <LoginPage
+                setToken={setToken}
+                setIs_teacher={setIs_teacher}
+                setEmaillogged={setEmaillogged}
+              />
             </Route>
             <Route exact path="/SignupPage">
               <SignupPage />
@@ -66,27 +72,37 @@ const Layout = () => {
             <Route
               exact
               path="/lounge"
-              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lounge />)}
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Lounge />
+              }
             />
             <Route
               exact
               path="/lesson"
-              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Lesson />)}
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Lesson />
+              }
             />
             <Route
               exact
               path="/profile"
-              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Profile />)}
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Profile />
+              }
             />
             <Route
               exact
               path="/teacherpage"
-              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Teacherpage />)}
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Teacherpage />
+              }
             />
             <Route
               exact
               path="/results"
-              render={() => (loggedOut ? <Redirect to="/forbidden" /> : <Results />)}
+              render={() =>
+                loggedOut ? <Redirect to="/forbidden" /> : <Results />
+              }
             />
             <Route
               exact
@@ -125,7 +141,7 @@ const Layout = () => {
               exact
               path="/updatepassword/:id"
               render={() =>
-                loggedOut ? <Redirect to="/forbidden" /> : <UpdatePassword />
+                loggedOut ? <UpdatePassword /> : <Redirect to="/forbidden" />
               }
             />
 

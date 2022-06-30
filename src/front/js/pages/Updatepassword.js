@@ -1,22 +1,51 @@
 import React, { useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { BASE_URL } from "../store/flux";
+import validator from "validator";
 
 export const UpdatePassword = () => {
   const history = useHistory();
   const { id } = useParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const submitPassword = (e) => {
     e.preventDefault();
 
-    if (!newPassword.trim()) {
-      return alert("please enter password");
+    // if (!newPassword.trim()) {
+    //   return alert("please enter password");
+    // }
+
+    // if (newPassword !== confirmPassword) {
+    //   return alert("Your password is not metch with confirm password.");
+    // }
+
+    if (
+      !newPassword.trim() ||
+      !validator.isStrongPassword(newPassword, {
+        minLength: 8,
+        maxLength: 16,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      alert(`This password must be contain these:
+      minLength: 8 
+      maxLength: 16 
+      minLowercase: 1 
+      minUppercase: 1 
+      minNumbers: 1 
+      minSymbols: 1 `);
+      return;
+      // setEmailError("Enter valid Email!");
     }
 
-    if (newPassword !== confirmPassword) {
-      return alert("Your password is not metch with confirm password.");
+    if (!validator.equals(newPassword, confirmPassword)) {
+      alert("password is not match with confirm password.");
+      return;
     }
 
     // fetch
@@ -91,7 +120,7 @@ export const UpdatePassword = () => {
                   <div className="form-group">
                     <label htmlFor="InputPassword">RetypePassword</label>
                     <input
-                      type="password"
+                      type={checked ? "Text" : "Password"}
                       name="RetypePassword"
                       id="RetyprPassword"
                       className="form-control"
@@ -100,6 +129,13 @@ export const UpdatePassword = () => {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       value={confirmPassword}
                     />
+                  </div>
+                  <div className="form-group mt-1">
+                    <input
+                      type="checkbox"
+                      onClick={() => setChecked(!checked)}
+                    />
+                    Show Password
                   </div>
                   <div className="col-md-12 text-center mt-3">
                     <button

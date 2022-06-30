@@ -209,6 +209,10 @@ export const SignupPage = () => {
   };
 
   const submit = () => {
+    if (!email.trim() || !password || !repeatPassword) {
+      return alert("Fill the all information");
+    }
+
     if (
       !password.trim() ||
       !validator.isStrongPassword(password, {
@@ -220,7 +224,13 @@ export const SignupPage = () => {
         minSymbols: 1,
       })
     ) {
-      alert("Enter valid Information");
+      alert(`This password must be contain these
+      minLength: 8
+      maxLength: 16
+      minLowercase: 1
+      minUppercase: 1
+      minNumbers: 1
+      minSymbols: 1 `);
       return;
       // setEmailError("Enter valid Email!");
     }
