@@ -61,7 +61,7 @@ function SearchBar({ placeholder, data }) {
           {filteredData.slice(0, 10).map((value, key) => {
             return (
               <div className="" href={value.id} target="" key={value.id}>
-                <Link to="/teacherpage">
+                <Link to="/teacherpage" className="link-dark">
                   <div
                     onClick={() => {
                       actions.onClickSaveTeacherId(value.id);

@@ -36,7 +36,7 @@ export const SignupPage = () => {
       if (password === repeatPassword) {
         onFetchSignUp(email, password);
       } else {
-        alert("the passwords have to be iqual");
+        alert("passwords must match");
       }
     } else {
       alert("information is missing");
@@ -209,21 +209,20 @@ export const SignupPage = () => {
         minSymbols: 1,
       })
     ) {
-      alert(`This password must be contain these
+      return alert(`The password must contain these
       minLength: 8
       maxLength: 16
       minLowercase: 1
       minUppercase: 1
       minNumbers: 1
       minSymbols: 1 `);
-      return;
       // setEmailError("Enter valid Email!");
     }
 
     console.log(validator.equals(password, repeatPassword));
 
     if (!validator.equals(password, repeatPassword)) {
-      alert("password is not match with confirm password.");
+      alert("password must match!");
       return;
     }
 
@@ -307,12 +306,8 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
-
-            </div>
-            <div className="form-group mt-1">
               <input type="checkbox" onClick={() => setChecked(!checked)} />
               Show Password
-            </div>
             </form>
 
             <p></p>
