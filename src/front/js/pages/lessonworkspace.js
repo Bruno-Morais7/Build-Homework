@@ -10,19 +10,19 @@ export const Lessonworkspace = () => {
 
   const BASE_URL = process.env.BACKEND_URL
 
-  const [subject, setSubject] = useState();
-  const [title, setTitle] = useState();
-  const [introduction, setIntroduction] = useState();
-  const [mainpart, setMainpart] = useState();
-  const [summary, setSummary] = useState();
-  const [keyword1, setKeyword1] = useState();
-  const [keyword2, setKeyword2] = useState();
-  const [keyword3, setKeyword3] = useState();
-  const [question1, setQuestion1] = useState();
-  const [question2, setQuestion2] = useState();
-  const [question3, setQuestion3] = useState();
-  const [question4, setQuestion4] = useState();
-  const [nameteacher, setNameteacher] = useState();
+  const [subject, setSubject] = useState("");
+  const [title, setTitle] = useState("");
+  const [introduction, setIntroduction] = useState("");
+  const [mainpart, setMainpart] = useState("");
+  const [summary, setSummary] = useState("");
+  const [keyword1, setKeyword1] = useState("");
+  const [keyword2, setKeyword2] = useState("");
+  const [keyword3, setKeyword3] = useState("");
+  const [question1, setQuestion1] = useState("");
+  const [question2, setQuestion2] = useState("");
+  const [question3, setQuestion3] = useState("");
+  const [question4, setQuestion4] = useState("");
+  const [nameteacher, setNameteacher] = useState("");
   const [teacherdetails, setTeacherDetails] = useState({});
 
 

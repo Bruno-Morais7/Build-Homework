@@ -35,7 +35,7 @@ export const Contactpage = () => {
       <h1>Contact Us</h1>
       <div className="container contact">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3-fun">
             <div className="contact-info">
               <img
                 src={require("../../img/contact.png").default}
@@ -49,7 +49,7 @@ export const Contactpage = () => {
           <div className="col-md-9">
             <form className="contact-form" onSubmit={onSubmit}>
               <div className="form-group">
-                <label className="control-label col-sm-2" for="fname">
+                <label className="control-label col-sm-2">
                   Name:
                 </label>
                 <div className="col-sm-10">
@@ -66,7 +66,7 @@ export const Contactpage = () => {
               </div>
               <br></br>
               <div className="form-group">
-                <label className="control-label col-sm-2" for="email">
+                <label className="control-label col-sm-2">
                   Email:
                 </label>
                 <div className="col-sm-10">
@@ -83,7 +83,7 @@ export const Contactpage = () => {
               </div>
               <br></br>
               <div className="form-group">
-                <label className="control-label col-sm-2" for="message">
+                <label className="control-label col-sm-2">
                   message:
                 </label>
                 <div className="col-sm-10">

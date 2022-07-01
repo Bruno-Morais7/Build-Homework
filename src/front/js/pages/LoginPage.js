@@ -10,7 +10,7 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
   const history = useHistory();
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [id, setId] = useState();
@@ -158,7 +158,7 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
                       type="checkbox"
                       onClick={() => setChecked(!checked)}
                     />
-                    Show Password
+                     &nbsp;Show Password
                   </div>
                   <div className="col-md-12 text-center mt-3">
                     <button
