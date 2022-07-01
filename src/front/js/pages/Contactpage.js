@@ -17,11 +17,11 @@ export const Contactpage = () => {
     emailjs
       .send("service_ic5f6bv", "template_muj066q", toSend, "qQRVwiJXNiaCwRoMX")
       .then((response) => {
-        console.log("SUCCESS!", response.status, response.text);
+ 
         history.push("/");
       })
       .catch((err) => {
-        console.log("FAILED...", err);
+
       });
   };
 

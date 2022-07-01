@@ -30,7 +30,6 @@ export const SignupPage = () => {
   const [signupteacher, setSignupteacher] = useState(false);
 
   const onSubmitClicked = () => {
-    console.log(" click and submit ");
 
     if (email && password && repeatPassword) {
       if (password === repeatPassword) {
@@ -56,7 +55,6 @@ export const SignupPage = () => {
       }),
     };
 
-    console.log("info login", post);
 
     fetch("", post)
       .then((response) => response.text())
@@ -65,62 +63,50 @@ export const SignupPage = () => {
   };
 
   const onTypeEmail = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const onTypePassword = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const onTypeRepeatPassword = (e) => {
-    console.log(e.target.value);
     setRepeatPassword(e.target.value);
   };
 
   const onTypeFirstname = (e) => {
-    console.log(e.target.value);
     setFirstname(e.target.value);
   };
 
   const onTypeSurnames = (e) => {
-    console.log(e.target.value);
     setSurnames(e.target.value);
   };
 
   const onTypeFunInfo = (e) => {
-    console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
   const onTypeSubjects1 = (e) => {
-    console.log(e.target.value);
     setSubjects1(e.target.value);
   };
 
   const onTypeSubjects2 = (e) => {
-    console.log(e.target.value);
     setSubjects2(e.target.value);
   };
 
   const onTypeSubjects3 = (e) => {
-    console.log(e.target.value);
     setSubjects3(e.target.value);
   };
 
   const onTypeSubjects4 = (e) => {
-    console.log(e.target.value);
     setSubjects4(e.target.value);
   };
 
   const onTypeWhyYouTeach = (e) => {
-    console.log(e.target.value);
     setWhyyouteach(e.target.value);
   };
 
   const onTypeYearsOfExperience = (e) => {
-    console.log(e.target.value);
     SetYearsexperience(e.target.value);
   };
 
@@ -130,12 +116,10 @@ export const SignupPage = () => {
     } else {
       setTeacher(true);
     }
-    console.log(e.target.value);
-    console.log(document.getElementById("confirm_teacher").value);
+
   };
 
   const signupForm = () => {
-    console.log("teste");
     setSignupteacher(!signupteacher);
   };
 
@@ -205,6 +189,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
+    history.push("/loginpage")
   };
 
   const submit = () => {
@@ -259,9 +244,7 @@ export const SignupPage = () => {
       );
   };
 
-  console.log("ttt", teacherfoto);
   const pic = teacherfoto?.results[0].picture.large;
-  console.log("vvv", pic);
 
   return (
     <>

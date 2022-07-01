@@ -9,7 +9,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     is_teacher = db.Column(db.Boolean)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(250), unique=False, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
 #     first_name = db.Column(db.String(100), nullable=False)
 #     last_name = db.Column(db.String(100), nullable=False)
 #     #is_active = db.Column(db.Boolean(), unique=False, nullable=False)
@@ -27,6 +27,7 @@ class User(db.Model):
         db.session.commit()
         return 'success'
 
+
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -41,6 +42,7 @@ class User(db.Model):
 #             "last_name": self.last_name,
 #             # do not serialize the password, its a security breach
         }
+
 
 
 class Teacher(db.Model):
@@ -92,7 +94,6 @@ class Student(db.Model):
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     avatar = db.Column(db.String, unique=True)
-
 
     def __reprStudents__(self):
         return f'<Students {self.title}>'
@@ -152,3 +153,4 @@ class Lesson_Content(db.Model):
             "question4": self.question4,
             "teacher_id": self.teacher_id,
         }
+
