@@ -27,9 +27,9 @@ function SearchBar({ placeholder, data }) {
     } else {
       setFilteredData(newFilter);
     }
-    console.log(filteredData);
+    
   };
-  console.log(data);
+  
 
   const clearInput = () => {
     setFilteredData([]);
@@ -64,8 +64,6 @@ function SearchBar({ placeholder, data }) {
                 <Link to="/teacherpage">
                   <div
                     onClick={() => {
-                      // let saveTeacherId = value.id;
-                      // console.log(value.id);
                       actions.onClickSaveTeacherId(value.id);
                     }}
                   >

@@ -43,14 +43,14 @@ export const Edit_Profile = () => {
     fetch(BASE_URL + "/api/profile", post)
       .then((resp) => resp.json())
       .then((dataUsers) => {
-        console.log(dataUsers);
+
         setUserDetails(dataUsers.profile_data);
         //   setStore({
         //     users: [...getStore().users, dataUsers],
         //   });
       })
       .catch((error) => {
-        console.log(error);
+  
       });
   };
 
@@ -61,19 +61,15 @@ export const Edit_Profile = () => {
     if (userLoggedisteacher === true) {
       const dataLoggedTeacher = store?.teachers?.[0]?.teachers.find((e) => e.email === userLoggedEmail);
       setAllUserDetails(dataLoggedTeacher)
-      console.log("dataloggedteacher", dataLoggedTeacher)
       
     }
     else if (userLoggedisteacher === false) {
       const dataLoggedStudent = store?.student?.[0]?.students.find((e) => e.email === userLoggedEmail);
       setAllUserDetails(dataLoggedStudent)
-      console.log("dataloggedteacher", dataLoggedStudent)
     };
   }, [userDetails]);
 
-  console.log("primeiro", alluserdetails)
- 
-   
+  
   const [firstname, setFirstname] = useState(alluserdetails ? alluserdetails.first_name : null);
   const [lastname, setLastname] = useState(alluserdetails ? alluserdetails.last_name : null);
   const [subjects1, setSubjects1] = useState(alluserdetails ? alluserdetails.subjects1 : null);
@@ -86,75 +82,48 @@ export const Edit_Profile = () => {
   const [disabled, setDisabled] = useState(true);
 
  
-  console.log("email", userLoggedEmail)
-  console.log("emais_teacheril", userLoggedisteacher)
-
-  console.log("alluserdetails", alluserdetails)
-  console.log("userdetails", userDetails)
-
-  console.log("namenamaname", alluserdetails.first_name)
-
   const BASE_URL = process.env.BACKEND_URL
-  console.log(BASE_URL)
-
 
 
   const onClickEnable = (e) => {
-    console.log("teste")
-    // e.target.disabled = false
     setDisabled(!disabled)
 
   };
 
- 
-
-  // const onTypeEmail = (e) => {
-  //   console.log(e.target.value);
-  //   setEmail(e.target.value);
-  // };
 
   const onTypeFirstName = (e) => {
-    console.log(e.target.value);
     setFirstname(e.target.value);
   };
 
   const onTypeLastName = (e) => {
-    console.log(e.target.value);
     setLastname(e.target.value);
   };
 
   const onTypeSubjects1 = (e) => {
-    console.log(e.target.value);
     setSubjects1(e.target.value);
   };
 
   const onTypeSubjects2 = (e) => {
-    console.log(e.target.value);
     setSubjects2(e.target.value);
   };
 
   const onTypeSubjects3 = (e) => {
-    console.log(e.target.value);
     setSubjects3(e.target.value);
   };
 
   const onTypeSubjects4 = (e) => {
-    console.log(e.target.value);
     setSubjects4(e.target.value);
   };
 
   const onTypeWhyYouTeach = (e) => {
-    console.log(e.target.value);
     setWhyyouteach(e.target.value);
   };
 
   const onTypeYearsOfExperience = (e) => {
-    console.log(e.target.value);
     setYearsexperience(e.target.value);
   };
 
   const onTypeFunInfo = (e) => {
-    console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
@@ -191,8 +160,7 @@ export const Edit_Profile = () => {
    
   }
 
-  console.log("nome", firstname)
-
+  
   return (
     <div className="my-5 mx-2">
       <div className="col-xl-6 col-md-8 mx-auto border rounded-3 bg-dark text-white">

@@ -10,7 +10,7 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
   const history = useHistory();
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [id, setId] = useState();
@@ -20,12 +20,10 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
   };
 
   const onTypeEmail = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const onTypePassword = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
@@ -86,7 +84,6 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
     fetch(BASE_URL + "/api/login", post)
       .then((resp) => resp.json())
       .then((dataUsers) => {
-        console.log(dataUsers);
         if (dataUsers?.access_token) {
           localStorage.setItem("token", dataUsers.access_token);
           localStorage.setItem("is_teacher", dataUsers.is_teacher);
@@ -161,12 +158,12 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
                       type="checkbox"
                       onClick={() => setChecked(!checked)}
                     />
-                    Show Password
+                     &nbsp;Show Password
                   </div>
                   <div className="col-md-12 text-center mt-3">
                     <button
                       type="submit"
-                      className=" btn btn-block mybtn btn-primary tx-tfm"
+                      className=" btn btn-block mybtn btn-warning tx-tfm"
                       onClick={onSubmitClicked}
                     >
                       Continue
@@ -182,12 +179,12 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
                   <div className="form-group">
                     <p className="text-center">
                       Don't have account?{" "}
-                      <Link to="/SignupPage">Sign up here</Link>
+                      <Link to="/SignupPage" className="text-warning">Sign up here</Link>
                     </p>
                   </div>
                   <div className="form-group">
-                    <p className="text-center">
-                      <Link to="/ForgetPassword">Forget Password</Link>
+                    <p className="text-center ">
+                      <Link to="/ForgetPassword" className="text-warning">Forgot Password?</Link>
                     </p>
                   </div>
                 </form>

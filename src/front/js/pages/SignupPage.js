@@ -14,24 +14,23 @@ export const SignupPage = () => {
 
   const history = useHistory();
 
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [firstname, setFirstname] = useState();
-  const [surnames, setSurnames] = useState();
+  const [firstname, setFirstname] = useState("");
+  const [surnames, setSurnames] = useState("");
   const [teacher, setTeacher] = useState();
-  const [funinfo, setFuninfo] = useState();
-  const [subjects1, setSubjects1] = useState();
-  const [subjects2, setSubjects2] = useState();
-  const [subjects3, setSubjects3] = useState();
-  const [subjects4, setSubjects4] = useState();
-  const [whyyouteach, setWhyyouteach] = useState();
-  const [yearsexperience, SetYearsexperience] = useState();
+  const [funinfo, setFuninfo] = useState("");
+  const [subjects1, setSubjects1] = useState("");
+  const [subjects2, setSubjects2] = useState("");
+  const [subjects3, setSubjects3] = useState("");
+  const [subjects4, setSubjects4] = useState("");
+  const [whyyouteach, setWhyyouteach] = useState("");
+  const [yearsexperience, SetYearsexperience] = useState("");
   const [signupteacher, setSignupteacher] = useState(false);
   const [checked, setChecked] = useState(false);
 
   const onSubmitClicked = () => {
-    console.log(" click and submit ");
 
     if (email && password && repeatPassword) {
       if (password === repeatPassword) {
@@ -57,7 +56,6 @@ export const SignupPage = () => {
       }),
     };
 
-    console.log("info login", post);
 
     fetch("", post)
       .then((response) => response.text())
@@ -66,62 +64,50 @@ export const SignupPage = () => {
   };
 
   const onTypeEmail = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const onTypePassword = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const onTypeRepeatPassword = (e) => {
-    console.log(e.target.value);
     setRepeatPassword(e.target.value);
   };
 
   const onTypeFirstname = (e) => {
-    console.log(e.target.value);
     setFirstname(e.target.value);
   };
 
   const onTypeSurnames = (e) => {
-    console.log(e.target.value);
     setSurnames(e.target.value);
   };
 
   const onTypeFunInfo = (e) => {
-    console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
   const onTypeSubjects1 = (e) => {
-    console.log(e.target.value);
     setSubjects1(e.target.value);
   };
 
   const onTypeSubjects2 = (e) => {
-    console.log(e.target.value);
     setSubjects2(e.target.value);
   };
 
   const onTypeSubjects3 = (e) => {
-    console.log(e.target.value);
     setSubjects3(e.target.value);
   };
 
   const onTypeSubjects4 = (e) => {
-    console.log(e.target.value);
     setSubjects4(e.target.value);
   };
 
   const onTypeWhyYouTeach = (e) => {
-    console.log(e.target.value);
     setWhyyouteach(e.target.value);
   };
 
   const onTypeYearsOfExperience = (e) => {
-    console.log(e.target.value);
     SetYearsexperience(e.target.value);
   };
 
@@ -131,12 +117,10 @@ export const SignupPage = () => {
     } else {
       setTeacher(true);
     }
-    console.log(e.target.value);
-    console.log(document.getElementById("confirm_teacher").value);
+
   };
 
   const signupForm = () => {
-    console.log("teste");
     setSignupteacher(!signupteacher);
   };
 
@@ -206,7 +190,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
-    history.push("/loginpage");
+    history.push("/loginpage")
   };
 
   const submit = () => {
@@ -269,9 +253,7 @@ export const SignupPage = () => {
       );
   };
 
-  console.log("ttt", teacherfoto);
   const pic = teacherfoto?.results[0].picture.large;
-  console.log("vvv", pic);
 
   return (
     <>
@@ -299,7 +281,7 @@ export const SignupPage = () => {
               />
             </div>
             <p></p>
-            <div className="form-group">
+            <form className="form-group">
               <input
                 name="password"
                 type="Password"
@@ -311,12 +293,12 @@ export const SignupPage = () => {
                 value={password}
                 onChange={onTypePassword}
               />
-            </div>
+            </form>
             <p></p>
-            <div className="form-group">
+            <form className="form-group">
               <input
                 type={checked ? "Text" : "Password"}
-                name="Conform password"
+                name="Confirm password"
                 className="form-control"
                 id="confirm_password"
                 placeholder="Confirm Password"
@@ -325,11 +307,14 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
+
             </div>
             <div className="form-group mt-1">
               <input type="checkbox" onClick={() => setChecked(!checked)} />
               Show Password
             </div>
+            </form>
+
             <p></p>
             <div className="form-group">
               <input

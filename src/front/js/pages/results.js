@@ -14,8 +14,7 @@ export const Results = () => {
   const lessonData = store?.lessons?.[0]?.lessons;
   const teacherData = store?.teachers?.[0]?.teachers;
   const data = teacherData;
-  //console.log("hello", name)
-  //const name = teachers.first_name + teacher.last_name;
+
 
   return (
     <div>
@@ -50,13 +49,13 @@ export const Results = () => {
         </div>
       </div>
 
-      <div className="album pb-5">
+      {/* <div className="album pb-5">
         <div className="container-fluid">
           <div className="searchbar justify-content-center">
             <SearchBarLesson placeholder="Search by Lesson Title..." lessonData={lessonData} />
           </div>
         </div>
-      </div>
+      </div> */}
       
         <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
           <div className="col-md-4 px-5">

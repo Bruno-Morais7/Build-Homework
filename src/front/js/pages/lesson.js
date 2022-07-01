@@ -12,7 +12,7 @@ export const Lesson = () => {
   const dataLesson = store?.lessons?.[0]?.lessons.find(e => e.id === linkLessonId)
   const dataTeacher = store?.teachers?.[0]?.teachers.find(t => t.id === dataLesson?.teacher_id)
 
-  console.log(dataLesson)
+  
   return (
     <div>
       <div className="p-4 p-md-5 text-white rounded bg-dark mb-4">

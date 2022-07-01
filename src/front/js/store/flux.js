@@ -1,7 +1,6 @@
 import { SignupPage } from "../pages/SignupPage";
 import { useContext, useEffect, useState } from "react";
 
-/*const BASE_URL = "https://3001-brunomorais-teachandlea-s1906renosr.ws-eu47.gitpod.io/"*/
 const BASE_URL = process.env.BACKEND_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -47,71 +46,14 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
-      // 	postUserData: () => {
 
-      // 		// fetching data from the backend
-      // 		fetch((BASE_URL + "api/users"), {
-      // 			headers: {
-      // 				'Content-Type': 'application/json'
-      // 			},
-      // 			method: "POST",
-      // 			body: JSON.stringify({
-      // 				"email": document.getElementById("email").value,
-      //         "email": SignupPage,
-      // 				"password": document.getElementById("password").value,
-      // 				// "is_teacher": document.getElementById("confirm_teacher").value,
-      // 			})
-      // 		})
 
-      // 	},
-
-      // 	postStudentData: () => {
-
-      // 	fetch((BASE_URL + "api/student"), {
-      // 		headers: {
-      // 			'Content-Type': 'application/json'
-      // 		},
-      // 		method: "POST",
-      // 		body: JSON.stringify({
-      // 			"email": document.getElementById("email").value,
-      // 			"password": document.getElementById("password").value,
-      // 			"first_name": document.getElementById("First_Name").value,
-      // 			"last_name": document.getElementById("Surnames").value,
-      // 		})
-      // 	})
-
-      // },
-
-      // postTeacherData: () => {
-
-      // 	fetch((BASE_URL + "api/teacher"), {
-      // 		headers: {
-      // 			'Content-Type': 'application/json'
-      // 		},
-      // 		method: "POST",
-      // 		body: JSON.stringify({
-      // 			"email": document.getElementById("email").value,
-      // 			"password": document.getElementById("password").value,
-      // 			"first_name": document.getElementById("First_Name").value,
-      // 			"last_name": document.getElementById("Surnames").value,
-      // 			"subjects1": document.getElementById("subjects1").value,
-      //   "subjects2": document.getElementById("subjects2").value,
-      //   "subjects3": document.getElementById("subjects3").value,
-      //   "subjects4": document.getElementById("subjects4").value,
-      // 			"fun_info": document.getElementById("fun_info").value,
-      // 			"why_you_teach": document.getElementById("why_you_teach").value,
-      // 			"years_experience": document.getElementById("years_experience").value,
-      // 		})
-      // 	})
-
-      // },
 
       // TEST FUNCTION
       saveData: () => {
         console.log(document.getElementById("lesson_title").value);
       },
 
-      // WORK IM PROGRESS - NOT DONE BUT WORKING
 
       getLessonsData: () => {
         // fetching data from the backend
@@ -128,27 +70,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
       },
 
-      // postLessonsData: () => {
-
-      // 	// fetching data from the backend
-      // 	fetch((BASE_URL + "api/lessons"), {
-      // 		headers: {
-      // 			'Content-Type': 'application/json'
-      // 		},
-      // 		method: "POST",
-      // 		body: JSON.stringify({
-      // 			"title": document.getElementById("lessonContent_title").value,
-      // 			"subject": document.getElementById("lessonContent_subject").value,
-      // 			"introduction": document.getElementById("lessonContent_introduction").value,
-      // 			"written_content": document.getElementById("lessonContent_mainpart").value,
-      // 			"summary": document.getElementById("lessonContent_summary").value
-      // 		})
-      // 	})
-
-      // },
 
       getTeacherData: () => {
-        // fetching data from the backend
         fetch(BASE_URL + "/api/teacher")
           .then((resp) => resp.json())
           .then((dataTeacher) =>
@@ -163,7 +86,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getStudentData: () => {
-        // fetching data from the backend
         fetch(BASE_URL + "/api/student")
           .then((resp) => resp.json())
           .then((dataStudent) =>
@@ -181,25 +103,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           teacherId: [teacher],
         });
-        // getStore().teacherId? window.location.href='https://3000-marinosig-teachandlearn-9lxwlzxqgeo.ws-eu47.gitpod.io/teacherpage' : null
       },
 
       onClickSaveLessonId: (Lesson) => {
         setStore({
           lessonId: [Lesson],
         });
-        // getStore().teacherId? window.location.href='https://3000-marinosig-teachandlearn-9lxwlzxqgeo.ws-eu47.gitpod.io/teacherpage' : null
+
       },
 
-      // getRandonPictureAPI: () => {
-      // 	// fetching data from the backend
-      // 	fetch("https://randomuser.me/api/")
-      // 	.then(respAPI => respAPI.json())
-      // 	.then(apiTeacherFoto => setStore({
-      // 		teacherfoto: [...getStore().teacherfoto, apiTeacherFoto]
-      // 	}))
-
-      //   },
     },
   };
 };

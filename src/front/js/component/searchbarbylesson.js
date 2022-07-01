@@ -22,9 +22,9 @@ function SearchBarLesson({ placeholder, lessonData }) {
     } else {
       setFilteredData(newFilter);
     }
-    console.log(filteredData);
+
   };
-  console.log(lessonData);
+
 
   const clearInput = () => {
     setFilteredData([]);
@@ -59,8 +59,7 @@ function SearchBarLesson({ placeholder, lessonData }) {
                 <Link to="/lesson" className="link-dark">
                   <div
                     onClick={() => {
-                      //   let saveLessonId = lesson.id;
-                      //   console.log(saveLessonId);
+
                       actions.onClickSaveLessonId(value.id);
                     }}
                   >

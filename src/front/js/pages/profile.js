@@ -8,13 +8,15 @@ import { Link, Redirect } from "react-router-dom";
 import { Lesson } from "./lesson.js";
 
 export const Profile = () => {
+  
   const { store, actions } = useContext(Context);
-
   const [userDetails, setUserDetails] = useState({});
   const [alluserdetails, setAllUserDetails] = useState({});
 
   useEffect(() => {
     fetchUserData();
+    
+    
   }, []);
 
   const fetchUserData = () => {
@@ -41,7 +43,6 @@ export const Profile = () => {
     fetch(BASE_URL + "/api/profile", post)
       .then((resp) => resp.json())
       .then((dataUsers) => {
-        console.log(dataUsers);
         setUserDetails(dataUsers.profile_data);
         //   setStore({
         //     users: [...getStore().users, dataUsers],
@@ -50,10 +51,8 @@ export const Profile = () => {
       .catch((error) => {
         console.log(error);
       });
+      
   };
-
-  console.log("userdetail", userDetails)
-  console.log("localstorage", localStorage.getItem("email"))
 
   const userLoggedEmail = localStorage.getItem("email")
 
@@ -65,34 +64,32 @@ export const Profile = () => {
     if (userLoggedisteacher === true) {
       const dataLoggedTeacher = store?.teachers?.[0]?.teachers.find((e) => e.email === userLoggedEmail);
       setAllUserDetails(dataLoggedTeacher)
-      console.log("dataloggedteacher", dataLoggedTeacher)
       
     }
     else if (userLoggedisteacher === false) {
       const dataLoggedStudent = store?.students?.[0]?.students.find((e) => e.email === userLoggedEmail);
       setAllUserDetails(dataLoggedStudent)
-      console.log("dataloggedteacher", dataLoggedStudent)
     };
   }, [userDetails]);
 
   const BASE_URL = process.env.BACKEND_URL;
-  console.log("dataloggedteacher2222", alluserdetails)
-  // const linkTeacherId = store.teacherId[0];
-  // const dataTeacher = store?.teachers?.[0]?.teachers.find((e) => e.id === linkTeacherId);
-  // console.log(dataTeacher);
 
   const dataLessonsOftheTeacher = userLoggedisteacher? store?.lessons?.[0]?.lessons.filter((e) => e.teacher_id === alluserdetails.id) : null;
-    // console.log(dataLessonsOftheTeacher);
   const listOfLessons = dataLessonsOftheTeacher?.map((lesson, indexL) => {
 
 
     return (
       <div key={indexL}>
+        <Link to="/lesson" className="link-dark">
+        <div onClick={() => {let saveLessonId = lesson.id; console.log(saveLessonId); actions.onClickSaveLessonId(lesson.id)}}>
+
         <Lessoncard
           title={lesson.title}
           subject={lesson.subject}
           summary={lesson.summary}
         />
+        </div>
+        </Link>
         <Link to="/edit_lesson" className="link-dark">
           <button
             className="btn btn-warning mb-5 me-2 btn-sm"
@@ -125,7 +122,6 @@ export const Profile = () => {
     );
   });
 
-  console.log("confirmar", userLoggedisteacher)
 
   return (
     <div className="my-5 mx-2">
@@ -192,17 +188,14 @@ export const Profile = () => {
           <Link to="/edit_profile" className="link-dark">
             <button
               className="btn btn-warning mb-5 me-5"
-              // onClick={() => {
-              //   let saveTeacherId = dataTeacher["id"];
-              //   console.log(saveTeacherId);
-              //   actions.onClickSaveLessonId(dataTeacher["id"]);
-              // }}
+
             >
               Edit Info
             </button>
           </Link>
         </div>
       </div>
+      {userLoggedisteacher === true ? (
       <div className="container-fluid">
         <h2 className="container-fluid col-8 fst-italic mt-5 py-5 border-top">
           My <b className="text-warning">lessons</b>!
@@ -213,6 +206,7 @@ export const Profile = () => {
           </div>
         </div>
       </div>
+      ) : null }
     </div>
   );
 };

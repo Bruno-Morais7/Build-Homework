@@ -10,22 +10,15 @@ export const Edit_Profile = () => {
   const { store, actions } = useContext(Context);
 
   const userLoggedEmail = localStorage.getItem("email");
-  const userLoggedEmailStudent = localStorage.getItem("email");
-
-  const userLoggedId = localStorage.getItem("id");
   const userLoggedisteacher = localStorage.getItem("is_teacher")
-  console.log("test", userLoggedEmail);
-  console.log("isteacher?", userLoggedisteacher)
 
   let dataTeacher = ""
 
-  {userLoggedisteacher ? dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.email === userLoggedEmail) : dataTeacher = store?.students?.[0]?.students.find(e => e.email === userLoggedEmail);}
-
-   
-  console.log("datateacherttttttt", dataTeacher? dataTeacher["first_name"] : null);
-
+  userLoggedisteacher === "true"? 
+    (dataTeacher = store?.teachers?.[0]?.teachers.find(e => e.email === userLoggedEmail)) 
+    : dataTeacher = store?.students?.[0]?.students.find(e => e.email === userLoggedEmail) 
+     
   const test = dataTeacher? dataTeacher["first_name"] : null
-  console.log("PQP", test)
 
   const [email, setEmail] = useState(dataTeacher? dataTeacher["email"] : null);
   const [firstname, setFirstname] = useState(dataTeacher? dataTeacher["first_name"] : null);
@@ -44,66 +37,49 @@ export const Edit_Profile = () => {
 
 
   const onClickEnable = (e) => {
-    console.log("teste")
-    // e.target.disabled = false
     setDisabled(!disabled)
 
   };
 
- 
-
-  // const onTypeEmail = (e) => {
-  //   console.log(e.target.value);
-  //   setEmail(e.target.value);
-  // };
 
   const onTypeFirstName = (e) => {
-    console.log(e.target.value);
     setFirstname(e.target.value? e.target.value : dataTeacher["first_name"]);
   };
 
   const onTypeLastName = (e) => {
-    console.log(e.target.value);
     setLastname(e.target.value);
   };
 
   const onTypeSubjects1 = (e) => {
-    console.log(e.target.value);
     setSubjects1(e.target.value);
   };
 
   const onTypeSubjects2 = (e) => {
-    console.log(e.target.value);
     setSubjects2(e.target.value);
   };
 
   const onTypeSubjects3 = (e) => {
-    console.log(e.target.value);
     setSubjects3(e.target.value);
   };
 
   const onTypeSubjects4 = (e) => {
-    console.log(e.target.value);
     setSubjects4(e.target.value);
   };
 
   const onTypeWhyYouTeach = (e) => {
-    console.log(e.target.value);
     setWhyyouteach(e.target.value);
   };
 
   const onTypeYearsOfExperience = (e) => {
-    console.log(e.target.value);
     setYearsexperience(e.target.value);
   };
 
   const onTypeFunInfo = (e) => {
-    console.log(e.target.value);
     setFuninfo(e.target.value);
   };
 
   const postUpdateProfile = () => {
-    userLoggedisteacher? (
+    userLoggedisteacher === "true"? (
     // fetching data from the backend
     fetch((BASE_URL + "/api/teacher/" + dataTeacher["id"]), {
       headers: {
@@ -125,18 +101,18 @@ export const Edit_Profile = () => {
     })
     )
     : 
-    fetch((BASE_URL + "/api/student/" + dataTeacher["id"]), {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "PUT",
-      body: JSON.stringify({
-        // "email": email,
-        "first_name": firstname,
-        "last_name": lastname,
-        
+      fetch((BASE_URL + "/api/student/" + dataTeacher["id"]), {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "PUT",
+        body: JSON.stringify({
+          // "email": email,
+          "first_name": firstname,
+          "last_name": lastname,
+          
+        })
       })
-    })
   };
 
   const redirect = useHistory();
@@ -149,8 +125,6 @@ export const Edit_Profile = () => {
    
   };
 
-  console.log("nome", firstname, lastname, email, userLoggedEmail);
-  console.log("datateacher22222", dataTeacher);
 
   return (
     
@@ -188,7 +162,7 @@ export const Edit_Profile = () => {
             </div>
           </div>
         </div>
-        {userLoggedisteacher? (
+        {userLoggedisteacher === "true"? (
         <div className="col-10 text-center mx-auto">
           <h2 className="text-warning ">Teaching Info</h2>
           <div>
