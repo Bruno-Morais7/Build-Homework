@@ -28,6 +28,7 @@ export const SignupPage = () => {
   const [whyyouteach, setWhyyouteach] = useState("");
   const [yearsexperience, SetYearsexperience] = useState("");
   const [signupteacher, setSignupteacher] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const onSubmitClicked = () => {
 
@@ -193,6 +194,10 @@ export const SignupPage = () => {
   };
 
   const submit = () => {
+    if (!email.trim() || !password || !repeatPassword) {
+      return alert("Fill the all information");
+    }
+
     if (
       !password.trim() ||
       !validator.isStrongPassword(password, {
@@ -204,9 +209,13 @@ export const SignupPage = () => {
         minSymbols: 1,
       })
     ) {
-      alert(
-        "Password must have min of 8 Char, 1 Uppercase, 1 Symbol and a number!"
-      );
+      alert(`This password must be contain these
+      minLength: 8
+      maxLength: 16
+      minLowercase: 1
+      minUppercase: 1
+      minNumbers: 1
+      minSymbols: 1 `);
       return;
       // setEmailError("Enter valid Email!");
     }
@@ -288,8 +297,8 @@ export const SignupPage = () => {
             <p></p>
             <form className="form-group">
               <input
+                type={checked ? "Text" : "Password"}
                 name="Confirm password"
-                type="Password"
                 className="form-control"
                 id="confirm_password"
                 placeholder="Confirm Password"
@@ -298,7 +307,14 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
+
+            </div>
+            <div className="form-group mt-1">
+              <input type="checkbox" onClick={() => setChecked(!checked)} />
+              Show Password
+            </div>
             </form>
+
             <p></p>
             <div className="form-group">
               <input
