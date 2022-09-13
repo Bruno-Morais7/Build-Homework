@@ -87,108 +87,105 @@ export const LoginPage = ({ setToken, setIs_teacher, setEmaillogged }) => {
         if (dataUsers?.access_token) {
           localStorage.setItem("token", dataUsers.access_token);
           localStorage.setItem("is_teacher", dataUsers.is_teacher);
-          localStorage.setItem("email", dataUsers.email)
-          localStorage.setItem("id", dataUsers.id)
+          localStorage.setItem("email", dataUsers.email);
+          localStorage.setItem("id", dataUsers.id);
           setToken(dataUsers.access_token);
           setIs_teacher(dataUsers.is_teacher);
           setEmaillogged(dataUsers.email);
           setId(dataUsers.id);
           // history.push("/landingpage");
           history.push("/profile");
-        }
-        else {
+        } else {
           window.alert("Wrong email or password");
           window.location.reload();
-        };
+        }
         //   setStore({
         //     users: [...getStore().users, dataUsers],
         //   });
       })
       .catch((error) => {
         console.log(error);
-        
       });
   };
 
   return (
     <>
-      <div className="container">
-        <div className="row ">
-          <div className="col-md-5 mx-auto ">
-            <div id="first">
-              <div className="myform bg-dark text-white my-5 p-5">
-                <div className="logo">
-                  <div className="col-md-12 text-center">
-                    <h3>
-                      <i className="fa fa-user fa-4x text-warning"></i>
-                    </h3>
-                    <h1>Login</h1>
+      <div className="container-fluid col-10 rounded">
+        <div className="row">
+          <div className="col-md-6 mx-auto bg-dark text-white px-5 pt-5 pb-4 rounded maxsize">
+            <div className="myform ">
+              <div className="col-md-12 text-center">
+                <h3>
+                  <i className="fa fa-user fa-3x text-warning"></i>
+                </h3>
+                <h1>Login</h1>
+              </div>
+              <form>
+                <div className="form-group py-2">
+                  <label className="ms-2 mb-1">Email address</label>
+                  <input
+                    type="Email"
+                    name="Email"
+                    className="form-control"
+                    id="Email"
+                    aria-describedby="Email"
+                    placeholder="Enter Email"
+                    value={email}
+                    onChange={onTypeEmail}
+                    required
+                  />
+                </div>
+                <div className="form-group py-2">
+                  <label className="ms-2 mb-1">Password</label>
+                  <input
+                    type={checked ? "Text" : "Password"}
+                    name="Password"
+                    id="Password"
+                    className="form-control"
+                    aria-describedby="Password"
+                    placeholder="Enter Password"
+                    value={password}
+                    onChange={onTypePassword}
+                  />
+                  <input
+                    type="checkbox"
+                    onClick={() => setChecked(!checked)}
+                    className="ms-2 mt-2"
+                  />
+                  <span className="ms-1 mt-2">Show Password</span>
+                </div>
+                <div className="col-md-12 text-center py-2 mt-2">
+                  <button
+                    type="submit"
+                    className=" btn btn-block btn-warning"
+                    onClick={onSubmitClicked}
+                  >
+                    Continue
+                  </button>
+                </div>
+                <div className="col-md-12 py-2">
+                  <div className="login-or">
+                    <hr className="hr-or" />
+                    <span className="span-or bg-dark">or</span>
                   </div>
                 </div>
-                <form>
-                  <div className="form-group">
-                    <label>Email address</label>
-                    <input
-                      type="Email"
-                      name="Email"
-                      className="form-control"
-                      id="Email"
-                      aria-describedby="Email"
-                      placeholder="Enter Email"
-                      value={email}
-                      onChange={onTypeEmail}
-                      required
-                    />
-                  </div>
-                  <div className="form-group mt-1">
-                    <label>Password</label>
-                    <input
-                      type={checked ? "Text" : "Password"}
-                      name="Password"
-                      id="Password"
-                      className="form-control"
-                      aria-describedby="Password"
-                      placeholder="Enter Password"
-                      value={password}
-                      onChange={onTypePassword}
-                    />
-                  </div>
-                  <div className="form-group mt-1">
-                    <input
-                      type="checkbox"
-                      onClick={() => setChecked(!checked)}
-                    />
-                     &nbsp;Show Password
-                  </div>
-                  <div className="col-md-12 text-center mt-3">
-                    <button
-                      type="submit"
-                      className=" btn btn-block mybtn btn-warning tx-tfm"
-                      onClick={onSubmitClicked}
-                    >
-                      Continue
-                    </button>
-                  </div>
-                  <div className="col-md-12 ">
-                    <div className="login-or">
-                      <hr className="hr-or" />
-                      <span className="span-or bg-dark">or</span>
-                    </div>
-                  </div>
 
-                  <div className="form-group">
-                    <p className="text-center">
-                      Don't have account?{" "}
-                      <Link to="/SignupPage" className="text-warning">Sign up here</Link>
-                    </p>
-                  </div>
-                  <div className="form-group">
-                    <p className="text-center ">
-                      <Link to="/ForgetPassword" className="text-warning">Forgot Password?</Link>
-                    </p>
-                  </div>
-                </form>
-              </div>
+                <div className="form-group mt-1">
+                  <p className="text-center">
+                    Don't have account?{" "}
+                    <Link to="/SignupPage" className="text-warning">
+                      Sign up here
+                    </Link>
+                  </p>
+                </div>
+                <div className="form-group">
+                  <p className="text-center ">
+                    <Link to="/ForgetPassword" className="text-warning">
+                      Forgot Password?
+                    </Link>
+                  </p>
+                </div>
+              </form>
             </div>
           </div>
         </div>

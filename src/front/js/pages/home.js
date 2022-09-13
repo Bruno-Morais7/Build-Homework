@@ -12,7 +12,7 @@ export const Home = () => {
   // const { store, actions } = useContext(Context);
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="p-5 text-white rounded bg-dark d-flex row flex-lg-wrap justify-content-center">
         <div className="text-center justify-content-center">
           <h1 className="display-3 fst-italic mb-5">
@@ -20,21 +20,17 @@ export const Home = () => {
             <span className="fs-1">&</span>{" "}
             <b className="text-warning">Learn</b>
           </h1>
-          <h1 className=" fst-italic">
-            Learn and Teach what you want... or need...
-          </h1>
-          <h1 className="fst-italic p-2 pb-3">
-            Help students by teaching what you know!
-          </h1>
+          <h2 className="">Learn and Teach what you want... or need...</h2>
+          <h2 className="p-2 pb-3">Help students by teaching what you know!</h2>
         </div>
       </div>
-      <h1 className="m-5 p-2 display-5 text-center">
+      <h1 className="m-5 p-3 display-5 text-center">
         <b className="border-bottom border-warning border-3">
           {" "}
           &nbsp; Start your Journey &nbsp;
         </b>
       </h1>
-      <div className="container-fluid col-8 d-flex my-5 justify-content-center gap-5 fs-3 lead flex-wrap">
+      <div className="container-fluid d-flex my-5 pb-5 justify-content-center gap-5 fs-3 lead flex-wrap">
         <div className="col">
           <div className="h-100 p-5 text-white bg-dark rounded-3">
             <div>
@@ -81,7 +77,7 @@ export const Home = () => {
             &nbsp; Why you should use this platform? &nbsp;
           </b>
         </h1>
-        <div className="container-fluid col-10 d-flex my-5 justify-content-center gap-5 fs-5 flex-wrap">
+        <div className="container-fluid d-flex my-5 justify-content-center gap-5 fs-5 flex-wrap">
           <div className="col">
             <div className="h-100 p-5 bg-white rounded-3">
               <div>
@@ -157,7 +153,7 @@ export const Home = () => {
           &nbsp; What we provide to help you improve! &nbsp;
         </b>
       </h1>
-      <div className="container-fluid d-flex mb-5 justify-content-center gap-5 row flex-wrap flex-lg-row">
+      <div className="d-flex mb-5 justify-content-center gap-5 row flex-wrap flex-lg-row">
         <div className="col-md-3 card border-0">
           <img
             className="img-fluid mx-auto d-block img-thumbnail"

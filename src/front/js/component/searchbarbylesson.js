@@ -22,9 +22,7 @@ function SearchBarLesson({ placeholder, lessonData }) {
     } else {
       setFilteredData(newFilter);
     }
-
   };
-
 
   const clearInput = () => {
     setFilteredData([]);
@@ -32,7 +30,7 @@ function SearchBarLesson({ placeholder, lessonData }) {
   };
   return (
     <div className="search container-fluid col-12">
-      <div className="searchInputs justify-content-center container-fluid col-10">
+      <div className="searchInputs justify-content-center container-fluid col-8">
         <input
           type="text"
           placeholder={placeholder}
@@ -59,7 +57,6 @@ function SearchBarLesson({ placeholder, lessonData }) {
                 <Link to="/lesson" className="link-dark">
                   <div
                     onClick={() => {
-
                       actions.onClickSaveLessonId(value.id);
                     }}
                   >

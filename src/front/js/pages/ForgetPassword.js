@@ -5,7 +5,7 @@ import "../../styles/style.css";
 import { BASE_URL } from "../store/flux";
 
 export const ForgetPassword = () => {
-  const history = useHistory()
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const submitForgetPassword = (e) => {
     e.preventDefault();
@@ -33,8 +33,6 @@ export const ForgetPassword = () => {
     fetch(BASE_URL + "/api/forgetpassword", post)
       .then((resp) => resp.json())
       .then((res) => {
-
-
         let templateParams = {
           sender_email: email,
           subject: "Reset password",
@@ -48,76 +46,68 @@ export const ForgetPassword = () => {
             "qQRVwiJXNiaCwRoMX"
           )
           .then((res) => {
-
             setEmail("");
             history.push("/loginpage");
           })
-          .catch((err) => {
-          });
+          .catch((err) => {});
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   return (
     <>
-      <div className="container">
+      <div className="container-fluid col-10">
         <div className="row">
-          <div className="col-md-5 mx-auto">
-            <div id="first">
-              <div className="myform bg-dark text-white my-5">
-                <div className="logo mb-3">
-                  <div className="col-md-12 text-center p-3">
-                    <h3>
-                      <i className="fa fa-lock fa-2x text-warning"></i>
-                    </h3>
-                    <h2 className="text-center">Forgot Password?</h2>
-                    <p>You can reset your password here.</p>
-                    <div className="panel-body">
-                      <form
-                        id="register-form"
-                        role="form"
-                        autoComplete="off"
-                        className="form"
-                        method="post"
-                        onSubmit={submitForgetPassword}
-                      >
-                        <div className="form-group">
-                          <div className="input-group">
-                            <span className="input-group-addon">
-                              <i className="glyphicon glyphicon-envelope color-blue"></i>
-                            </span>
-                            <input
-                              id="Email"
-                              name="Email"
-                              placeholder="Email address"
-                              className="form-control"
-                              type="Email"
-                              onChange={(e) => setEmail(e.target.value)}
-                              value={email}
-                            />
-                          </div>
+          <div className="col-md-6 mx-auto bg-dark text-white p-5 rounded maxsize">
+            <div className="myform">
+              <div className="logo mb-3">
+                <div className="col-md-12 text-center p-3">
+                  <h3>
+                    <i className="fa fa-lock fa-3x text-warning"></i>
+                  </h3>
+                  <h1 className="text-center pb-4">Forgot Password?</h1>
+                  <p className="pb-2">You can reset your password here.</p>
+                  <div className="panel-body">
+                    <form
+                      id="register-form"
+                      role="form"
+                      autoComplete="off"
+                      className="form"
+                      method="post"
+                      onSubmit={submitForgetPassword}
+                    >
+                      <div className="form-group">
+                        <div className="input-group">
+                          <input
+                            id="Email"
+                            name="Email"
+                            placeholder="Email address"
+                            className="form-control"
+                            type="Email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                          />
                         </div>
-                        <div className="form-group mt-4">
-                          <button
-                            name="recover-submit"
-                            className="btn btn-lg btn-warning btn-block fs-6"
-                            value="Reset Password"
-                            type="submit"
-                          >
-                            Reset Password
-                          </button>
-                        </div>
+                      </div>
+                      <div className="form-group pt-4">
+                        <button
+                          name="recover-submit"
+                          className="btn btn-warning btn-block"
+                          value="Reset Password"
+                          type="submit"
+                        >
+                          Reset Password
+                        </button>
+                      </div>
 
-                        <input
-                          type="hidden"
-                          className="hide"
-                          name="token"
-                          id="token"
-                          value=""
-                        />
-                      </form>
-                    </div>
+                      <input
+                        type="hidden"
+                        className="hide"
+                        name="token"
+                        id="token"
+                        value=""
+                      />
+                    </form>
                   </div>
                 </div>
               </div>

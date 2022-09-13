@@ -17,13 +17,13 @@ export const Results = () => {
 
 
   return (
-    <div>
+    <div className="container">
       <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
         <div className="col-md-6 px-5">
-          <h1 className="display-4 fst-italic">
+          <h3 className="display-4 fst-italic">
             <b className="text-warning">Search</b> and you'll{" "}
             <b className="text-warning">find</b>.
-          </h1>
+          </h3>
           <div>
             <p className="lead mt-3 pt-3 ps-5">
               Go and find what you need...
@@ -60,13 +60,13 @@ export const Results = () => {
         <div className="p-4 p-md-5 pb-4 text-white rounded bg-dark d-flex row flex-lg-row">
           <div className="col-md-4 px-5">
             <img
-              className="img-fluid float-end"
+              className="img-fluid "
               width={"100rem"}
               src={change}
             />
           </div>
           <div className="col-md-8 px-5 lead">
-            <h3 className="fs-2 fst-italic text-end">
+            <h3 className="text-end">
               Didn't find what you were looking for? <br /> Change something on
               the <b className="text-warning">Search</b>!
             </h3>
