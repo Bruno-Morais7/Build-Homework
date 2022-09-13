@@ -256,18 +256,16 @@ export const SignupPage = () => {
 
   return (
     <>
-      <br></br>
-      <div className="container">
-        <div className="col-md-5 mx-auto">
-          <div className="myform bg-dark text-white">
-            <div className="logo mb-3">
-              <div className="col-md-12 text-center">
-                <h3>{/* <i className="fa fa-user-plus fa-2x"></i> */}</h3>
-                <h1>SignUp Form</h1>
+      <div className="container-fluid col-10 justify-content-center bg-dark text-white rounded-3 maxsize">
+          <div className="myform px-5 p-5">
+              <div className="mx-auto py-4 mb-1 text-center col-md-6">
+                <h3>
+              <i className="fa-solid fa-user-plus fa-3x text-warning"></i>
+              </h3>
+                <h1>SignUp</h1>
               </div>
-            </div>
-            <form action="/Signuppage" method="post" name="registration" />
-            <div className="form-group">
+            <form action="/Signuppage" method="post" name="registration"/>
+            <div className="form-group py-2">
               <input
                 name="email"
                 className="form-control"
@@ -280,10 +278,10 @@ export const SignupPage = () => {
               />
             </div>
             <p></p>
-            <form className="form-group">
+            <form className="form-group py-2">
               <input
                 name="password"
-                type="Password"
+                type={checked ? "Text" : "Password"}
                 className="form-control"
                 id="password"
                 placeholder="Enter Password"
@@ -294,7 +292,7 @@ export const SignupPage = () => {
               />
             </form>
             <p></p>
-            <form className="form-group">
+            <form className="form-group py-2">
               <input
                 type={checked ? "Text" : "Password"}
                 name="Confirm password"
@@ -306,12 +304,12 @@ export const SignupPage = () => {
                 value={repeatPassword}
                 onChange={onTypeRepeatPassword}
               />
-              <input type="checkbox" onClick={() => setChecked(!checked)} />
-              Show Password
+              <input type="checkbox" className="ms-2 mt-2" onClick={() => setChecked(!checked)} />
+              <span className="ms-1 mt-2">Show Password</span>
             </form>
 
             <p></p>
-            <div className="form-group">
+            <div className="form-group py-2">
               <input
                 name="First Name"
                 className="form-control"
@@ -324,7 +322,7 @@ export const SignupPage = () => {
               />
             </div>
             <p></p>
-            <div className="form-group">
+            <div className="form-group py-2">
               <input
                 name="Surnames"
                 className="form-control"
@@ -350,7 +348,7 @@ export const SignupPage = () => {
             <div className="col-md-12 text-center mb-3">
               {signupteacher === true ? (
                 <div>
-                  <div className="form-group">
+                  <div className="form-group py-2">
                     <input
                       name="fun_info"
                       className="form-control"
@@ -362,7 +360,7 @@ export const SignupPage = () => {
                     />
                   </div>
                   <p></p>
-                  <div className="form-group d-flex gap-3 flex-wrap">
+                  <div className="form-group py-2 d-flex gap-4 flex-wrap">
                     <input
                       name="subjects1"
                       className="form-control col-sm"
@@ -376,7 +374,7 @@ export const SignupPage = () => {
                       name="subjects2"
                       className="form-control col-sm"
                       id="subjects2"
-                      placeholder="Subjects"
+                      placeholder="subjects"
                       maxLength={25}
                       value={subjects2}
                       onChange={onTypeSubjects2}
@@ -385,7 +383,7 @@ export const SignupPage = () => {
                       name="subjects3"
                       className="form-control col-sm"
                       id="subjects3"
-                      placeholder="that You"
+                      placeholder="you"
                       maxLength={25}
                       value={subjects3}
                       onChange={onTypeSubjects3}
@@ -401,7 +399,7 @@ export const SignupPage = () => {
                     />
                   </div>
                   <p></p>
-                  <div className="form-group">
+                  <div className="form-group py-2">
                     <input
                       name="why_you_teach"
                       className="form-control"
@@ -413,7 +411,7 @@ export const SignupPage = () => {
                     />
                   </div>
                   <p></p>
-                  <div className="form-group">
+                  <div className="form-group py-2">
                     <input
                       name="years_experience"
                       className="form-control"
@@ -427,30 +425,29 @@ export const SignupPage = () => {
                 </div>
               ) : null}
             </div>
-            <div className="col-md-12 text-center mb-3">
+            <div className="col-md-12 text-center mt-4 mb-4">
               <button
                 type="submit"
-                className=" btn btn-block mybtn btn-warning tx-tfm"
+                className="btn btn-block btn-warning"
                 onClick={signupForm}
               >
                 {signupteacher
-                  ? "If You are only a Student Click Here"
-                  : "If You are a Teacher Click Here"}
+                  ? "I am a Student!"
+                  : "I am a Teacher!"}
               </button>
             </div>
-            <div className="col-md-12 text-center mb-3 ">
+            <div className="col-md-12 text-center">
               <button
                 type="submit"
-                className=" btn btn-block mybtn btn-dark tx-tfm border"
+                className=" btn btn-block btn-dark border"
                 onClick={submit}
               >
-                submit
+                Submit
               </button>
             </div>
           </div>
-        </div>
+        
       </div>
-      <br></br>
     </>
   );
 };

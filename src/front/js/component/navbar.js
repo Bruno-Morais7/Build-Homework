@@ -14,19 +14,16 @@ export const Navbar = ({ token, setToken, is_teacher, setIs_teacher }) => {
     history.push("/");
   };
   return (
-    <nav className="navbar navbar-light container-fluid col-10 border-bottom">
+    <nav className="navbar navbar-light container">
       <div className="container-fluid py-3">
-        <Link to="/" /*style={{ textDecoration: "none" }}*/>
-          {/* <span className="navbar-brand mb-0 fs-3 fw-bold p-2 align-middle text-dark"> */}
+        <Link to="/">
           <img
             className="img-fluid mx-auto d-block"
             src={logo}
             width={"250rem"}
           />
-          {/* Teach<span className="text-warning">&</span>Learn
-          </span> */}
         </Link>
-        <div className="ml-auto d-flex gap-2 d-flex flex-wrap align-items-center">
+        <div className="ml-auto d-flex gap-3 flex-wrap align-items-center py-4">
           {token ? (
             <>
               <Link to="/lounge">

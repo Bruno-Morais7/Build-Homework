@@ -6,8 +6,8 @@ import "../../styles/style.css";
 export const Forbidden = () => {
     return (
         <div className="container-fluid text-center">
-            <Link to="/"><img className="img-fluid mx-auto d-block mt-5 mb-3 magicBorder" src={cool403} /></Link>
-            <p className="text-muted mb-5 lead fs-4">You tried to access a page <b className="text-danger">you don't have permission</b> to see. <br />Click on the image to get back Home! </p>
+            <Link to="/"><img className="img-fluid mx-auto d-block rounded mb-3" src={cool403} /></Link>
+            <p className="text-muted lead fs-4">You tried to access a page <b className="text-danger">you don't have permission</b> to see. <br />Click on the image to get back Home! </p>
         </div>
     )
 }

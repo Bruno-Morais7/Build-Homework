@@ -27,9 +27,7 @@ function SearchBar({ placeholder, data }) {
     } else {
       setFilteredData(newFilter);
     }
-    
   };
-  
 
   const clearInput = () => {
     setFilteredData([]);
@@ -37,7 +35,7 @@ function SearchBar({ placeholder, data }) {
   };
   return (
     <div className="search container-fluid col-12">
-      <div className="searchInputs justify-content-center container-fluid col-10">
+      <div className="searchInputs justify-content-center container-fluid col-8">
         <input
           type="text"
           placeholder={placeholder}

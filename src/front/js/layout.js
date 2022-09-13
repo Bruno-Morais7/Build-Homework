@@ -107,15 +107,16 @@ const Layout = () => {
             <Route
               exact
               path="/lessonworkspace"
-              render={() =>
-                loggedOut ? (
-                  <Redirect to="/forbidden" />
-                ) : loggedInStudent ? (
-                  <Redirect to="/forbidden" />
-                ) : (
-                  <Lessonworkspace />
-                )
-              }
+              render={() => <Lessonworkspace />}
+              // render={() =>
+              //   loggedOut ? (
+              //     <Redirect to="/forbidden" />
+              //   ) : loggedInStudent ? (
+              //     <Redirect to="/forbidden" />
+              //   ) : (
+              //     <Lessonworkspace />
+              //   )
+              // }
             />
             <Route
               exact
@@ -137,16 +138,17 @@ const Layout = () => {
                 loggedOut ? <Redirect to="/forbidden" /> : <Edit_Profile />
               }
             />
+            
             <Route
               exact
-              path="/updatepassword/:id"
+              path="/updatepassword:id"
               render={() =>
                 loggedOut ? <UpdatePassword /> : <Redirect to="/forbidden" />
               }
             />
 
             <Route>
-              <div className="container-fluid col-10">
+              <div className="container-fluid col-8">
                 <img className="mx-auto d-block my-5" src={the404}></img>
               </div>
             </Route>

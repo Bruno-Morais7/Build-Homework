@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => (
-  <div className="container-fluid col-10 border-top">
-    <div className="container-fluid mt-3 py-3 d-flex justify-content-between">
+  <div className="container">
+    <div className="container-fluid mt-3 py-4 d-flex justify-content-between">
       <ul className="list-unstyled d-flex flex-wrap gap-1 align-items-center">
         <li>
           <Link to="/"><div className="btn_effect"><i className="fa-solid fa-house text-dark "></i><span className="btn_text">Home</span></div></Link>
