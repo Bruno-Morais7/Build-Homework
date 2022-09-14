@@ -31,7 +31,6 @@ export const SignupPage = () => {
   const [checked, setChecked] = useState(false);
 
   const onSubmitClicked = () => {
-
     if (email && password && repeatPassword) {
       if (password === repeatPassword) {
         onFetchSignUp(email, password);
@@ -55,7 +54,6 @@ export const SignupPage = () => {
         password: password,
       }),
     };
-
 
     fetch("", post)
       .then((response) => response.text())
@@ -117,7 +115,6 @@ export const SignupPage = () => {
     } else {
       setTeacher(true);
     }
-
   };
 
   const signupForm = () => {
@@ -190,7 +187,7 @@ export const SignupPage = () => {
         avatar: pic,
       }),
     });
-    history.push("/loginpage")
+    history.push("/loginpage");
   };
 
   const submit = () => {
@@ -257,85 +254,89 @@ export const SignupPage = () => {
   return (
     <>
       <div className="container-fluid col-10 justify-content-center bg-dark text-white rounded-3 maxsize">
-          <div className="myform px-5 p-5">
-              <div className="mx-auto py-4 mb-1 text-center col-md-6">
-                <h3>
+        <div className="myform px-5 p-5">
+          <div className="mx-auto py-4 mb-1 text-center col-md-6">
+            <h3>
               <i className="fa-solid fa-user-plus fa-3x text-warning"></i>
-              </h3>
-                <h1>SignUp</h1>
-              </div>
-            <form action="/Signuppage" method="post" name="registration"/>
-            <div className="form-group py-2">
-              <input
-                name="email"
-                className="form-control"
-                id="email"
-                placeholder="Enter email"
-                minLength={10}
-                maxLength={100}
-                value={email}
-                onChange={onTypeEmail}
-              />
-            </div>
-            <p></p>
-            <form className="form-group py-2">
-              <input
-                name="password"
-                type={checked ? "Text" : "Password"}
-                className="form-control"
-                id="password"
-                placeholder="Enter Password"
-                minLength={7}
-                maxLength={40}
-                value={password}
-                onChange={onTypePassword}
-              />
-            </form>
-            <p></p>
-            <form className="form-group py-2">
-              <input
-                type={checked ? "Text" : "Password"}
-                name="Confirm password"
-                className="form-control"
-                id="confirm_password"
-                placeholder="Confirm Password"
-                minLength={7}
-                maxLength={40}
-                value={repeatPassword}
-                onChange={onTypeRepeatPassword}
-              />
-              <input type="checkbox" className="ms-2 mt-2" onClick={() => setChecked(!checked)} />
-              <span className="ms-1 mt-2">Show Password</span>
-            </form>
+            </h3>
+            <h1>SignUp</h1>
+          </div>
+          <form action="/Signuppage" method="post" name="registration" />
+          <div className="form-group py-2">
+            <input
+              name="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter email"
+              minLength={6}
+              maxLength={100}
+              value={email}
+              onChange={onTypeEmail}
+            />
+          </div>
+          <p></p>
+          <form className="form-group py-2">
+            <input
+              name="password"
+              type={checked ? "Text" : "Password"}
+              className="form-control"
+              id="password"
+              placeholder="Enter Password"
+              // minLength={7}
+              maxLength={40}
+              value={password}
+              onChange={onTypePassword}
+            />
+          </form>
+          <p></p>
+          <form className="form-group py-2">
+            <input
+              type={checked ? "Text" : "Password"}
+              name="Confirm password"
+              className="form-control"
+              id="confirm_password"
+              placeholder="Confirm Password"
+              // minLength={7}
+              maxLength={40}
+              value={repeatPassword}
+              onChange={onTypeRepeatPassword}
+            />
+            <input
+              type="checkbox"
+              className="ms-2 mt-2"
+              onClick={() => setChecked(!checked)}
+            />
+            <span className="ms-1 mt-2">Show Password</span>
+          </form>
 
-            <p></p>
-            <div className="form-group py-2">
-              <input
-                name="First Name"
-                className="form-control"
-                id="First_Name"
-                placeholder="Enter First Name"
-                minLength={4}
-                maxLength={30}
-                value={firstname}
-                onChange={onTypeFirstname}
-              />
-            </div>
-            <p></p>
-            <div className="form-group py-2">
-              <input
-                name="Surnames"
-                className="form-control"
-                id="Surnames"
-                placeholder="Enter Surnames"
-                minLength={4}
-                maxLength={50}
-                value={surnames}
-                onChange={onTypeSurnames}
-              />
-            </div>
-            <p></p>
-            {/* <div>
+          <p></p>
+          <div className="form-group py-2">
+            <input
+              name="First Name"
+              className="form-control"
+              id="First_Name"
+              placeholder="Enter First Name"
+              // minLength={4}
+              maxLength={30}
+              value={firstname}
+              onChange={onTypeFirstname}
+            />
+          </div>
+          <p></p>
+          <div className="form-group py-2">
+            <input
+              name="Surnames"
+              className="form-control"
+              id="Surnames"
+              placeholder="Enter Surnames"
+              // minLength={4}
+              maxLength={50}
+              value={surnames}
+              onChange={onTypeSurnames}
+            />
+          </div>
+          <p></p>
+          {/* <div>
               <label>
                 <input
                   type="checkbox"
@@ -345,108 +346,105 @@ export const SignupPage = () => {
               </label>
             </div> */}
 
-            <div className="col-md-12 text-center mb-3">
-              {signupteacher === true ? (
-                <div>
-                  <div className="form-group py-2">
-                    <input
-                      name="fun_info"
-                      className="form-control"
-                      id="fun_info"
-                      placeholder="Enter some Fun Information about You"
-                      maxLength={250}
-                      value={funinfo}
-                      onChange={onTypeFunInfo}
-                    />
-                  </div>
-                  <p></p>
-                  <div className="form-group py-2 d-flex gap-4 flex-wrap">
-                    <input
-                      name="subjects1"
-                      className="form-control col-sm"
-                      id="subjects1"
-                      placeholder="Enter the"
-                      maxLength={25}
-                      value={subjects1}
-                      onChange={onTypeSubjects1}
-                    />
-                    <input
-                      name="subjects2"
-                      className="form-control col-sm"
-                      id="subjects2"
-                      placeholder="subjects"
-                      maxLength={25}
-                      value={subjects2}
-                      onChange={onTypeSubjects2}
-                    />
-                    <input
-                      name="subjects3"
-                      className="form-control col-sm"
-                      id="subjects3"
-                      placeholder="you"
-                      maxLength={25}
-                      value={subjects3}
-                      onChange={onTypeSubjects3}
-                    />
-                    <input
-                      name="subjects4"
-                      className="form-control col-sm"
-                      id="subjects4"
-                      placeholder="Teach"
-                      maxLength={25}
-                      value={subjects4}
-                      onChange={onTypeSubjects4}
-                    />
-                  </div>
-                  <p></p>
-                  <div className="form-group py-2">
-                    <input
-                      name="why_you_teach"
-                      className="form-control"
-                      id="why_you_teach"
-                      placeholder="Enter a few words about Why You Teach"
-                      maxLength={250}
-                      value={whyyouteach}
-                      onChange={onTypeWhyYouTeach}
-                    />
-                  </div>
-                  <p></p>
-                  <div className="form-group py-2">
-                    <input
-                      name="years_experience"
-                      className="form-control"
-                      id="years_experience"
-                      placeholder="Enter the Years Of Experience that You have"
-                      value={yearsexperience}
-                      maxLength={3}
-                      onChange={onTypeYearsOfExperience}
-                    />
-                  </div>
+          <div className="col-md-12 text-center mb-3">
+            {signupteacher === true ? (
+              <div>
+                <div className="form-group py-2">
+                  <input
+                    name="fun_info"
+                    className="form-control"
+                    id="fun_info"
+                    placeholder="Enter some Fun Information about You"
+                    maxLength={250}
+                    value={funinfo}
+                    onChange={onTypeFunInfo}
+                  />
                 </div>
-              ) : null}
-            </div>
-            <div className="col-md-12 text-center mt-4 mb-4">
-              <button
-                type="submit"
-                className="btn btn-block btn-warning"
-                onClick={signupForm}
-              >
-                {signupteacher
-                  ? "I am a Student!"
-                  : "I am a Teacher!"}
-              </button>
-            </div>
-            <div className="col-md-12 text-center">
-              <button
-                type="submit"
-                className=" btn btn-block btn-dark border"
-                onClick={submit}
-              >
-                Submit
-              </button>
-            </div>
+                <p></p>
+                <div className="form-group py-2 d-flex gap-4 flex-wrap">
+                  <input
+                    name="subjects1"
+                    className="form-control col-sm"
+                    id="subjects1"
+                    placeholder="Enter the"
+                    maxLength={25}
+                    value={subjects1}
+                    onChange={onTypeSubjects1}
+                  />
+                  <input
+                    name="subjects2"
+                    className="form-control col-sm"
+                    id="subjects2"
+                    placeholder="subjects"
+                    maxLength={25}
+                    value={subjects2}
+                    onChange={onTypeSubjects2}
+                  />
+                  <input
+                    name="subjects3"
+                    className="form-control col-sm"
+                    id="subjects3"
+                    placeholder="you"
+                    maxLength={25}
+                    value={subjects3}
+                    onChange={onTypeSubjects3}
+                  />
+                  <input
+                    name="subjects4"
+                    className="form-control col-sm"
+                    id="subjects4"
+                    placeholder="Teach"
+                    maxLength={25}
+                    value={subjects4}
+                    onChange={onTypeSubjects4}
+                  />
+                </div>
+                <p></p>
+                <div className="form-group py-2">
+                  <input
+                    name="why_you_teach"
+                    className="form-control"
+                    id="why_you_teach"
+                    placeholder="Enter a few words about Why You Teach"
+                    maxLength={250}
+                    value={whyyouteach}
+                    onChange={onTypeWhyYouTeach}
+                  />
+                </div>
+                <p></p>
+                <div className="form-group py-2">
+                  <input
+                    name="years_experience"
+                    className="form-control"
+                    id="years_experience"
+                    placeholder="Enter the Years Of Experience that You have"
+                    value={yearsexperience}
+                    maxLength={3}
+                    onChange={onTypeYearsOfExperience}
+                  />
+                </div>
+              </div>
+            ) : null}
           </div>
-        
+          <div className="col-md-12 text-center mt-4 mb-4">
+            <button
+              type="submit"
+              className="btn btn-block btn-warning"
+              onClick={signupForm}
+            >
+              {signupteacher ? "I am a Student!" : "I am a Teacher!"}
+            </button>
+          </div>
+          <div className="col-md-12 text-center">
+            <button
+              type="submit"
+              className=" btn btn-block btn-dark border"
+              onClick={submit}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -179,11 +179,11 @@ export const Edit_Lesson = () => {
           <img className="img-fluid m-auto d-block w-75" src={screen} />
         </div>
         <button
-        className="btn btn-warning mx-auto mt-2"
-        onClick={onClickEnable}
-      >
-        {disabled ? "Edit Lesson" : "Cancel changes"}{" "}
-      </button>
+          className="btn btn-warning mx-auto mt-2"
+          onClick={onClickEnable}
+        >
+          {disabled ? "Edit Lesson" : "Cancel changes"}{" "}
+        </button>
       </div>
 
       {/* Form */}
@@ -195,7 +195,7 @@ export const Edit_Lesson = () => {
             </label>
             <input
               type="text"
-              minLength={4}
+              // // minLength={4}
               maxLength={30}
               className="form-control"
               // placeholder={}
@@ -212,7 +212,7 @@ export const Edit_Lesson = () => {
             </label>
             <input
               type="text"
-              minLength={4}
+              // // minLength={4}
               maxLength={40}
               className="form-control"
               // placeholder={dataLesson? dataLesson["title"] : null}
@@ -245,7 +245,7 @@ export const Edit_Lesson = () => {
           </label>
           <textarea
             type="textarea"
-            minLength={20}
+            // // minLength={20}
             maxLength={250}
             className="form-control"
             rows="3"
@@ -267,7 +267,7 @@ export const Edit_Lesson = () => {
           </label>
           <textarea
             type="textarea"
-            minLength={300}
+            // // minLength={300}
             maxLength={6000}
             className="form-control"
             rows="10"
@@ -290,7 +290,7 @@ export const Edit_Lesson = () => {
           </label>
           <textarea
             type="text"
-            minLength={40}
+            // // minLength={40}
             maxLength={250}
             className="form-control mb-2"
             rows="2"

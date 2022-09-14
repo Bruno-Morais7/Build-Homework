@@ -87,67 +87,70 @@ export const UpdatePassword = () => {
       <div className="container-fluid col-10">
         <div className="row">
           <div className="col-md-6 mx-auto bg-dark text-white p-5 rounded maxsize">
-              <div className="myform">
-                <div className="logo mb-3">
-                  <div className="col-md-12 text-center">
-                    <h3>
-                      <i class="fa fa-solid fa-key fa-3x text-warning"></i>
-                    </h3>
-                    <h1 className="pb-4">Update Password</h1>
-                    <p className="pb-2">You change your password here.</p>
-                  </div>
+            <div className="myform">
+              <div className="logo mb-3">
+                <div className="col-md-12 text-center">
+                  <h3>
+                    <i class="fa fa-solid fa-key fa-3x text-warning"></i>
+                  </h3>
+                  <h1 className="pb-4">Update Password</h1>
+                  <p className="pb-2">You change your password here.</p>
                 </div>
-                <form
-                  onSubmit={submitPassword}
-                  action="#"
-                  method="POST"
-                  id="updateform"
-                >
-                  <div className="form-group py-2">
-                    <label className="ms-2 mb-1" htmlFor="InputPassword">New Password</label>
-                    <input
-                      type={checked ? "Text" : "Password"}
-                      name="NewPassword"
-                      id="NewPassword"
-                      className="form-control"
-                      aria-describedby="Password"
-                      placeholder="Enter a new Password"
-                      onChange={(e) => setNewPassword(e.target.value)}
-                      value={newPassword}
-                    />
-                  </div>
-
-                  <div className="form-group py-2">
-                    <label className="ms-2 mb-1" htmlFor="InputPassword">Retype Password</label>
-                    <input
-                      type={checked ? "Text" : "Password"}
-                      name="RetypePassword"
-                      id="RetypePassword"
-                      className="form-control"
-                      aria-describedby="RetypePassword"
-                      placeholder="Retype new Password"
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      value={confirmPassword}
-                    />
-                    <input
-                      type="checkbox"
-                      onClick={() => setChecked(!checked)}
-                      className="ms-2 mt-2"
-                    />
-                    <span className="ms-1 mt-2">Show Password</span>
-                  </div>
-                  <div className="col-md-12 text-center py-2 mt-2">
-                    <button
-                      type="submit"
-                      className=" btn btn-block btn-warning"
-                      form="updateform"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
               </div>
-            
+              <form
+                onSubmit={submitPassword}
+                action="#"
+                method="POST"
+                id="updateform"
+              >
+                <div className="form-group py-2">
+                  <label className="ms-2 mb-1" htmlFor="InputPassword">
+                    New Password
+                  </label>
+                  <input
+                    type={checked ? "Text" : "Password"}
+                    name="NewPassword"
+                    id="NewPassword"
+                    className="form-control"
+                    aria-describedby="Password"
+                    placeholder="Enter a new Password"
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    value={newPassword}
+                  />
+                </div>
+
+                <div className="form-group py-2">
+                  <label className="ms-2 mb-1" htmlFor="InputPassword">
+                    Retype Password
+                  </label>
+                  <input
+                    type={checked ? "Text" : "Password"}
+                    name="RetypePassword"
+                    id="RetypePassword"
+                    className="form-control"
+                    aria-describedby="RetypePassword"
+                    placeholder="Retype new Password"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
+                  />
+                  <input
+                    type="checkbox"
+                    onClick={() => setChecked(!checked)}
+                    className="ms-2 mt-2"
+                  />
+                  <span className="ms-1 mt-2">Show Password</span>
+                </div>
+                <div className="col-md-12 text-center py-2 mt-2">
+                  <button
+                    type="submit"
+                    className=" btn btn-block btn-warning"
+                    form="updateform"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

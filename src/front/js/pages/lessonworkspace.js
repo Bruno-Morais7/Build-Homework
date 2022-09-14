@@ -185,7 +185,7 @@ export const Lessonworkspace = () => {
             </label>
             <input
               type="text"
-              minLength={4}
+              // minLength={4}
               maxLength={30}
               className="form-control"
               placeholder="Subject of the lesson"
@@ -199,7 +199,7 @@ export const Lessonworkspace = () => {
             </label>
             <input
               type="text"
-              minLength={4}
+              // minLength={4}
               maxLength={40}
               className="form-control"
               placeholder="Title of the lesson"
@@ -230,7 +230,7 @@ export const Lessonworkspace = () => {
           </label>
           <textarea
             type="textarea"
-            minLength={20}
+            // minLength={20}
             maxLength={250}
             className="form-control"
             rows="3"
@@ -246,7 +246,7 @@ export const Lessonworkspace = () => {
           </label>
           <textarea
             type="textarea"
-            minLength={300}
+            // minLength={300}
             maxLength={6000}
             className="form-control"
             rows="10"
@@ -262,7 +262,7 @@ export const Lessonworkspace = () => {
           </label>
           <textarea
             type="text"
-            minLength={40}
+            // minLength={40}
             maxLength={250}
             className="form-control mb-2"
             rows="2"
