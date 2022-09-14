@@ -107,16 +107,15 @@ const Layout = () => {
             <Route
               exact
               path="/lessonworkspace"
-              render={() => <Lessonworkspace />}
-              // render={() =>
-              //   loggedOut ? (
-              //     <Redirect to="/forbidden" />
-              //   ) : loggedInStudent ? (
-              //     <Redirect to="/forbidden" />
-              //   ) : (
-              //     <Lessonworkspace />
-              //   )
-              // }
+              render={() =>
+                loggedOut ? (
+                  <Redirect to="/forbidden" />
+                ) : loggedInStudent ? (
+                  <Redirect to="/forbidden" />
+                ) : (
+                  <Lessonworkspace />
+                )
+              }
             />
             <Route
               exact
@@ -138,7 +137,7 @@ const Layout = () => {
                 loggedOut ? <Redirect to="/forbidden" /> : <Edit_Profile />
               }
             />
-            
+
             <Route
               exact
               path="/updatepassword:id"
